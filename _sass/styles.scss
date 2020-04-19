@@ -1,0 +1,77 @@
+body {
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+canvas {
+    width: 300px;
+    height: 300px;
+}
+
+.selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 296px;
+    padding: 0 2px;
+    height: 32px;
+    background: #c4c4c4;
+    border-radius: 5px;
+
+    div {
+        width: 120px;
+        height: 28px;
+        text-align: center;
+        line-height: 28px;
+        transition: 100ms ease-in-out;
+    }
+
+    .active {
+        background: #ffffff;
+        border-radius: 5px;
+    }
+}
+
+.panel {
+    height: 300px;
+
+    .row {
+        width: 296px;
+        padding: 0 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 13px;
+
+        .value {
+            text-align: right;
+            color: #4c4c4c;
+            &.show {
+                color: #007aff;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.control {
+    height: 300px;
+
+    .row {
+        width: 296px;
+        padding: 0 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 13px;
+
+        .value {
+            text-align: right;
+            color: #4c4c4c;
+        }
+    }
+}
