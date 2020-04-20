@@ -3,7 +3,36 @@ layout: html
 title: COVID-19
 description: Decentralized Tracing
 ---
-
+<header>
+    <div class="title">
+        <h1>
+            Privacy-Preserving Contact Tracing
+        </h1>
+    </div>
+    <div class="description">
+        Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic, to protect people and get society back up and running. Software developers are contributing by crafting technical tools to help combat the virus and save lives.
+        <br>
+        In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.
+        <br>
+        At CrypTool, we try to explain as well as possible what is hidden in these decentralized faking protocols so that you can form your own opinion on the subject.
+    </div>
+</header>
+<article>
+    <div class="figure"></div>
+    <div class="text-container">
+        <div class="text">
+            <h1>
+                Step <span>1</span>
+            </h1>
+            <div class="bold">Alice’s phone broadcasts a random message every few minutes</div>
+            <p>
+                In order to maintain user privacy, the message is sent over Bluetooth and does not use location for proximity detection.
+                <br>
+                This message is called a Proximity Identifier or EphID. Theses identifiers are unique and change often.
+            </p>
+        </div>
+    </div>
+</article>
 <div class="simulation show-0">
     <canvas id="canvas" width="300" height="300"></canvas>
 </div>
@@ -38,11 +67,19 @@ description: Decentralized Tracing
         <div class="variable">Matched</div>
         <div class="value matched">0</div>
     </div>
+    <div class="row">
+        <button class="goto">Go to <span>park</span></button>
+        <button class="test">Test for COVID-19</button>
+    </div>
 </div>
 <div class="control show-2">
     <div class="row">
         <div class="variable">Advanced mode</div>
         <input type="checkbox" class="value advanced">
+    </div>
+    <div class="row">
+        <div class="variable">Show server's data</div>
+        <button>Show</button>
     </div>
 </div>
 <div class="selector">

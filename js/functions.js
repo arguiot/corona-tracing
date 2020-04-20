@@ -21,6 +21,8 @@ class Person {
         this.d = Math.random() * (2 * Math.PI);
 
         this.wave = 0;
+
+        this.isPark = false
     }
 
     update() {
@@ -42,6 +44,8 @@ class Person {
     goToPark() {
         this.pastMinX = this.minX;
         this.pastMaxX = this.maxX;
+        this.pastMinY = this.minY;
+        this.pastMaxY = this.maxY;
         this.pastX = this.x;
         this.pastY = this.y;
 
@@ -52,6 +56,8 @@ class Person {
         this.maxY = 290;
 
         this.y += 150;
+
+        this.isPark = true
     }
 
     goToHouse() {
@@ -60,9 +66,10 @@ class Person {
 
         this.minX = this.pastMinX;
         this.maxX = this.pastMaxX;
+        this.minY = this.pastMinY;
+        this.maxY = this.pastMaxY;
 
-        this.minY = 10;
-        this.maxY = 140;
+        this.isPark = false
     }
 
     pause() {
@@ -274,15 +281,47 @@ class Simulation {
     panel() {
         const i = this.panelState
         const persons = [this.bob, this.alice, this.charlie, this.david]
+
+        // Cleans some elements
+        this.removeListeners(document.querySelector(".row > .goto"))
+        this.removeListeners(document.querySelector(".row > .test"))
+
+        // Values
+
         document.querySelector(".contagious").innerHTML = persons[i].contagious;
         document.querySelector(".alerted").innerHTML = persons[i].alerted;
         document.querySelector(".ephid").innerHTML = persons[i].ephid;
-        // document.querySelector(".past").innerHTML = Array.from(
-        //     persons[i].past
-        // ).join(", ");
-        // document.querySelector(".heard").innerHTML = Array.from(
-        //     persons[i].heard
-        // ).join(", ");
+        
+        // Interaction
+
+        document.querySelector(".row > .goto > span").innerHTML = persons[i].isPark == true ? "house" : "park"
+        document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? "Test for COVID-19" : "Publish past EphIDs"
+        
+        document.querySelector(".row > .goto").addEventListener("click", e => {
+
+            if (persons[i].isPark == true) {
+                persons[i].goToHouse()
+            } else {
+                persons[i].goToPark()
+            }
+            this.panel()
+        })
+        document.querySelector(".row > .test").addEventListener("click", e => {
+            if (persons[i].alerted == true) {
+                // Publish
+                
+            } else if (persons[i].contagious == true) {
+                persons[i].alerted = true
+            }
+            this.panel()
+        })
+    }
+
+    // UTILS
+    removeListeners(el) {
+        var newEl = el.cloneNode(false);
+        while (el.hasChildNodes()) newEl.appendChild(el.firstChild);
+        el.parentNode.replaceChild(newEl, el);
     }
 }
 
@@ -343,14 +382,16 @@ class Controller {
 
     goToPark() {
         this.sim.isPark = true;
-        this.sim.bob.goToPark();
-        this.sim.alice.goToPark();
+        [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(person => {
+            person.goToPark();
+        })
     }
     goToHouse() {
         this.sim.isPark = false;
-        this.sim.bob.goToHouse();
-        this.sim.alice.goToHouse();
+        [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(person => {
+            person.goToHouse();
+        })
     }
 }
 
-const con = new Controller();
+let con = new Controller();
