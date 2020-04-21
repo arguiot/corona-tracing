@@ -152,7 +152,10 @@ article {
                 width: calc(100vw - 60px);
                 height: calc(60vh - 40px);
                 max-width: 100vw;
-                background: #E8E8E8;
+                background: rgba(232, 232, 232,0.7);
+                -webkit-backdrop-filter: saturate(180%) blur(10px);
+                backdrop-filter: saturate(180%) blur(10px);
+
                 border-radius: 25px;
                 padding: 15px;
                 
