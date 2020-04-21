@@ -170,75 +170,135 @@ article {
             }
         }
     }
+    .animation {
+        justify-content: start !important;
+        .bold {
+            width: 100vw !important;
+            max-width: 350px !important;
+            font-size: 16px !important;
+            line-height: 21px !important;
+        }
+    }
 }
-
-canvas {
-    width: 300px;
-    height: 300px;
-}
-
-.selector {
+.animation {
+    margin: 0;
+    height: 100vh;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 296px;
-    padding: 0 2px;
-    height: 32px;
-    background: #c4c4c4;
-    border-radius: 5px;
+    h1 {
+        font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        line-height: 76px;
+    }
 
-    div {
-        width: 120px;
-        height: 28px;
+    .bold {
+        max-width: 460px;
+        font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
         text-align: center;
-        line-height: 28px;
-        transition: 100ms ease-in-out;
     }
 
-    .active {
-        background: #ffffff;
-        border-radius: 5px;
-    }
-}
-
-.panel {
-    height: 300px;
-
-    .row {
-        width: 296px;
-        padding: 0 2px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: 13px;
-
-        .value {
-            text-align: right;
-            color: #4c4c4c;
-
-            &.show {
-                color: #007aff;
-                cursor: pointer;
+    .app {
+        canvas {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .selector {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 296px;
+            padding: 0 2px;
+            height: 32px;
+            background: #c4c4c4;
+            border-radius: 5px;
+        
+            div {
+                width: 120px;
+                height: 28px;
+                text-align: center;
+                line-height: 28px;
+                transition: 100ms ease-in-out;
+            }
+        
+            .active {
+                background: #ffffff;
+                border-radius: 5px;
+            }
+        }
+        
+        .panel {
+            height: 300px;
+        
+            .row {
+                width: 296px;
+                padding: 0 2px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-top: 13px;
+        
+                .value {
+                    text-align: right;
+                    color: #4c4c4c;
+        
+                    &.show {
+                        color: #007aff;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        .control {
+            height: 300px;
+        
+            .row {
+                width: 296px;
+                padding: 0 2px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding-top: 13px;
+        
+                .value {
+                    text-align: right;
+                    color: #4c4c4c;
+                }
             }
         }
     }
-}
-
-.control {
-    height: 300px;
-
-    .row {
-        width: 296px;
-        padding: 0 2px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding-top: 13px;
-
-        .value {
-            text-align: right;
-            color: #4c4c4c;
-        }
+    .scientist {
+        position: absolute;
+        bottom: calc(-6*100vh);
+        left: 0;
+        background: url("../img/scientist.svg");
+        background-size: contain;
+        background-position: bottom left;
+        background-repeat: no-repeat;
+        height: 75vh;
+        width: 50vw;
+        z-index: -10;
+    }
+    .sitting {
+        position: absolute;
+        bottom: calc(-6*100vh);
+        right: 0;
+        background: url("../img/sitting.svg");
+        background-size: contain;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        height: 60vh;
+        width: 50vw;
+        z-index: -10;
     }
 }

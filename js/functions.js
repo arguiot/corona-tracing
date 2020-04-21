@@ -340,7 +340,7 @@ class Controller {
     }
     listen() {
         // Bottom Segmented Control
-        document.querySelectorAll("body > .selector > div").forEach((el, i) => {
+        document.querySelectorAll(".app > .selector > div").forEach((el, i) => {
             el.addEventListener("click", (e) => {
                 this.state = i;
                 this.selector();
@@ -357,7 +357,7 @@ class Controller {
     }
     selector() {
         // Bottom Segmented Control
-        document.querySelectorAll("body > .selector > div").forEach((el, i) => {
+        document.querySelectorAll(".app > .selector > div").forEach((el, i) => {
             if (this.state == i) {
                 // Active
                 el.classList.add("active");
