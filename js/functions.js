@@ -340,6 +340,42 @@ class Simulation {
     }
 }
 
+class Popup {
+    constructor() {
+        this.state = false
+
+        this.el = document.querySelector(".popup");
+        this.listen()
+    }
+    listen() {
+        this.el.querySelector(".cross").addEventListener("click", e => {
+            this.state = false
+            this.render()
+        })
+    }
+
+    show(title, data) {
+        this.state = true
+        this.render()
+
+        this.el.querySelector(".title").innerHTML = title
+        data.forEach(row => {
+            this.el.querySelector(".container").innerHTML += `<div class="row">
+            <div class="variable">${row.name}</div>
+            <div class="value">${row.value}</div>
+            </div>`
+        })
+    }
+
+    render() {
+        if (this.state == true) {
+            this.el.style.display = "flex"
+        } else {
+            this.el.style.display = "none"
+        }
+    }
+}
+
 class Controller {
     constructor() {
         const bob = new Bob("dp3t")
@@ -352,6 +388,8 @@ class Controller {
 
         this.sim.mode = "dp3t"
         this.sim.today = "1"
+
+        this.sim.popup = new Popup()
 
         this.selector();
         this.listen();
