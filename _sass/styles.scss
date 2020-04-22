@@ -120,66 +120,6 @@ article {
         }
     }
 }
-
-@media (max-width: 960px) {
-    h1 {
-        font-size: 44px !important;
-        line-height: 51px !important;
-        margin: 0 !important;
-        margin-bottom: 10px !important;
-    }
-
-    header .description {
-        font-size: 16px;
-        line-height: 21px;
-    }
-
-    article {
-        .figure {
-            .step {
-                width: 90vw;
-            }
-        }
-        .text-container {
-            position: absolute;
-            top: 100vh;
-            left: 0;
-            .text {
-                position: -webkit-sticky;
-                position: sticky;
-                top: 40vh;
-                margin-left: 10px;
-                width: calc(100vw - 60px);
-                height: calc(60vh - 40px);
-                max-width: 100vw;
-                background: rgba(232, 232, 232,0.7);
-                -webkit-backdrop-filter: saturate(180%) blur(10px);
-                backdrop-filter: saturate(180%) blur(10px);
-
-                border-radius: 25px;
-                padding: 15px;
-                
-                .bold {
-                    font-size: 18px;
-                    line-height: 21px;
-                }
-                p {
-                    font-size: 14px;
-                    line-height: 17px;
-                }
-            }
-        }
-    }
-    .animation {
-        justify-content: start !important;
-        .bold {
-            width: 100vw !important;
-            max-width: 350px !important;
-            font-size: 16px !important;
-            line-height: 21px !important;
-        }
-    }
-}
 .animation {
     margin: 0;
     height: 100vh;
@@ -206,12 +146,14 @@ article {
     }
 
     .app {
+        margin-top: 10px;
         canvas {
             width: 300px;
             height: 300px;
         }
         
         .selector {
+            margin-top: 10px;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -238,7 +180,9 @@ article {
         
         .panel {
             height: 300px;
-        
+            .selector {
+                margin-top: 0px;
+            }
             .row {
                 width: 296px;
                 padding: 0 2px;
@@ -302,3 +246,65 @@ article {
         z-index: -10;
     }
 }
+
+@media (max-width: 960px) {
+    h1 {
+        font-size: 44px !important;
+        line-height: 51px !important;
+        margin: 0 !important;
+        margin-bottom: 10px !important;
+    }
+
+    header .description {
+        font-size: 16px;
+        line-height: 21px;
+    }
+
+    article {
+        .figure {
+            .step {
+                width: 90vw;
+            }
+        }
+        .text-container {
+            position: absolute;
+            top: 100vh;
+            left: 0;
+            .text {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 40vh;
+                margin-left: 10px;
+                width: calc(100vw - 60px);
+                height: calc(60vh - 40px);
+                max-width: 100vw;
+                background: rgba(232, 232, 232,0.7);
+                -webkit-backdrop-filter: saturate(180%) blur(10px);
+                backdrop-filter: saturate(180%) blur(10px);
+
+                border-radius: 25px;
+                padding: 15px;
+                
+                .bold {
+                    font-size: 18px;
+                    line-height: 21px;
+                }
+                p {
+                    font-size: 14px;
+                    line-height: 17px;
+                }
+            }
+        }
+    }
+    .animation {
+        justify-content: start !important;
+        .bold {
+            width: 100vw !important;
+            max-width: 350px !important;
+            font-size: 16px !important;
+            line-height: 21px !important;
+        }
+    }
+}
+
+@media (max-height: 200)

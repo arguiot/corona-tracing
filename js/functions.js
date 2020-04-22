@@ -259,23 +259,22 @@ class Simulation {
     }
 
     monitor() {
-        if (this.isPark == true) {
-            [this.bob, this.alice, this.david, this.charlie].forEach(p => {
-                [this.bob, this.alice, this.david, this.charlie].forEach(pp => {
-                    const diffX = p.x - pp.x;
-                    const diffY = p.y - pp.y;
+        const list = [this.bob, this.alice, this.david, this.charlie].filter(person => person.isPark)
+        list.forEach(p => {
+            list.forEach(pp => {
+                const diffX = p.x - pp.x;
+                const diffY = p.y - pp.y;
 
-                    const dist = Math.sqrt(diffX * diffX + diffY * diffY);
-                    if (dist <= 40 && (p.contagious == true || pp.contagious == true)) {
-                        p.heard.add(pp.ephID);
-                        pp.heard.add(p.ephID);
+                const dist = Math.sqrt(diffX * diffX + diffY * diffY);
+                if (dist <= 40 && (p.contagious == true || pp.contagious == true)) {
+                    p.heard.add(pp.ephID);
+                    pp.heard.add(p.ephID);
 
-                        p.contagious = true;
-                        pp.contagious = true;
-                    }
-                })
+                    p.contagious = true;
+                    pp.contagious = true;
+                }
             })
-        }
+        })
     }
 
     panel() {
