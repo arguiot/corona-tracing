@@ -1,5 +1,5 @@
 class Person {
-    constructor() {
+    constructor(mode) {
         this.x = 75;
         this.y = 75;
 
@@ -11,8 +11,6 @@ class Person {
         this.contagious = false;
         this.alerted = false;
 
-        this.ephID = "";
-
         this.past = new Set();
         this.heard = new Set();
 
@@ -23,8 +21,22 @@ class Person {
         this.wave = 0;
 
         this.isPark = false
+
+        this.setAlgo({
+            mode: mode
+        })
+        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this))
     }
 
+    setAlgo(notif) {
+        this.mode = notif.mode
+        this.algo = notif.mode == "dp3t" ? new DP3T() : new ContactTracing()
+
+        this.initial = this.algo.createInitialKey()
+    }
+    day(today) {
+        return this.algo.getSecretDayKeys(this.initial, today, 1)[0]
+    }
     update() {
         this.x += this.vx * Math.cos(this.d);
         this.y += this.vy * Math.sin(this.d);
@@ -289,7 +301,8 @@ class Simulation {
 
         document.querySelector(".contagious").innerHTML = persons[i].contagious;
         document.querySelector(".alerted").innerHTML = persons[i].alerted;
-        document.querySelector(".ephid").innerHTML = persons[i].ephid;
+        document.querySelector(".initial").innerHTML = this.toHex(persons[i].initial).substring(0, 10) + "...";
+        document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.today)).substring(0, 10) + "...";
         
         // Interaction
 
@@ -322,17 +335,23 @@ class Simulation {
         while (el.hasChildNodes()) newEl.appendChild(el.firstChild);
         el.parentNode.replaceChild(newEl, el);
     }
+    toHex(byteArray) {
+        return byteArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+    }
 }
 
 class Controller {
     constructor() {
-        const bob = new Bob()
-        const alice = new Alice()
-        const charlie = new Charlie()
-        const david = new David()
+        const bob = new Bob("dp3t")
+        const alice = new Alice("dp3t")
+        const charlie = new Charlie("dp3t")
+        const david = new David("dp3t")
         this.sim = new Simulation(bob, alice, charlie, david);
 
         this.state = 0;
+
+        this.sim.mode = "dp3t"
+        this.sim.today = "1"
 
         this.selector();
         this.listen();
