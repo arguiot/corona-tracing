@@ -225,8 +225,13 @@ class Simulation {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Layout
-        this.ctx.fillStyle = "#000";
-        this.ctx.strokeStyle = "#000";
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.ctx.fillStyle = "#fff";
+            this.ctx.strokeStyle = "#fff";
+        } else {
+            this.ctx.fillStyle = "#000";
+            this.ctx.strokeStyle = "#000";
+        }
         this.ctx.lineWidth = 5;
         this.ctx.strokeRect(0, 0, 300, 300);
         this.ctx.strokeRect(0, 0, 150, 75);

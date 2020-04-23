@@ -1,9 +1,41 @@
+:root {
+    color-scheme: light dark;
+    --text-color: #000;
+    --black: #000;
+    --footer: #fafafa;
+    --white: white;
+    --background: white;
+    --opposite: #1e1e1e;
+    --semi-white: #eee;
+    --blue: #1277EB;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #fff;
+        --black: #fff;
+        --footer: #000;
+        --white: #000;
+        --background: #1e1e1e;
+        --opposite: #fff;
+        --semi-white: #333;
+    }
+}
+@media (prefers-color-scheme: dark) and (max-width: 960px) {
+    article {
+        .text {
+            background: rgba(0, 0, 0, 0.7) !important;
+        }
+    }
+}
 body {
     font-family: SF Pro Display;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
+    color: var(--text-color);
+    background: var(--background);
 }
 
 html {
@@ -164,7 +196,7 @@ article {
             height: 32px;
             background: #c4c4c4;
             border-radius: 5px;
-        
+            color: black;
             div {
                 width: 120px;
                 height: 28px;
@@ -334,6 +366,7 @@ article {
             left: 15px;
             width: 25px;
             height: 25px;
+            z-index: 10;
             cursor: pointer;
         }
         .title {
