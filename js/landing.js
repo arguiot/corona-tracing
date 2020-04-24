@@ -139,9 +139,18 @@ class SlideController {
 
     effectRendering() {
         const step = window.innerHeight
-        const scrolled = window.scrollY // Monitoring for the article only
+        let scrolled = window.scrollY // Monitoring for the article only
 
-        const nstep = Math.floor(((scrolled + 200) / step) % 6) // Max = 5
+        if (window.matchMedia && window.matchMedia('(max-width: 1470px)').matches) {
+            scrolled -= 500
+        }
+        let nstep = Math.floor((scrolled + 200) / step) // Max = 5
+        if (nstep >= 5) {
+            nstep = 5
+        } else if (nstep <= 1) {
+            nstep = 1
+        }
+
         if (nstep == 3) {
             this.render("2.5")
         } else if (nstep >= 4) {

@@ -363,6 +363,7 @@ article {
     }
 
     article {
+        padding-bottom: 50vh;
         .figure {
             .step {
                 width: 90vw;
@@ -373,7 +374,7 @@ article {
             position: absolute;
             top: calc(100vh + 500px);
             left: 0;
-
+            height: calc(5*100vh + 50vh);
             .text {
                 position: -webkit-sticky;
                 position: sticky;
@@ -389,6 +390,10 @@ article {
                 border-radius: 25px;
                 padding: 15px;
 
+                h1 {
+                    line-height: unset;
+                }
+
                 .bold {
                     font-size: 18px;
                     line-height: 21px;
@@ -401,10 +406,11 @@ article {
             }
         }
     }
-
     .animation {
         justify-content: start !important;
-
+        .scientist, .sitting {
+            bottom: calc(-6*100vh - 500px - 50vh);
+        }
         .bold {
             width: 100vw !important;
             max-width: 350px !important;
