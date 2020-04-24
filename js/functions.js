@@ -385,6 +385,12 @@ class Popup {
             this.state = false
             this.render()
         })
+        this.el.addEventListener("click", e => {
+            if (e.target == e.currentTarget) {
+                this.state = false
+                this.render()
+            }
+        })
     }
 
     show(title, promise) {
@@ -396,7 +402,7 @@ class Popup {
         promise().then(data => {
             // Reset
             this.el.querySelector(".container").innerHTML = ""
-            
+
             data.forEach(row => {
                 this.el.querySelector(".container").innerHTML += `<div class="row">
                 <div class="variable">${row.name}</div>
