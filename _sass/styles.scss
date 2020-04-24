@@ -356,6 +356,8 @@ article {
     background: rgba(0, 0, 0, 0.5);
     -webkit-backdrop-filter: saturate(180%) blur(10px);
     backdrop-filter: saturate(180%) blur(10px);
+    color: black;
+    
     .infobox {
         width: 100vw;
         height: 100vh;
@@ -397,7 +399,6 @@ article {
                 flex-direction: row;
                 justify-content: space-between;
                 padding-top: 13px;
-        
                 .value {
                     text-align: right;
                     color: #4c4c4c;

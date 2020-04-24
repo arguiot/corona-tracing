@@ -322,12 +322,12 @@ class Simulation {
         document.querySelector(".initial").title = this.toHex(persons[i].initial)
         document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.today)).substring(0, 10) + "...";
         document.querySelector(".day").title = this.toHex(persons[i].day(this.today))
-        
+
         // Interaction
 
         document.querySelector(".row > .goto > span").innerHTML = persons[i].isPark == true ? "house" : "park"
         document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? "Test for COVID-19" : "Publish past EphIDs"
-        
+
         document.querySelector(".row > .goto").addEventListener("click", e => {
 
             if (persons[i].isPark == true) {
@@ -340,7 +340,7 @@ class Simulation {
         document.querySelector(".row > .test").addEventListener("click", e => {
             if (persons[i].alerted == true) {
                 // Publish
-                
+
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
             }
@@ -348,11 +348,17 @@ class Simulation {
         })
 
         document.querySelector(".past.show").addEventListener("click", e => {
-            this.popup.show(`${persons[i].name}'s past EphIDs`, persons[i].broadcastHistory(this.today).map(el => {
-                el.name = el.time.format("HH:mm")
-                el.value = this.toHex(el.broadcastId)
-                return el
-            }))
+            this.popup.show(`${persons[i].name}'s past EphIDs`, () => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve(persons[i].broadcastHistory(this.today).map(el => {
+                            el.name = el.time.format("HH:mm")
+                            el.value = this.toHex(el.broadcastId)
+                            return el
+                        }))
+                    }, 0);
+                })
+            })
         })
     }
 
@@ -381,19 +387,22 @@ class Popup {
         })
     }
 
-    show(title, data) {
+    show(title, promise) {
         this.state = true
         this.render()
-        // Reset
-        this.el.querySelector(".container").innerHTML = ""
 
         // Putting elements
         this.el.querySelector(".title").innerHTML = title
-        data.forEach(row => {
-            this.el.querySelector(".container").innerHTML += `<div class="row">
-            <div class="variable">${row.name}</div>
-            <div class="value">${row.value}</div>
-            </div>`
+        promise().then(data => {
+            // Reset
+            this.el.querySelector(".container").innerHTML = ""
+            
+            data.forEach(row => {
+                this.el.querySelector(".container").innerHTML += `<div class="row">
+                <div class="variable">${row.name}</div>
+                <div class="value">${row.value}</div>
+                </div>`
+            })
         })
     }
 
@@ -427,17 +436,29 @@ class Controller {
     }
 
     date() {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
         document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
 
         document.querySelector(".control .past").addEventListener("click", e => {
             this.sim.today = new Date(this.sim.today.getTime() - 1000 * 60 * 60 * 24) // -1 day
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
             document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
         })
         document.querySelector(".control .future").addEventListener("click", e => {
             this.sim.today = new Date(this.sim.today.getTime() + 1000 * 60 * 60 * 24) // +1 day
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
             document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
         })
     }
