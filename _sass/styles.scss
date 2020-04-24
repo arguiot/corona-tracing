@@ -46,27 +46,50 @@ header {
     margin: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    h1 {
-        font-family: SF Pro Display;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 64px;
-        line-height: 76px;
-        text-align: center;
+    flex-wrap: wrap;
+    .text {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        .logo {
+            background: url("../img/logo.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 960px;
+            height: 125px;
+        }
+        h1 {
+            font-family: SF Pro Display;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 64px;
+            line-height: 76px;
+            text-align: left;
+            max-width: 960px;
+        }
+    
+        .description {
+            max-width: 960px;
+            font-family: SF Pro Display;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 29px;
+            text-align: left;
+        }
     }
-
-    .description {
-        max-width: 960px;
-        font-family: SF Pro Display;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 29px;
-        text-align: center;
+    .illustration {
+        width: 500px;
+        height: 500px;
+        background: url("../img/hero.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 }
 
@@ -287,15 +310,16 @@ article {
 
 @media (max-width: 960px) {
     h1 {
-        font-size: 44px !important;
-        line-height: 51px !important;
+        font-size: 36px !important;
+        line-height: 45px !important;
         margin: 0 !important;
         margin-bottom: 10px !important;
     }
 
     header .description {
-        font-size: 16px;
-        line-height: 21px;
+        font-size: 12px;
+        line-height: 16px;
+        max-width: 500px;
     }
 
     article {
@@ -357,7 +381,7 @@ article {
     -webkit-backdrop-filter: saturate(180%) blur(10px);
     backdrop-filter: saturate(180%) blur(10px);
     color: black;
-    
+
     .infobox {
         width: 100vw;
         height: 100vh;
