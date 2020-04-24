@@ -100,6 +100,7 @@ header {
 
 article {
     height: auto;
+
     .figure {
         position: relative;
         display: flex;
@@ -295,6 +296,28 @@ article {
         }
     }
 
+    footer {
+        height: 300px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: SF Pro Display;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+
+        a {
+            color: inherit;
+        }
+
+        small {
+            opacity: .4;
+        }
+    }
+
     .scientist {
         position: absolute;
         bottom: calc(-6*100vh);
@@ -326,11 +349,15 @@ article {
     article {
         margin-top: 500px;
     }
+
     .text-container {
         top: calc(100vh + 500px);
     }
+
     .animation {
-        .scientist, .sitting {
+
+        .scientist,
+        .sitting {
             bottom: calc(-6*100vh - 500px);
         }
     }
@@ -343,6 +370,7 @@ article {
                 max-width: 500px !important;
                 width: 90vw;
             }
+
             h1 {
                 font-size: 36px !important;
                 line-height: 45px !important;
@@ -351,7 +379,7 @@ article {
                 max-width: 500px !important;
                 width: 90vw;
             }
-        
+
             .description {
                 font-size: 12px !important;
                 line-height: 16px !important;
@@ -364,6 +392,7 @@ article {
 
     article {
         padding-bottom: 50vh;
+
         .figure {
             .step {
                 width: 90vw;
@@ -375,6 +404,7 @@ article {
             top: calc(100vh + 500px);
             left: 0;
             height: calc(5*100vh + 50vh);
+
             .text {
                 position: -webkit-sticky;
                 position: sticky;
@@ -406,11 +436,15 @@ article {
             }
         }
     }
+
     .animation {
         justify-content: start !important;
-        .scientist, .sitting {
-            bottom: calc(-6*100vh - 500px - 100vh);
+
+        .scientist,
+        .sitting {
+            bottom: calc(-6*100vh - 500px - 50vh - 500px);
         }
+
         .bold {
             width: 100vw !important;
             max-width: 350px !important;
