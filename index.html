@@ -95,7 +95,12 @@ description: Decentralized Tracing
             </div>
             <div class="row">
                 <div class="variable">Show server's data</div>
-                <button>Show</button>
+                <div class="value server show">Show</div>
+            </div>
+            <div class="row">
+                <button class="past">Previous day</button>
+                <div class="today">{{ site.time | date: '%B %d, %Y' }}</div>
+                <button class="future">Next Day</button>
             </div>
         </div>
         <div class="selector">

@@ -37,6 +37,10 @@ class Person {
     day(today) {
         return this.algo.getSecretDayKeys(this.initial, today, 1)[0]
     }
+    broadcastHistory(today) {
+        return this.algo.generateBroadcastHistoryForDay(today, this.initial)
+    }
+
     update() {
         this.x += this.vx * Math.cos(this.d);
         this.y += this.vy * Math.sin(this.d);
@@ -102,6 +106,8 @@ class Bob extends Person {
     constructor() {
         super();
 
+        this.name = "Bob"
+
         this.x = 75;
         this.y = 95;
 
@@ -123,6 +129,8 @@ class Bob extends Person {
 class Alice extends Person {
     constructor() {
         super();
+
+        this.name = "Alice"
 
         this.x = 225;
         this.y = 95;
@@ -147,6 +155,8 @@ class Charlie extends Person {
     constructor() {
         super();
 
+        this.name = "Charlie"
+
         this.x = 225;
         this.y = 50;
 
@@ -169,6 +179,8 @@ class Charlie extends Person {
 class David extends Person {
     constructor() {
         super();
+
+        this.name = "David"
 
         this.x = 75;
         this.y = 35;
@@ -307,7 +319,9 @@ class Simulation {
         document.querySelector(".contagious").innerHTML = persons[i].contagious;
         document.querySelector(".alerted").innerHTML = persons[i].alerted;
         document.querySelector(".initial").innerHTML = this.toHex(persons[i].initial).substring(0, 10) + "...";
+        document.querySelector(".initial").title = this.toHex(persons[i].initial)
         document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.today)).substring(0, 10) + "...";
+        document.querySelector(".day").title = this.toHex(persons[i].day(this.today))
         
         // Interaction
 
@@ -331,6 +345,14 @@ class Simulation {
                 persons[i].alerted = true
             }
             this.panel()
+        })
+
+        document.querySelector(".past.show").addEventListener("click", e => {
+            this.popup.show(`${persons[i].name}'s past EphIDs`, persons[i].broadcastHistory(this.today).map(el => {
+                el.name = el.time.format("HH:mm")
+                el.value = this.toHex(el.broadcastId)
+                return el
+            }))
         })
     }
 
@@ -362,7 +384,10 @@ class Popup {
     show(title, data) {
         this.state = true
         this.render()
+        // Reset
+        this.el.querySelector(".container").innerHTML = ""
 
+        // Putting elements
         this.el.querySelector(".title").innerHTML = title
         data.forEach(row => {
             this.el.querySelector(".container").innerHTML += `<div class="row">
@@ -392,13 +417,31 @@ class Controller {
         this.state = 0;
 
         this.sim.mode = "dp3t"
-        this.sim.today = "1"
+        this.sim.today = new Date()
 
         this.sim.popup = new Popup()
 
         this.selector();
         this.listen();
+        this.date()
     }
+
+    date() {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+
+        document.querySelector(".control .past").addEventListener("click", e => {
+            this.sim.today = new Date(this.sim.today.getTime() - 1000 * 60 * 60 * 24) // -1 day
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+        })
+        document.querySelector(".control .future").addEventListener("click", e => {
+            this.sim.today = new Date(this.sim.today.getTime() + 1000 * 60 * 60 * 24) // +1 day
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+        })
+    }
+
     listen() {
         // Bottom Segmented Control
         document.querySelectorAll(".app > .selector > div").forEach((el, i) => {

@@ -250,6 +250,11 @@ article {
                 .value {
                     text-align: right;
                     color: #4c4c4c;
+
+                    &.show {
+                        color: #007aff;
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -387,7 +392,6 @@ article {
             height: calc(100vh - 69px);
             max-height: calc(600px - 69px);
             .row {
-                width: 296px;
                 padding: 0 2px;
                 display: flex;
                 flex-direction: row;
