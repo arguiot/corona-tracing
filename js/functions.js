@@ -214,20 +214,31 @@ class Simulation {
 
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
-        if (window.devicePixelRatio > 1) {
-            var canvasWidth = this.canvas.width;
-            var canvasHeight = this.canvas.height;
 
-            this.canvas.width = canvasWidth * window.devicePixelRatio;
-            this.canvas.height = canvasHeight * window.devicePixelRatio;
-            this.canvas.style.width = canvasWidth;
-            this.canvas.style.height = canvasHeight;
+        this.resize()
 
-            this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-        }
+        window.addEventListener('resize', this.resize.bind(this))
+        
         this.draw();
 
         setInterval(this.panel.bind(this), 1000);
+    }
+
+    resize() {
+        let scale = 1
+        if (window.matchMedia && window.matchMedia('(min-width: 960px)').matches) {
+            scale = 4 / 3
+        }
+
+        if (window.devicePixelRatio > 1) {
+            const canvasWidth = 300 * scale;
+            const canvasHeight = 300 * scale;
+
+            this.canvas.width = canvasWidth * window.devicePixelRatio;
+            this.canvas.height = canvasHeight * window.devicePixelRatio;
+
+            this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
     }
 
     draw() {
@@ -236,6 +247,11 @@ class Simulation {
         // Update
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        // Scale
+        let scale = 1
+        if (window.matchMedia && window.matchMedia('(min-width: 960px)').matches) {
+            scale = 4 / 3
+        }
         // Layout
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             this.ctx.fillStyle = "#fff";
@@ -244,31 +260,31 @@ class Simulation {
             this.ctx.fillStyle = "#000";
             this.ctx.strokeStyle = "#000";
         }
-        this.ctx.lineWidth = 5;
-        this.ctx.strokeRect(0, 0, 300, 300);
-        this.ctx.strokeRect(0, 0, 150, 75);
-        this.ctx.strokeRect(0, 75, 150, 75);
-        this.ctx.strokeRect(150, 0, 150, 75);
-        this.ctx.strokeRect(150, 75, 150, 75);
+        this.ctx.lineWidth = 5 * scale;
+        this.ctx.strokeRect(0, 0, 300 * scale, 300 * scale);
+        this.ctx.strokeRect(0, 0, 150 * scale, 75 * scale);
+        this.ctx.strokeRect(0, 75 * scale, 150 * scale, 75 * scale);
+        this.ctx.strokeRect(150 * scale, 0, 150 * scale, 75 * scale);
+        this.ctx.strokeRect(150 * scale, 75 * scale, 150 * scale, 75 * scale);
         // Text
-        this.ctx.font = "12px sans-serif";
-        this.ctx.fillText("Bob's House", 41, 130, 70);
-        this.ctx.fillText("Alice's House", 185, 130, 80);
-        this.ctx.fillText("Charlie's House", 180, 60);
-        this.ctx.fillText("David's House", 35, 60);
-        this.ctx.fillText("Park", 135, 285);
+        this.ctx.font = `${12 * scale}px sans-serif`;
+        this.ctx.fillText("Bob's House", 41 * scale, 130 * scale, 70 * scale);
+        this.ctx.fillText("Alice's House", 185 * scale, 130 * scale, 80 * scale);
+        this.ctx.fillText("Charlie's House", 180 * scale, 60 * scale);
+        this.ctx.fillText("David's House", 35 * scale, 60 * scale);
+        this.ctx.fillText("Park", 135 * scale, 285 * scale);
 
         // Persons
-        this.ctx.lineWidth = 2;
+        this.ctx.lineWidth = 2 * scale;
 
         [this.bob, this.alice, this.charlie, this.david].forEach(p => {
             this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, 6, 0, Math.PI * 2, true); // Inner circle
+            this.ctx.arc(p.x * scale, p.y * scale, 6 * scale, 0, Math.PI * 2, true); // Inner circle
             this.ctx.fillStyle = p.color;
             this.ctx.fill();
 
             this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, p.wave, 0, Math.PI * 2, true); // Outer circle
+            this.ctx.arc(p.x * scale, p.y * scale, p.wave * scale, 0, Math.PI * 2, true); // Outer circle
             this.ctx.globalAlpha = 1 - p.wave / 25;
             this.ctx.strokeStyle = "#76B7FF";
             this.ctx.stroke();
@@ -276,7 +292,7 @@ class Simulation {
 
             if (p.contagious) {
                 this.ctx.beginPath();
-                this.ctx.arc(p.x, p.y, 8.5, 0, Math.PI * 2, true); // Outer circle
+                this.ctx.arc(p.x * scale, p.y * scale, 8.5 * scale, 0, Math.PI * 2, true); // Outer circle
                 this.ctx.strokeStyle = "#DD3D12";
                 this.ctx.stroke();
             }

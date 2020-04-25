@@ -214,8 +214,8 @@ article {
         margin-top: 10px;
 
         canvas {
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
         }
 
         .selector {
@@ -224,7 +224,7 @@ article {
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            width: 296px;
+            width: 396px;
             padding: 0 2px;
             height: 32px;
             background: #c4c4c4;
@@ -246,14 +246,14 @@ article {
         }
 
         .panel {
-            height: 300px;
+            height: 400px;
 
             .selector {
                 margin-top: 0px;
             }
 
             .row {
-                width: 296px;
+                width: 396px;
                 padding: 0 2px;
                 display: flex;
                 flex-direction: row;
@@ -273,10 +273,10 @@ article {
         }
 
         .control {
-            height: 300px;
+            height: 400px;
 
             .row {
-                width: 296px;
+                width: 396px;
                 padding: 0 2px;
                 display: flex;
                 flex-direction: row;
@@ -450,6 +450,33 @@ article {
             max-width: 350px !important;
             font-size: 16px !important;
             line-height: 21px !important;
+        }
+
+        .app {
+            canvas {
+                width: 300px;
+                height: 300px;
+            }
+
+            .selector {
+                width: 296px;
+            }
+
+            .panel {
+                height: 300px;
+
+                .row {
+                    width: 296px;
+                }
+            }
+
+            .control {
+                height: 300px;
+
+                .row {
+                    width: 296px;
+                }
+            }
         }
     }
 }
