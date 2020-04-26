@@ -104,7 +104,7 @@ class Person {
 
 class Bob extends Person {
     constructor() {
-        super();
+        super(...arguments);
 
         this.name = "Bob"
 
@@ -128,7 +128,7 @@ class Bob extends Person {
 
 class Alice extends Person {
     constructor() {
-        super();
+        super(...arguments);
 
         this.name = "Alice"
 
@@ -153,7 +153,7 @@ class Alice extends Person {
 
 class Charlie extends Person {
     constructor() {
-        super();
+        super(...arguments);
 
         this.name = "Charlie"
 
@@ -178,7 +178,7 @@ class Charlie extends Person {
 
 class David extends Person {
     constructor() {
-        super();
+        super(...arguments);
 
         this.name = "David"
 
@@ -218,7 +218,7 @@ class Simulation {
         this.resize()
 
         window.addEventListener('resize', this.resize.bind(this))
-        
+
         this.draw();
 
         setInterval(this.panel.bind(this), 1000);
@@ -329,7 +329,7 @@ class Simulation {
         // Cleans some elements
         this.removeListeners(document.querySelector(".row > .goto"))
         this.removeListeners(document.querySelector(".row > .test"))
-
+        this.removeListeners(document.querySelector(".past.show"))
         // Values
 
         document.querySelector(".contagious").innerHTML = persons[i].contagious;
@@ -368,7 +368,7 @@ class Simulation {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
                         resolve(persons[i].broadcastHistory(this.today).map(el => {
-                            el.name = el.time.format("HH:mm")
+                            el.name = el.time.toUTCTimeString()
                             el.value = this.toHex(el.broadcastId)
                             return el
                         }))
@@ -538,6 +538,15 @@ class Controller {
         [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(person => {
             person.goToHouse();
         })
+    }
+
+    changeMode(mode) {
+        this.sim.mode = mode
+        const msg = new Notification("mode", {
+            mode: mode
+        })
+        
+        new NotificationCenter().default.post(msg)
     }
 }
 

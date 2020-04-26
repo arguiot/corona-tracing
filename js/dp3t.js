@@ -62,15 +62,14 @@ class DP3T {
         this._shuffle(ephIds);
 
         const timeSlots = [];
-        var timeSlotIterator = moment(day).startOf('day');
-        const nextDayStart = moment(day).add(1, 'days').startOf('day');
+
+        let timeSlotIterator = startOfDay(day);
+        const nextDayStart = startOfDay(day);
+        nextDayStart.setDate(nextDayStart.getDate() + 1);
         let index = 0;
-        while (timeSlotIterator.isBefore(nextDayStart)) {
-            timeSlots.push({
-                time: timeSlotIterator,
-                broadcastId: ephIds[index++]
-            });
-            timeSlotIterator = moment(timeSlotIterator).add(EPOCH_LENGTH, 'minutes');
+        while (timeSlotIterator < nextDayStart) {
+            timeSlots.push({ time: new Date(timeSlotIterator), broadcastId: ephIds[index++] });
+            timeSlotIterator.setMinutes(timeSlotIterator.getMinutes() + EPOCH_LENGTH);
         }
 
         return timeSlots;
@@ -87,11 +86,9 @@ class DP3T {
         const ephIdsList = [];
         for (let dayIndex = 0; dayIndex < maxDaysCount; dayIndex++) {
             const ephIds = this._getAllEphIdsForDay(dayKey);
-            const day = moment(startDay).add(dayIndex, 'days');
-            ephIds.forEach(ephId => ephIdsList.push({
-                day,
-                broadcastId: ephId
-            }));
+            const day = new Date(startDay);
+            day.setDate(day.getDate() + dayIndex);
+            ephIds.forEach(ephId => ephIdsList.push({ day, broadcastId: ephId }));
             dayKey = this._hash(dayKey);
         }
         return ephIdsList;
@@ -109,10 +106,7 @@ class DP3T {
         for (let dayIndex = 0; dayIndex < startDayIndex; dayIndex++) {
             dayKey = this._hash(dayKey);
         }
-        return [{
-            dayIndex: startDayIndex,
-            dayKey
-        }];
+        return [{dayIndex: startDayIndex, dayKey}];
     }
 
     _hash(key) {
@@ -142,8 +136,7 @@ class DP3T {
 
     _shuffle(array) {
         //Taken from https://github.com/Daplie/knuth-shuffle/
-        var currentIndex = array.length,
-            temporaryValue, randomIndex;
+        var currentIndex = array.length, temporaryValue, randomIndex;
 
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
@@ -160,4 +153,53 @@ class DP3T {
 
         return array;
     }
+}
+
+// Shared
+function startOfDay(date) {
+    //Calculate start of day in UTC:
+    const denominator = 1000 * 60 * 60 * 24;
+    return new Date(((date.getTime() / denominator) | 0) * denominator);
+}
+
+function isSameDay(date1, date2) {
+    return startOfDay(date1).valueOf() === startOfDay(date2).valueOf();
+}
+
+function convertToUTC(date) {
+    //Simply convert by adding timezone offset. 
+    //Resulting object may still have the "wrong" timezone set, but object can be used for displaying purposes.
+    const offset = date.getTimezoneOffset();
+    const utcDate = new Date(date);
+    utcDate.setMinutes(utcDate.getMinutes() + offset);
+    return utcDate;
+}
+
+Date.prototype.toUTCDateString = function() {
+    return convertToUTC(this).toLocaleDateString();
+}
+
+Date.prototype.toUTCTimeString = function() {
+    const options = {
+        hour: '2-digit', 
+        minute:'2-digit'
+    }
+    return convertToUTC(this).toLocaleTimeString(navigator.language || navigator.userLanguage, options);
+}
+
+// Numbers of day to observe
+const OBSERVATION_DAYS = 14
+
+let observationStartTime = new Date();
+observationStartTime.setDate(observationStartTime.getDate() - OBSERVATION_DAYS);
+observationStartTime = startOfDay(observationStartTime);
+
+function getDayForIndex(dayIndex) {
+    const day = new Date(observationStartTime);
+    day.setDate(day.getDate() + dayIndex);
+    return day;
+}
+
+function getMaxDayIndex() {
+    return OBSERVATION_DAYS - 1;  //(indices 0..OBSERVATION_DAYS-1)
 }

@@ -11,7 +11,7 @@ const CT_RPI = "CT-RPI";
 const CT_EPOCH_LENGTH = 10;
 
 //Number of epochs per day:
-const CT_NUM_EPOCHS_PER_DAY = Math.floor(24 * 60 / EPOCH_LENGTH);
+const CT_NUM_EPOCHS_PER_DAY = Math.floor(24 * 60 / CT_EPOCH_LENGTH);
 
 //Size of rolling proximity ids:
 const ROLLING_PROXIMITY_ID_SIZE = 16;
@@ -41,11 +41,11 @@ class ContactTracing {
      * In "Contact Tracing", day keys are called "Daily Tracing Key".
      */
     getSecretDayKeys(initialKey, startDay, daysCount) {
-        let dayIterator = moment(startDay).startOf('day');
+        const dayIterator = startOfDay(startDay);
         const dayKeys = [];
         for (let dayIndex = 0; dayIndex < daysCount; dayIndex++) {
             dayKeys.push(this._getDailyTracingKey(initialKey, dayIterator));
-            dayIterator.add(1, 'day');
+            dayIterator.setDate(dayIterator.getDate() + 1);
         }
         return dayKeys;
     }
@@ -58,10 +58,7 @@ class ContactTracing {
      */
     generateBroadcastHistoryForDay(day, dayKey) {
         return this._getAllRollingProxIdsForDay(day, dayKey)
-            .map(entry => ({
-                time: entry.timeSlot,
-                broadcastId: entry.rpi
-            }));
+            .map(entry => ({ time: entry.timeSlot, broadcastId: entry.rpi }));
     }
 
     /**
@@ -73,10 +70,7 @@ class ContactTracing {
      */
     getAllBroadcastIdsFromDayKey(startDay, dayKey, maxDaysCount) {
         const rollingProxIds = this._getAllRollingProxIdsForDay(startDay, dayKey);
-        return rollingProxIds.map(id => ({
-            day: startDay,
-            broadcastId: id.rpi
-        }));
+        return rollingProxIds.map(id => ({ day: startDay, broadcastId: id.rpi }));
     }
 
     /**
@@ -88,18 +82,16 @@ class ContactTracing {
     getAllDayKeysToReport(initialKey, startDay, startDayIndex, maxDaysCount) {
         const dayKeys = [];
         for (let dayIndex = startDayIndex; dayIndex < startDayIndex + maxDaysCount; dayIndex++) {
-            const day = moment(startDay).add(dayIndex, 'days');
-            dayKeys.push({
-                dayIndex,
-                dayKey: this._getDailyTracingKey(initialKey, day)
-            });
+            const day = new Date(startDay);
+            day.setDate(day.getDate() + dayIndex);
+            dayKeys.push({ dayIndex, dayKey: this._getDailyTracingKey(initialKey, day) });
         }
         return dayKeys;
     }
 
     _getDailyTracingKey(initialKey, day) {
         const tk = sjcl.codec.bytes.toBits(initialKey);
-        const dayNumber = Math.floor(day.unix() / (60 * 60 * 24));
+        const dayNumber = day.getTime() / (1000 * 60 * 60 * 24) | 0;
         const info = ct_dtk.concat([dayNumber]);
         const hkdf = sjcl.misc.hkdf(tk, ROLLING_PROXIMITY_ID_SIZE * 8, null, info, sjcl.hash.sha256);
         return sjcl.codec.bytes.fromBits(hkdf);
@@ -108,7 +100,7 @@ class ContactTracing {
     _getAllRollingProxIdsForDay(day, dayKey) {
         const timeSlots = [];
         const dayKeyBits = sjcl.codec.bytes.toBits(dayKey);
-        for (let epoch = 0; epoch < NUM_EPOCHS_PER_DAY; epoch++) {
+        for (let epoch = 0; epoch < CT_NUM_EPOCHS_PER_DAY; epoch++) {
             timeSlots.push(this._getRollingProxId(day, dayKeyBits, epoch));
         }
         return timeSlots;
@@ -116,15 +108,13 @@ class ContactTracing {
 
     _getRollingProxId(day, dayKey, epoch) {
         const hmac = new sjcl.misc.hmac(dayKey, sjcl.hash.sha256);
-        const dayStart = moment(day).startOf('day');
-        const timeSlot = moment(dayStart).add(epoch * EPOCH_LENGTH, 'minutes');
-        const secondsSinceStartOfDay = timeSlot.unix() - dayStart.unix();
-        const tin = Math.floor(secondsSinceStartOfDay / (60 * EPOCH_LENGTH));
+        const dayStart = startOfDay(day);
+        const timeSlot = new Date(dayStart);
+        timeSlot.setMinutes(timeSlot.getMinutes() + epoch * CT_EPOCH_LENGTH);
+        const secondsSinceStartOfDay = (timeSlot.getTime() - dayStart.getTime()) / 1000 | 0;
+        const tin = secondsSinceStartOfDay / (60 * CT_EPOCH_LENGTH) | 0;
         const rpiFull = hmac.encrypt(ct_dtk.concat([tin]));
         const rpi = sjcl.bitArray.bitSlice(rpiFull, 0, ROLLING_PROXIMITY_ID_SIZE * 8);
-        return {
-            timeSlot,
-            rpi: sjcl.codec.bytes.fromBits(rpi)
-        };
+        return { timeSlot, rpi: sjcl.codec.bytes.fromBits(rpi) };
     }
 }
