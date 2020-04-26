@@ -11,7 +11,7 @@ class Person {
         this.contagious = false;
         this.alerted = false;
 
-        this.past = new Set();
+        this.broadcastHistory = new Set(Array(OBSERVATION_DAYS - 1).fill(null));
         this.heard = new Set();
 
         this.vx = 1;
@@ -36,9 +36,6 @@ class Person {
     }
     day(today) {
         return this.algo.getSecretDayKeys(this.initial, today, 1)[0]
-    }
-    broadcastHistory(today) {
-        return this.algo.generateBroadcastHistoryForDay(today, this.initial)
     }
 
     update() {
@@ -99,6 +96,41 @@ class Person {
     play() {
         this.vx = this.pastVx
         this.vy = this.pastVy
+    }
+
+    getBroadcastHistory(dayIndex) {
+        if (!this.broadcastHistory[dayIndex]) {
+            this.broadcastHistory[dayIndex] = this._generateBroadcastHistory(dayIndex);
+        }
+
+        return this.broadcastHistory[dayIndex];
+    }
+
+    _generateSecretDayKey() {
+        if (!this.secretDayKeys) {
+            const startTime = getDayForIndex(0);
+            this.secretDayKeys = this.algo.getSecretDayKeys(this.initial, startTime, OBSERVATION_DAYS);
+        }
+    }
+
+    _generateBroadcastHistory(dayIndex) {
+        this._generateSecretDayKey();
+        const dayKey = this.secretDayKeys[dayIndex];
+
+        const timeSlots = [];
+        const day = getDayForIndex(dayIndex);
+        this.algo.generateBroadcastHistoryForDay(day, dayKey).forEach(slot =>
+            timeSlots.push({
+                time: slot.time,
+                broadcastId: slot.broadcastId,
+                hadContact: false
+            })
+        );
+        return {
+            day,
+            dayKey,
+            timeSlots
+        };
     }
 }
 
@@ -367,7 +399,9 @@ class Simulation {
             this.popup.show(`${persons[i].name}'s past EphIDs`, () => {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        resolve(persons[i].broadcastHistory(this.today).map(el => {
+                        const oneDay = 24 * 60 * 60 * 1000;
+                        const dayK = Math.round(Math.abs((this.today - new Date()) / oneDay))
+                        resolve(persons[i].getBroadcastHistory(dayK).timeSlots.map(el => {
                             el.name = el.time.toUTCTimeString()
                             el.value = this.toHex(el.broadcastId)
                             return el
@@ -545,7 +579,7 @@ class Controller {
         const msg = new Notification("mode", {
             mode: mode
         })
-        
+
         new NotificationCenter().default.post(msg)
     }
 }
