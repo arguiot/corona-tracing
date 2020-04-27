@@ -157,9 +157,12 @@ class DP3T {
 
 // Shared
 function startOfDay(date) {
-    //Calculate start of day in UTC:
-    const denominator = 1000 * 60 * 60 * 24;
-    return new Date(((date.getTime() / denominator) | 0) * denominator);
+    const d = new Date(date)
+    d.setHours(0,0,0,0)
+    return d
+    // //Calculate start of day in UTC:
+    // const denominator = 1000 * 60 * 60 * 24;
+    // return new Date(((date.getTime() / denominator) | 0) * denominator);
 }
 
 function isSameDay(date1, date2) {
@@ -179,12 +182,12 @@ Date.prototype.toUTCDateString = function() {
     return convertToUTC(this).toLocaleDateString();
 }
 
-Date.prototype.toUTCTimeString = function() {
+Date.prototype.toTimeString = function() {
     const options = {
         hour: '2-digit', 
         minute:'2-digit'
     }
-    return convertToUTC(this).toLocaleTimeString(navigator.language || navigator.userLanguage, options);
+    return this.toLocaleTimeString(navigator.language || navigator.userLanguage, options); // convertToUTC(this)
 }
 
 // Numbers of day to observe

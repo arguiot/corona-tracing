@@ -110,7 +110,7 @@ class Person {
     _generateSecretDayKey() {
         if (!this.secretDayKeys) {
             const startTime = getDayForIndex(0);
-            this.secretDayKeys = this.algo.getSecretDayKeys(this.initial, startTime, OBSERVATION_DAYS);
+            this.secretDayKeys = this.algo.getSecretDayKeys(this.initial, startTime, OBSERVATION_DAYS + 1);
         }
     }
 
@@ -399,7 +399,7 @@ class Simulation {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
                         resolve(persons[i].getBroadcastHistory(this.dayIndex).timeSlots.map(el => {
-                            el.name = el.time.toUTCTimeString()
+                            el.name = el.time.toTimeString()
                             el.value = this.toHex(el.broadcastId)
                             return el
                         }))
@@ -410,7 +410,7 @@ class Simulation {
 
         document.querySelector(".heard.show").addEventListener("click", e => {
             this.popup.displayData(`${persons[i].name}'s heard EphIDs`, Array.from(persons[i].heard).map(el => {
-                el.name = `${el.duration}min${el.duration > 1 ? 's' : ''} at ${el.slot.time.toUTCTimeString()}`
+                el.name = `${el.duration}min${el.duration > 1 ? 's' : ''} at ${el.slot.time.toTimeString()}`
                 el.value = this.toHex(el.slot.broadcastId)
                 return el
             }))
@@ -546,6 +546,10 @@ class Controller {
         document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
 
         document.querySelector(".control .past").addEventListener("click", e => {
+            if (isSameDay(this.sim.today, getDayForIndex(0))) {
+                alert("Can't go past the initial date.")
+                return 
+            }
             this.sim.today = new Date(this.sim.today.getTime() - 1000 * 60 * 60 * 24) // -1 day
             const options = {
                 year: 'numeric',
@@ -555,6 +559,10 @@ class Controller {
             document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
         })
         document.querySelector(".control .future").addEventListener("click", e => {
+            if (isSameDay(this.sim.today, getDayForIndex(13))) {
+                alert("Can't go any further. Sorry.")
+                return 
+            }
             this.sim.today = new Date(this.sim.today.getTime() + 1000 * 60 * 60 * 24) // +1 day
             const options = {
                 year: 'numeric',
