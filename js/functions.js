@@ -458,7 +458,7 @@ class Simulation {
     }
     get dayIndex() {
         const oneDay = 24 * 60 * 60 * 1000;
-        const dayK = Math.round(Math.abs((this.today - getDayForIndex(0)) / oneDay))
+        const dayK = Math.floor(Math.abs((this.today - getDayForIndex(0)) / oneDay))
         return dayK
     }
 }
