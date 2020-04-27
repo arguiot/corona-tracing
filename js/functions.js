@@ -35,7 +35,8 @@ class Person {
         this.initial = this.algo.createInitialKey()
     }
     day(today) {
-        return this.algo.getSecretDayKeys(this.initial, today, 1)[0]
+        this._generateSecretDayKey()
+        return this.secretDayKeys[today]
     }
 
     update() {
@@ -339,16 +340,13 @@ class Simulation {
         const list = [this.bob, this.alice, this.david, this.charlie].filter(person => person.isPark)
         list.forEach(p => {
             list.forEach(pp => {
+                if (p == pp) { return }
                 const diffX = p.x - pp.x;
                 const diffY = p.y - pp.y;
 
                 const dist = Math.sqrt(diffX * diffX + diffY * diffY);
-                if (dist <= 40 && (p.contagious == true || pp.contagious == true)) {
-                    p.heard.add(pp.ephID);
-                    pp.heard.add(p.ephID);
-
-                    p.contagious = true;
-                    pp.contagious = true;
+                if (dist <= 40 && !(pp.contagious == true && p.contagious == true)) {
+                    this.contact(p, pp)
                 }
             })
         })
@@ -362,14 +360,15 @@ class Simulation {
         this.removeListeners(document.querySelector(".row > .goto"))
         this.removeListeners(document.querySelector(".row > .test"))
         this.removeListeners(document.querySelector(".past.show"))
+        this.removeListeners(document.querySelector(".heard.show"))
         // Values
 
         document.querySelector(".contagious").innerHTML = persons[i].contagious;
         document.querySelector(".alerted").innerHTML = persons[i].alerted;
         document.querySelector(".initial").innerHTML = this.toHex(persons[i].initial).substring(0, 10) + "...";
         document.querySelector(".initial").title = this.toHex(persons[i].initial)
-        document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.today)).substring(0, 10) + "...";
-        document.querySelector(".day").title = this.toHex(persons[i].day(this.today))
+        document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.dayIndex)).substring(0, 10) + "...";
+        document.querySelector(".day").title = this.toHex(persons[i].day(this.dayIndex))
 
         // Interaction
 
@@ -399,9 +398,7 @@ class Simulation {
             this.popup.show(`${persons[i].name}'s past EphIDs`, () => {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        const oneDay = 24 * 60 * 60 * 1000;
-                        const dayK = Math.round(Math.abs((this.today - new Date()) / oneDay))
-                        resolve(persons[i].getBroadcastHistory(dayK).timeSlots.map(el => {
+                        resolve(persons[i].getBroadcastHistory(this.dayIndex).timeSlots.map(el => {
                             el.name = el.time.toUTCTimeString()
                             el.value = this.toHex(el.broadcastId)
                             return el
@@ -410,6 +407,44 @@ class Simulation {
                 })
             })
         })
+
+        document.querySelector(".heard.show").addEventListener("click", e => {
+            this.popup.displayData(`${persons[i].name}'s heard EphIDs`, Array.from(persons[i].heard).map(el => {
+                el.name = `${el.duration}min${el.duration > 1 ? 's' : ''} at ${el.slot.time.toUTCTimeString()}`
+                el.value = this.toHex(el.slot.broadcastId)
+                return el
+            }))
+        })
+    }
+
+    contact(p1, p2) {
+        const result = window.prompt(`${p1.name} and ${p2.name} met each other at the park. How much time (in minutes) did they spent together?`, 5)
+
+        // Get correct ephID
+        const getSlot = p => {
+            const broadcastHistory = p.getBroadcastHistory(this.dayIndex)
+            const length = broadcastHistory.timeSlots.length - 1
+            let i = 0
+            while (i <= length && broadcastHistory.timeSlots[i].time < new Date()) {
+                i += 1
+            }
+            return broadcastHistory.timeSlots[i > 0 ? i - 1 : 0]
+        }
+        const slot1 = getSlot(p1)
+        const slot2 = getSlot(p2)
+        p1.heard.add({
+            duration: parseInt(result),
+            slot: slot2
+        })
+        p2.heard.add({
+            duration: parseInt(result),
+            slot: slot1
+        })
+
+        if (p1.contagious == true || p2.contagious == true) {
+            p1.contagious = true;
+            p2.contagious = true;
+        }
     }
 
     // UTILS
@@ -420,6 +455,11 @@ class Simulation {
     }
     toHex(byteArray) {
         return byteArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+    }
+    get dayIndex() {
+        const oneDay = 24 * 60 * 60 * 1000;
+        const dayK = Math.round(Math.abs((this.today - getDayForIndex(0)) / oneDay))
+        return dayK
     }
 }
 
@@ -440,6 +480,12 @@ class Popup {
                 this.state = false
                 this.render()
             }
+        })
+    }
+
+    displayData(title, data) {
+        this.show(title, () => {
+            return new Promise((resolve, reject) => resolve(data))
         })
     }
 

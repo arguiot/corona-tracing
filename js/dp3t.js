@@ -191,7 +191,7 @@ Date.prototype.toUTCTimeString = function() {
 const OBSERVATION_DAYS = 14
 
 let observationStartTime = new Date();
-observationStartTime.setDate(observationStartTime.getDate() - OBSERVATION_DAYS);
+observationStartTime.setDate(observationStartTime.getDate() - OBSERVATION_DAYS + 3); // So it doesn't get over 13. We set to 12 to be safe
 observationStartTime = startOfDay(observationStartTime);
 
 function getDayForIndex(dayIndex) {
