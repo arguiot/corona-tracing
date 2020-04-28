@@ -20,6 +20,11 @@
         --opposite: #fff;
         --semi-white: #333;
     }
+    header .logo {
+        background: url("../img/logo-white.svg") !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+    }
 }
 
 @media (prefers-color-scheme: dark) and (max-width: 960px) {
