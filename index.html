@@ -7,11 +7,11 @@ description: Decentralized Tracing
     <div class="text">
         <div class="logo"></div>
         <div class="title">
-            <h1>
+            <h1 glot-model="title">
                 Privacy-Preserving Contact Tracing
             </h1>
         </div>
-        <div class="description">
+        <div class="description" glot-model="description">
             Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic, to protect people and get society back up and running. Software developers are contributing by crafting technical tools to help combat the virus and save lives.
             <br>
             In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.
@@ -34,7 +34,7 @@ description: Decentralized Tracing
     <div class="text-container">
         <div class="text">
             <h1>
-                Step <span>1</span>
+                <span glot-model="step">Step</span> <span class="digit">1</span>
             </h1>
             <div class="bold">Alice’s phone broadcasts a random message every few minutes</div>
             <p>
@@ -46,8 +46,8 @@ description: Decentralized Tracing
     </div>
 </article>
 <div class="animation">
-    <h1>Try it yourself!</h1>
-    <div class="bold">
+    <h1 glot-model="try">Try it yourself!</h1>
+    <div class="bold" glot-model="try-desc">
         We have made a small animation, so that you can visualize each step of the protocol.
     </div>
     <div class="app">
@@ -62,51 +62,47 @@ description: Decentralized Tracing
                 <div class="david">David</div>
             </div>
             <div class="row">
-                <div class="variable">Contagious</div>
+                <div class="variable" glot-model="contagious">Contagious</div>
                 <div class="value contagious">true</div>
             </div>
             <div class="row">
-                <div class="variable">Alerted about infectivity</div>
+                <div class="variable" glot-model="alerted">Alerted about infectivity</div>
                 <div class="value alerted">false</div>
             </div>
             <div class="row">
-                <div class="variable">Secret Initial Key</div>
+                <div class="variable" glot-model="initial-key">Secret Initial Key</div>
                 <div class="value initial">11jUIL8...</div>
             </div>
             <div class="row">
-                <div class="variable">Secret Day Key</div>
+                <div class="variable" glot-model="secret-day">Secret Day Key</div>
                 <div class="value day"></div>
             </div>
             <div class="row">
-                <div class="variable">Past EphIDs (of the day)</div>
-                <div class="value past show">Show</div>
+                <div class="variable" glot-model="past">Past EphIDs (of the day)</div>
+                <div class="value past show" glot-model="show">Show</div>
             </div>
             <div class="row">
-                <div class="variable">EphIDs heard</div>
-                <div class="value heard show">Show</div>
+                <div class="variable" glot-model="heard">EphIDs heard</div>
+                <div class="value heard show" glot-model="show">Show</div>
             </div>
             <div class="row">
-                <div class="variable">Matched</div>
+                <div class="variable" glot-model="matched">Matched</div>
                 <div class="value matched">0</div>
             </div>
             <div class="row">
                 <button class="goto">Go to <span>park</span></button>
-                <button class="test">Test for COVID-19</button>
+                <button class="test" glot-model="testcovid">Test for COVID-19</button>
             </div>
         </div>
         <div class="control show-2">
             <div class="row">
-                <div class="variable">Advanced mode</div>
-                <input type="checkbox" class="value advanced">
+                <div class="variable" glot-model="serverdata">Show server's data</div>
+                <div class="value server show" glot-model="show">Show</div>
             </div>
             <div class="row">
-                <div class="variable">Show server's data</div>
-                <div class="value server show">Show</div>
-            </div>
-            <div class="row">
-                <button class="past">Previous day</button>
+                <button class="past" glot-model="previousday">Previous day</button>
                 <div class="today">{{ site.time | date: '%B %d, %Y' }}</div>
-                <button class="future">Next Day</button>
+                <button class="future" glot-model="nextday">Next Day</button>
             </div>
         </div>
         <div class="selector">
