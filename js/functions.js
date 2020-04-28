@@ -11,7 +11,7 @@ class Person {
         this.contagious = false;
         this.alerted = false;
 
-        this.broadcastHistory = new Set(Array(OBSERVATION_DAYS - 1).fill(null));
+        this.broadcastHistory = Array(OBSERVATION_DAYS - 1).fill(null);
         this.heard = new Set();
 
         this.vx = 1;
@@ -107,6 +107,12 @@ class Person {
         return this.broadcastHistory[dayIndex];
     }
 
+    generateBroadcastHistoryFull() {
+        for (let i = 0; i < OBSERVATION_DAYS; i++) {
+            this.getBroadcastHistory(i)
+        }
+        return this.broadcastHistory
+    }
     _generateSecretDayKey() {
         if (!this.secretDayKeys) {
             const startTime = getDayForIndex(0);
@@ -231,6 +237,34 @@ class David extends Person {
         this.d = Math.random() * (100);
 
         this.color = "#F2C94C"
+    }
+}
+
+class Server {
+    constructor() {
+        this.slots = []
+    }
+    addKeys(keys) {
+        const slots = keys.map(el => el.timeSlots)
+        const array = [].concat.apply([], slots)
+        array.forEach(slot => {
+            if (slot.hadContact == true) {
+                this.slots.push(slot)
+            }
+        })
+    }
+    display(popup) {
+        popup.show("Server's data", () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(this.slots.map(el => {
+                        el.name = el.time.toLocaleString()
+                        el.value = con.sim.toHex(el.broadcastId)
+                        return el
+                    }))
+                }, 0)
+            })
+        })
     }
 }
 
@@ -387,7 +421,7 @@ class Simulation {
         document.querySelector(".row > .test").addEventListener("click", e => {
             if (persons[i].alerted == true) {
                 // Publish
-
+                this.server.addKeys(persons[i].generateBroadcastHistoryFull())
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
             }
@@ -428,17 +462,22 @@ class Simulation {
             while (i <= length && broadcastHistory.timeSlots[i].time < new Date()) {
                 i += 1
             }
-            return broadcastHistory.timeSlots[i > 0 ? i - 1 : 0]
+            const index = i > 0 ? i - 1 : 0
+            return [broadcastHistory.timeSlots[index], index]
         }
         const slot1 = getSlot(p1)
         const slot2 = getSlot(p2)
+
+        p1.broadcastHistory[this.dayIndex].timeSlots[slot1[1]].hadContact = true
+        p2.broadcastHistory[this.dayIndex].timeSlots[slot2[1]].hadContact = true
+
         p1.heard.add({
             duration: parseInt(result),
-            slot: slot2
+            slot: slot2[0]
         })
         p2.heard.add({
             duration: parseInt(result),
-            slot: slot1
+            slot: slot1[0]
         })
 
         if (p1.contagious == true || p2.contagious == true) {
@@ -532,6 +571,8 @@ class Controller {
 
         this.sim.popup = new Popup()
 
+        this.sim.server = new Server()
+
         this.selector();
         this.listen();
         this.date()
@@ -588,6 +629,10 @@ class Controller {
                 this.sim.panel();
                 this.selector();
             });
+        })
+        // Server
+        document.querySelector(".server.show").addEventListener("click", e => {
+            this.sim.server.display(this.sim.popup)
         })
     }
     selector() {
