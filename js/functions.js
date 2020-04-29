@@ -21,6 +21,8 @@ class Person {
         this.vy = 1;
         this.d = Math.random() * (2 * Math.PI);
 
+        this.met = []
+
         this.wave = 0;
 
         this.isPark = false
@@ -83,6 +85,8 @@ class Person {
         this.y += 150;
 
         this.isPark = true
+
+        this.met = []
     }
 
     goToHouse() {
@@ -95,6 +99,8 @@ class Person {
         this.maxY = this.pastMaxY;
 
         this.isPark = false
+
+        this.met = []
     }
 
     pause() {
@@ -411,7 +417,7 @@ class Simulation {
                 const diffY = p.y - pp.y;
 
                 const dist = Math.sqrt(diffX * diffX + diffY * diffY);
-                if (dist <= 40 && !(pp.contagious == true && p.contagious == true)) {
+                if (dist <= 40 && !p.met.includes(pp.name) && !pp.met.includes(p.name)) {
                     this.contact(p, pp)
                 }
             })
@@ -484,6 +490,8 @@ class Simulation {
     }
 
     contact(p1, p2) {
+        p1.met.push(p2.name)
+        p2.met.push(p1.name)
         const result = window.prompt(`${p1.name} and ${p2.name} met each other at the park. How much time (in minutes) did they spent together?`, 5)
 
         // Get correct ephID
@@ -511,11 +519,16 @@ class Simulation {
             duration: parseInt(result),
             slot: slot1[0]
         })
-
         if (p1.contagious == true || p2.contagious == true) {
-            p1.contagious = true;
-            p2.contagious = true;
+            if (p1.contagious == true) {
+                p2.contagious = true;
+                p2.met = [] // So p2 can infect more people
+            } else {
+                p1.contagious = true;
+                p1.met = []
+            }
         }
+        
     }
 
     // UTILS
