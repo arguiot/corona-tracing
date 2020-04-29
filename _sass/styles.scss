@@ -2,10 +2,10 @@
     color-scheme: light dark;
     --text-color: #000;
     --black: #000;
-    --footer: #fafafa;
+    --footer: #fbf9f9;
     --white: white;
     --background: white;
-    --opposite: #1e1e1e;
+    --gray: #4c4c4c;
     --semi-white: #eee;
     --blue: #1277EB;
 }
@@ -17,7 +17,7 @@
         --footer: #000;
         --white: #000;
         --background: #1e1e1e;
-        --opposite: #fff;
+        --gray: #dbdbdb;
         --semi-white: #333;
     }
     header .logo {
@@ -267,7 +267,7 @@ article {
 
                 .value {
                     text-align: right;
-                    color: #4c4c4c;
+                    color: var(--gray);
 
                     &.show {
                         color: #007aff;
@@ -290,7 +290,7 @@ article {
 
                 .value {
                     text-align: right;
-                    color: #4c4c4c;
+                    color: var(--gray);
 
                     &.show {
                         color: #007aff;
