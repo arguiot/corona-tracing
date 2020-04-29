@@ -1,3 +1,6 @@
+// BroadcastJS setup
+const { Notification, NotificationCenter } = Broadcast
+
 class Person {
     constructor(mode) {
         this.x = 75;
@@ -28,9 +31,12 @@ class Person {
     }
 
     notify(notif) {
-        if (this.broadcastHistory.contains(notif.slot)) {
-            alert(`${this.name} has been notified that he or she has been in contact with someone positively tested`)
-        }
+        if (notif.from == this.name) { return }
+        Array.from(this.heard).forEach(broadcast => {
+            if (broadcast != null && broadcast.slot == notif.slot) {
+                return alert(`${this.name} has been notified that he or she has been in contact with someone positively tested`)
+            }
+        })
     }
 
     setAlgo(notif) {
@@ -168,9 +174,9 @@ class Bob extends Person {
 
         this.color = "#1277EB"
 
-        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+        NotificationCenter.default.addObserver("mode", this.setAlgo.bind(this), this.name)
 
-        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
+        NotificationCenter.default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -197,9 +203,9 @@ class Alice extends Person {
 
         this.color = "#F66A09"
 
-        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+        NotificationCenter.default.addObserver("mode", this.setAlgo.bind(this), this.name)
 
-        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
+        NotificationCenter.default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -226,9 +232,9 @@ class Charlie extends Person {
 
         this.color = "#65CE60"
 
-        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+        NotificationCenter.default.addObserver("mode", this.setAlgo.bind(this), this.name)
 
-        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
+        NotificationCenter.default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -255,9 +261,9 @@ class David extends Person {
 
         this.color = "#F2C94C"
 
-        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+        NotificationCenter.default.addObserver("mode", this.setAlgo.bind(this), this.name)
 
-        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
+        NotificationCenter.default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -265,16 +271,17 @@ class Server {
     constructor() {
         this.slots = []
     }
-    addKeys(keys) {
+    addKeys(name, keys) {
         const slots = keys.map(el => el.timeSlots)
         const array = [].concat.apply([], slots)
         array.forEach(slot => {
             if (slot.hadContact == true) {
                 this.slots.push(slot)
                 const msg = new Notification("server", {
-                    slot: slot
+                    slot: slot,
+                    from: name
                 })
-                new NotificationCenter().default.post(msg)
+                NotificationCenter.default.post(msg)
             }
         })
     }
@@ -446,7 +453,7 @@ class Simulation {
         document.querySelector(".row > .test").addEventListener("click", e => {
             if (persons[i].alerted == true) {
                 // Publish
-                this.server.addKeys(persons[i].generateBroadcastHistoryFull())
+                this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull())
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
             }
@@ -710,7 +717,7 @@ class Controller {
             mode: mode
         })
 
-        new NotificationCenter().default.post(msg)
+        NotificationCenter.default.post(msg)
     }
 }
 
