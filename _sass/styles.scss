@@ -534,6 +534,15 @@ article {
             height: calc(100vh - 69px);
             max-height: calc(600px - 69px);
 
+            .center {
+                font-family: SF Pro Display;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 36px;
+                color: var(--gray);
+                text-align: center;
+            }
             .row {
                 padding: 0 2px;
                 display: flex;

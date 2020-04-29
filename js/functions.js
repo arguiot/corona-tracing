@@ -25,7 +25,12 @@ class Person {
         this.setAlgo({
             mode: mode
         })
-        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this))
+    }
+
+    notify(notif) {
+        if (this.broadcastHistory.contains(notif.slot)) {
+            alert(`${this.name} has been notified that he or she has been in contact with someone positively tested`)
+        }
     }
 
     setAlgo(notif) {
@@ -162,6 +167,10 @@ class Bob extends Person {
         this.d = Math.random() * (2 * Math.PI);
 
         this.color = "#1277EB"
+
+        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+
+        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -187,6 +196,10 @@ class Alice extends Person {
         this.d = Math.random() * (2 * Math.PI);
 
         this.color = "#F66A09"
+
+        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+
+        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -212,6 +225,10 @@ class Charlie extends Person {
         this.d = Math.random() * (2 * Math.PI);
 
         this.color = "#65CE60"
+
+        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+
+        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -237,6 +254,10 @@ class David extends Person {
         this.d = Math.random() * (100);
 
         this.color = "#F2C94C"
+
+        new NotificationCenter().default.addObserver("mode", this.setAlgo.bind(this), this.name)
+
+        new NotificationCenter().default.addObserver("server", this.notify.bind(this), this.name)
     }
 }
 
@@ -250,6 +271,10 @@ class Server {
         array.forEach(slot => {
             if (slot.hadContact == true) {
                 this.slots.push(slot)
+                const msg = new Notification("server", {
+                    slot: slot
+                })
+                new NotificationCenter().default.post(msg)
             }
         })
     }
@@ -534,10 +559,16 @@ class Popup {
 
         // Putting elements
         this.el.querySelector(".title").innerHTML = title
+
+        this.el.querySelector(".container").innerHTML = "<div class=\"center\">Loading...</div>"
+
         promise().then(data => {
             // Reset
             this.el.querySelector(".container").innerHTML = ""
 
+            if (data.length == 0) {
+                this.el.querySelector(".container").innerHTML = "<div class=\"center\">No data</div>"
+            }
             data.forEach(row => {
                 this.el.querySelector(".container").innerHTML += `<div class="row">
                 <div class="variable">${row.name}</div>
