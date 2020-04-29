@@ -22,6 +22,7 @@ class Person {
         this.d = Math.random() * (2 * Math.PI);
 
         this.met = []
+        this.receivedNotification = false
 
         this.wave = 0;
 
@@ -35,7 +36,7 @@ class Person {
     notify(notif) {
         if (notif.from == this.name) { return }
         Array.from(this.heard).forEach(broadcast => {
-            if (broadcast != null && broadcast.slot == notif.slot) {
+            if (broadcast != null && broadcast.slot == notif.slot && this.receivedNotification == false) {
                 return alert(`${this.name} has been notified that he or she has been in contact with someone positively tested`)
             }
         })
@@ -528,7 +529,8 @@ class Simulation {
                 p1.met = []
             }
         }
-        
+        // Finally, we update the date
+        this.sim.today = new Date(this.sim.today.getTime() + 1000 * 60 * parseInt(result))
     }
 
     // UTILS
@@ -636,7 +638,8 @@ class Controller {
             day: 'numeric'
         };
         document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
-
+        document.querySelector(".now").innerHTML = this.sim.today.toTimeString()
+        
         document.querySelector(".control .past").addEventListener("click", e => {
             if (isSameDay(this.sim.today, getDayForIndex(0))) {
                 alert("Can't go past the initial date.")
@@ -649,6 +652,7 @@ class Controller {
                 day: 'numeric'
             };
             document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+            document.querySelector(".now").innerHTML = this.sim.today.toTimeString()
         })
         document.querySelector(".control .future").addEventListener("click", e => {
             if (isSameDay(this.sim.today, getDayForIndex(13))) {
@@ -662,6 +666,36 @@ class Controller {
                 day: 'numeric'
             };
             document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+            document.querySelector(".now").innerHTML = this.sim.today.toTimeString()
+        })
+
+        document.querySelector(".control .plus-min").addEventListener("click", e => {
+            if (isSameDay(this.sim.today, getDayForIndex(0))) {
+                alert("Can't go past the initial date.")
+                return 
+            }
+            this.sim.today = new Date(this.sim.today.getTime() + 5 * 60 * 1000) // + 5 min
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+            document.querySelector(".now").innerHTML = this.sim.today.toTimeString()
+        })
+        document.querySelector(".control .minus-min").addEventListener("click", e => {
+            if (isSameDay(this.sim.today, getDayForIndex(13))) {
+                alert("Can't go any further. Sorry.")
+                return 
+            }
+            this.sim.today = new Date(this.sim.today.getTime() - 5 * 60 * 1000) // - 5 min
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
+            document.querySelector(".now").innerHTML = this.sim.today.toTimeString()
         })
     }
 

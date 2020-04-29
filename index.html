@@ -104,6 +104,11 @@ description: Decentralized Tracing
                 <div class="today">{{ site.time | date: '%B %d, %Y' }}</div>
                 <button class="future" glot-model="nextday">Next Day</button>
             </div>
+            <div class="row">
+                <button class="minus-min" glot-model="minus5min">-5 minutes</button>
+                <div class="now">{{ site.time | date: '%H:%M' }}</div>
+                <button class="plus-min" glot-model="plus5min">+5 minutes</button>
+            </div>
         </div>
         <div class="selector">
             <div class="sim">Simulation</div>
