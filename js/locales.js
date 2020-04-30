@@ -132,6 +132,42 @@ glot.assign("show", {
     "de": "Anzeigen",
     "es": "Mostrar"
 })
+glot.assign("showserverdata", {
+    "en": "Show server's data",
+    "fr": "Afficher les données du serveur",
+    "de": "Server-Daten anzeigen",
+    "es": "Mostrar los datos del servidor"
+})
+glot.assign("serverdata", {
+    "en": "Server's data",
+    "fr": "Données du serveur",
+    "de": "Server-Daten",
+    "es": "Datos del servidor"
+})
+glot.assign("previousday", {
+    "en": "Previous day",
+    "fr": "Jour précédent",
+    "de": "Vorheriger Tag",
+    "es": "El día anterior"
+})
+glot.assign("nextday", {
+    "en": "Next day",
+    "fr": "Jour suivant",
+    "de": "Nächster Tag",
+    "es": "Próximo día"
+})
+glot.assign("plus5min", {
+    "en": "+5 minutes",
+    "fr": "+5 minutes",
+    "de": "+5 Minuten",
+    "es": "+5 minutos"
+})
+glot.assign("minus5min", {
+    "en": "-5 minutes",
+    "fr": "-5 minutes",
+    "de": "-5 Minuten",
+    "es": "-5 minutos"
+})
 glot.render()
 
 // Models & Dynamic UI elements
@@ -192,4 +228,25 @@ glot.assign("publishcovid", {
     "fr": "Publier les anciens EphID",
     "de": "Frühere EphIDs veröffentlichen",
     "es": "Publicar las EphID anteriores"
+})
+
+glot.assign("namepast", {
+    "en": "${data.name}'s past EphIDs",
+    "fr": "Anciens EphID d${data.name == 'Alice' ? \"'\" : \"e \"}${data.name}",
+    "de": "${data.name}s frühere EphIDs",
+    "es": "El pasado de ${data.name} EphIDs"
+})
+
+glot.assign("nameheard", {
+    "en": "${data.name}'s heard EphIDs",
+    "fr": "EphID entendus par ${data.name}",
+    "de": "${data.name} hat EphIDs gehört",
+    "es": "${data.name} ha oído hablar del EphID"
+})
+
+glot.assign("meeting", {
+    "en": "${data.p1.name} and ${data.p2.name} met each other at the park. How much time (in minutes) did they spent together?",
+    "fr": "${data.p1.name} et ${data.p2.name} se sont rencontrés au parc. Combien de temps (en minutes) ont-ils passé ensemble ?",
+    "de": "${data.p1.name} und ${data.p2.name} trafen sich im Park. Wie viel Zeit (in Minuten) haben sie zusammen verbracht?",
+    "es": "${data.p1.name} y ${data.p2.name} se conocieron en el parque. ¿Cuánto tiempo (en minutos) pasaron juntos?"
 })

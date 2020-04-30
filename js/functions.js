@@ -293,7 +293,7 @@ class Server {
         })
     }
     display(popup) {
-        popup.show("Server's data", () => {
+        popup.show(glot.get("serverdata"), () => {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     resolve(this.slots.map(el => {
@@ -468,7 +468,7 @@ class Simulation {
         })
 
         document.querySelector(".past.show").addEventListener("click", e => {
-            this.popup.show(`${persons[i].name}'s past EphIDs`, () => {
+            this.popup.show(glot.get("namepast", { name: persons[i].name }), () => {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
                         resolve(persons[i].getBroadcastHistory(this.dayIndex).timeSlots.map(el => {
@@ -482,7 +482,7 @@ class Simulation {
         })
 
         document.querySelector(".heard.show").addEventListener("click", e => {
-            this.popup.displayData(`${persons[i].name}'s heard EphIDs`, Array.from(persons[i].heard).map(el => {
+            this.popup.displayData(glot.get("nameheard", { name: persons[i].name }), Array.from(persons[i].heard).map(el => {
                 el.name = `${el.duration}min${el.duration > 1 ? 's' : ''} at ${el.slot.time.toTimeString()}`
                 el.value = this.toHex(el.slot.broadcastId)
                 return el
@@ -493,7 +493,7 @@ class Simulation {
     contact(p1, p2) {
         p1.met.push(p2.name)
         p2.met.push(p1.name)
-        const result = window.prompt(`${p1.name} and ${p2.name} met each other at the park. How much time (in minutes) did they spent together?`, 5)
+        const result = window.prompt(glot.get("meeting", { p1, p2 }), 5)
 
         // Get correct ephID
         const getSlot = p => {
@@ -530,7 +530,7 @@ class Simulation {
             }
         }
         // Finally, we update the date
-        this.sim.today = new Date(this.sim.today.getTime() + 1000 * 60 * parseInt(result))
+        this.today = new Date(this.today.getTime() + 1000 * 60 * parseInt(result))
     }
 
     // UTILS
