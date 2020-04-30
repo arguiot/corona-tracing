@@ -374,11 +374,11 @@ class Simulation {
         this.ctx.strokeRect(150 * scale, 75 * scale, 150 * scale, 75 * scale);
         // Text
         this.ctx.font = `${12 * scale}px sans-serif`;
-        this.ctx.fillText("Bob's House", 41 * scale, 130 * scale, 70 * scale);
-        this.ctx.fillText("Alice's House", 185 * scale, 130 * scale, 80 * scale);
-        this.ctx.fillText("Charlie's House", 180 * scale, 60 * scale);
-        this.ctx.fillText("David's House", 35 * scale, 60 * scale);
-        this.ctx.fillText("Park", 135 * scale, 285 * scale);
+        this.ctx.fillText(glot.get("house", {name: "Bob"}), 41 * scale, 130 * scale, 70 * scale);
+        this.ctx.fillText(glot.get("house", {name: "Alice"}), 185 * scale, 130 * scale, 80 * scale);
+        this.ctx.fillText(glot.get("house", {name: "Charlie"}), 180 * scale, 60 * scale);
+        this.ctx.fillText(glot.get("house", {name: "David"}), 35 * scale, 60 * scale);
+        this.ctx.fillText(glot.get("park"), 135 * scale, 285 * scale);
 
         // Persons
         this.ctx.lineWidth = 2 * scale;
@@ -436,8 +436,8 @@ class Simulation {
         this.removeListeners(document.querySelector(".heard.show"))
         // Values
 
-        document.querySelector(".contagious").innerHTML = persons[i].contagious;
-        document.querySelector(".alerted").innerHTML = persons[i].alerted;
+        document.querySelector(".contagious").innerHTML = glot.get(persons[i].contagious);
+        document.querySelector(".alerted").innerHTML = glot.get(persons[i].alerted);
         document.querySelector(".initial").innerHTML = this.toHex(persons[i].initial).substring(0, 10) + "...";
         document.querySelector(".initial").title = this.toHex(persons[i].initial)
         document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.dayIndex)).substring(0, 10) + "...";
@@ -445,8 +445,8 @@ class Simulation {
 
         // Interaction
 
-        document.querySelector(".row > .goto > span").innerHTML = persons[i].isPark == true ? "house" : "park"
-        document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? "Test for COVID-19" : "Publish past EphIDs"
+        document.querySelector(".row > .goto").innerHTML = persons[i].isPark == true ? glot.get("gohouse") : glot.get("gopark")
+        document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? glot.get("testcovid") : glot.get("publishcovid")
 
         document.querySelector(".row > .goto").addEventListener("click", e => {
 
