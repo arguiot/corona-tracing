@@ -1,4 +1,11 @@
+const url = new URL(window.location.toString());
+const lang = url.searchParams.get("lang");
+
 const glot = new Glottologist()
+
+if (lang != null) {
+    glot.lang = lang
+}
 
 glot.assign("title", {
     "en": "Privacy-friendly contact tracking",
