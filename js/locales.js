@@ -181,6 +181,12 @@ glot.assign("walkthrough", {
     "de": "Komplettlösung starten",
     "es": "Inicie el recorrido"
 })
+glot.assign("protocol", {
+    "en": "Protocol used",
+    "fr": "Protocole utilisé",
+    "de": "Verwendetes Protokoll",
+    "es": "Protocolo utilizado"
+})
 glot.render()
 
 // Models & Dynamic UI elements
