@@ -168,6 +168,12 @@ glot.assign("minus5min", {
     "de": "-5 Minuten",
     "es": "-5 minutos"
 })
+glot.assign("walkthrough", {
+    "en": "Start Walkthrough",
+    "fr": "Commencer le tour",
+    "de": "Komplettlösung starten",
+    "es": "Inicie el recorrido"
+})
 glot.render()
 
 // Models & Dynamic UI elements

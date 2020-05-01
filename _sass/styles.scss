@@ -190,7 +190,6 @@ article {
 
 .animation {
     margin: 0;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -214,7 +213,18 @@ article {
         line-height: 29px;
         text-align: center;
     }
-
+    .walkthrough {
+        background: #196fcc;
+        color: white;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        padding: .5rem 1.5rem;
+        border: 0;
+        border-radius: 3px;
+        margin: 10px;
+        cursor: pointer;
+    }
     .app {
         margin-top: 10px;
 

@@ -47,6 +47,10 @@ class Person {
         this.algo = notif.mode == "dp3t" ? new DP3T() : new ContactTracing()
 
         this.initial = this.algo.createInitialKey()
+        this.broadcastHistory = Array(OBSERVATION_DAYS - 1).fill(null)
+        this.heard = new Set();
+        this.secretDayKeys = null
+        this._generateSecretDayKey()
     }
     day(today) {
         this._generateSecretDayKey()
@@ -531,6 +535,10 @@ class Simulation {
         }
         // Finally, we update the date
         this.today = new Date(this.today.getTime() + 1000 * 60 * parseInt(result))
+
+        if (tour.isActive()) {
+            tour.next()
+        }
     }
 
     // UTILS
