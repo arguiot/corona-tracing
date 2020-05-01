@@ -37,7 +37,9 @@ class Person {
         if (notif.from == this.name) { return }
         Array.from(this.heard).forEach(broadcast => {
             if (broadcast != null && broadcast.slot == notif.slot && this.receivedNotification == false) {
-                return alert(`${this.name} has been notified that he or she has been in contact with someone positively tested`)
+                return alert(glot.get("notify", {
+                    name: this.name
+                }))
             }
         })
     }

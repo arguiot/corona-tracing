@@ -256,3 +256,9 @@ glot.assign("meeting", {
     "de": "${data.p1.name} und ${data.p2.name} trafen sich im Park. Wie viel Zeit (in Minuten) haben sie zusammen verbracht?",
     "es": "${data.p1.name} y ${data.p2.name} se conocieron en el parque. ¿Cuánto tiempo (en minutos) pasaron juntos?"
 })
+glot.assign("notify", {
+    "en": "${data.name} has been notified that ${data.name == 'Alice' ? \"she\" : \"he\"} has been in contact with someone positively tested",
+    "fr": "${data.name} a été notifié qu'${data.name == 'Alice' ? \"elle\" : \"il\"} a été en contact avec une personne testée positive",
+    "de": "${data.name} wurde benachrichtigt, dass er oder sie mit einer positiv getesteten Person in Kontakt war",
+    "es": "${data.name} ha sido notificado de que ha estado en contacto con alguien que ha sido probado positivamente"
+})
