@@ -1,10 +1,16 @@
 const tour = new Shepherd.Tour({
     defaultStepOptions: {
         classes: 'shadow-md',
-        scrollTo: false
+        scrollTo: false,
     },
     useModalOverlay: true
 });
+
+document.querySelector("body").addEventListener("click", e => {
+    if (e.target.parentNode.classList.contains("shepherd-modal-overlay-container")) {
+        tour.hide()
+    }
+})
 
 glot.assign("animation", {
     "en": "Here is the graph that allows you to visualize what happens during the simulation. Each point corresponds to a person. The red circle around Alice represents that she is contagious.",
@@ -175,8 +181,8 @@ tour.addStep({
 glot.assign("testforcovid", {
     "en": "For example, let's say that ${data.name} chooses to get tested for COVID-19 disease, and discovers that the test is positive.",
     "fr": "Par exemple, disons que ${data.name} choisis de se faire tester pour la maladie du COVID-19, et découvre que le test est positif.",
-    "de": "Nehmen wir zum Beispiel an, ${data.name} lässt sich auf die VIDOC-19-Krankheit testen und stellt fest, dass der Test positiv ist.",
-    "es": "Por ejemplo, digamos que ${data.name} elige hacerse la prueba de la enfermedad VIDOC-19, y descubre que la prueba es positiva."
+    "de": "Nehmen wir zum Beispiel an, ${data.name} lässt sich auf die COVID-19-Krankheit testen und stellt fest, dass der Test positiv ist.",
+    "es": "Por ejemplo, digamos que ${data.name} elige hacerse la prueba de la enfermedad COVID-19, y descubre que la prueba es positiva."
 })
 tour.addStep({
     id: 'test',

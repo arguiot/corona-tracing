@@ -21,7 +21,6 @@ class Person {
         this.vy = 1;
         this.d = Math.random() * (2 * Math.PI);
 
-        this.met = []
         this.receivedNotification = false
 
         this.wave = 0;
@@ -92,8 +91,6 @@ class Person {
         this.y += 150;
 
         this.isPark = true
-
-        this.met = []
     }
 
     goToHouse() {
@@ -106,8 +103,6 @@ class Person {
         this.maxY = this.pastMaxY;
 
         this.isPark = false
-
-        this.met = []
     }
 
     pause() {
@@ -424,7 +419,7 @@ class Simulation {
                 const diffY = p.y - pp.y;
 
                 const dist = Math.sqrt(diffX * diffX + diffY * diffY);
-                if (dist <= 40 && !p.met.includes(pp.name) && !pp.met.includes(p.name)) {
+                if (dist <= 40) {
                     this.contact(p, pp)
                 }
             })
@@ -497,10 +492,6 @@ class Simulation {
     }
 
     contact(p1, p2) {
-        p1.met.push(p2.name)
-        p2.met.push(p1.name)
-        const result = window.prompt(glot.get("meeting", { p1, p2 }), 5)
-
         // Get correct ephID
         const getSlot = p => {
             const broadcastHistory = p.getBroadcastHistory(this.dayIndex)
@@ -514,6 +505,13 @@ class Simulation {
         }
         const slot1 = getSlot(p1)
         const slot2 = getSlot(p2)
+
+        const todayBroadcast = p1.broadcastHistory[this.dayIndex]
+        if (Array.from(p1.heard).map(el => el.slot).includes(slot2[0]) || Array.from(p2.heard).map(el => el.slot).includes(slot1[0])) {
+            return
+        }
+
+        const result = window.prompt(glot.get("meeting", { p1, p2 }), 5)
 
         p1.broadcastHistory[this.dayIndex].timeSlots[slot1[1]].hadContact = true
         p2.broadcastHistory[this.dayIndex].timeSlots[slot2[1]].hadContact = true
@@ -529,10 +527,8 @@ class Simulation {
         if (p1.contagious == true || p2.contagious == true) {
             if (p1.contagious == true) {
                 p2.contagious = true;
-                p2.met = [] // So p2 can infect more people
             } else {
                 p1.contagious = true;
-                p1.met = []
             }
         }
         // Finally, we update the date
