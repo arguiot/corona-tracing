@@ -315,7 +315,7 @@ class Server {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     resolve(this.dayKeys.map(el => {
-                        el.name = el.time.toLocaleString()
+                        el.name = el.time.toLocaleDateString()
                         el.value = con.sim.toHex(el.broadcastId)
                         return el
                     }))
@@ -752,6 +752,7 @@ class Controller {
             el.addEventListener("click", (e) => {
                 this.sim.panelState = i;
                 this.sim.panel();
+                glot.render("auto", document.querySelector(".app"))
                 this.selector();
             });
         })

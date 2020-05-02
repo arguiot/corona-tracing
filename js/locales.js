@@ -26,9 +26,9 @@ glot.assign("step1-bold", {
     "es": "El teléfono de Alice emite un mensaje al azar cada pocos minutos"
 })
 glot.assign("step1-text", {
-    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not use location for proximity detection.<br><br>This message is called a Proximity Identifier or <code>EphID</code>. Theses identifiers are unique and change often.",
-    "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un identifiant de proximité ou <code>EphID</code>. Ces identificateurs sont uniques et changent souvent.",
-    "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Proximity Identifier oder <code>EphID</code> genannt. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
+    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not use location for proximity detection.<br><br>This message is called a Proximity Identifier or <code>BroadcastID</code>. Theses identifiers are unique and change often.",
+    "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un identifiant de proximité ou <code>BroadcastID</code>. Ces identificateurs sont uniques et changent souvent.",
+    "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Proximity Identifier oder <code>BroadcastID</code> genannt. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
     "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Identificador de Proximidad o <código>EfID</código>. Estos identificadores son únicos y cambian a menudo."
 })
 glot.assign("step2-bold", {
@@ -63,9 +63,9 @@ glot.assign("step3-bold", {
 })
 glot.assign("step3-text", {
     "en": "With Alice’s consent, his phone uploads the last 14 days of keys for his broadcast beacons to the cloud.",
-    "fr": "Avec l'accord d'Alice, son téléphone télécharge les 14 derniers jours de clés pour ses balises de diffusion dans le cloud.",
-    "de": "Mit Alices Einverständnis lädt ihr Telefon die Schlüssel der letzten 14 Tage für ihre Wolken-Sendebaken herunter.",
-    "es": "Con el consentimiento de Alice, su teléfono descarga los últimos 14 días de claves para sus balizas de emisión en la nube."
+    "fr": "Avec l'accord d'Alice, son téléphone télécharge les clés des 14 derniers jours de ses balises de diffusion sur le serveur de l'autorité de santé publique.",
+    "de": "Mit dem Einverständnis von Alice lädt sein Telefon die Schlüssel der letzten 14 Tage für seine Sendebaken auf den Server der Gesundheitsbehörde hoch.",
+    "es": "Con el consentimiento de Alice, su teléfono sube los últimos 14 días de claves para sus balizas de emisión al servidor de la autoridad de salud pública."
 })
 glot.assign("step4-bold", {
     "en": "Bob’s phone periodically downloads the broadcast beacon keys of everyone who has tested positive for COVID-19 in her region.",
@@ -97,41 +97,51 @@ glot.assign("try-desc", {
     "de": "Wir haben eine kleine Animation erstellt, damit Sie jeden Schritt des Protokolls visualisieren können.",
     "es": "Hemos realizado una pequeña animación para que pueda visualizar cada paso del protocolo."
 })
+
+function currentPerson() {
+    if (typeof con == "undefined") {
+        return {
+            name: "Bob"
+        }
+    }
+    return [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david][con.sim.panelState]
+}
+
 glot.assign("contagious", {
-    "en": "Contagious",
-    "fr": "Contagieux",
-    "de": "Ansteckend",
-    "es": "Contagioso"
+    "en": "${currentPerson().name} is contagious",
+    "fr": "${currentPerson().name} est contagieux",
+    "de": "${currentPerson().name} ist ansteckend",
+    "es": "${currentPerson().name} es contagioso"
 })
 glot.assign("alerted", {
-    "en": "Alerted about infectivity",
-    "fr": "Alerte sur l'infectiosité",
-    "de": "Alarmiert über Infektiosität",
-    "es": "Alertado sobre infectividad"
+    "en": "${currentPerson().name} knows that he/she is contagious",
+    "fr": "${currentPerson().name} sais qu'il/elle est contagieux",
+    "de": "${currentPerson().name} weiß, dass er/sie ansteckend ist",
+    "es": "${currentPerson().name} sabe que es contagioso"
 })
 glot.assign("initial-key", {
-    "en": "Secret Initial Key",
-    "fr": "Clé initiale secrète",
-    "de": "Geheimer Anfangsschlüssel",
-    "es": "Clave inicial secreta"
+    "en": "${currentPerson().name}'s secret initial key",
+    "fr": "Clé initiale secrète de ${currentPerson().name}",
+    "de": "${currentPerson().name} geheimer Anfangsschlüssel",
+    "es": "La clave secreta inicial de ${currentPerson().name}"
 })
 glot.assign("secret-day", {
-    "en": "Secret Day Key",
-    "fr": "Clé du jour secret",
-    "de": "Geheimer Tagesschlüssel",
-    "es": "Clave del día secreto"
+    "en": "${currentPerson().name}'s secret day key",
+    "fr": "Clé du jour secret de ${currentPerson().name}",
+    "de": "${currentPerson().name} geheimer Tagesschlüssel",
+    "es": "La clave del día secreto de ${currentPerson().name}"
 })
 glot.assign("past", {
-    "en": "Past EphIDs (of the day)",
-    "fr": "EphID antérieurs (du jour)",
-    "de": "Vergangene EphIDs (des Tages)",
-    "es": "EphID pasados (del día)"
+    "en": "${currentPerson().name}'s past BroadcastID (of the day)",
+    "fr": "BroadcastID antérieurs (du jour)",
+    "de": "Vergangene BroadcastIDs (des Tages)",
+    "es": "BroadcastID pasados (del día)"
 })
 glot.assign("heard", {
-    "en": "EphIDs heard",
-    "fr": "EphID entendus",
-    "de": "EphIDs gehört",
-    "es": "EphIDs escuchó"
+    "en": "BroadcastIDs received by ${currentPerson().name}",
+    "fr": "BroadcastIDs reçus par ${currentPerson().name}",
+    "de": "BroadcastIDs von ${currentPerson().name} empfangen",
+    "es": "BroadcastIDs recibido por ${currentPerson().name}"
 })
 glot.assign("show", {
     "en": "Show",
@@ -176,7 +186,7 @@ glot.assign("minus5min", {
     "es": "-5 minutos"
 })
 glot.assign("walkthrough", {
-    "en": "Start Walkthrough",
+    "en": "Start walkthrough",
     "fr": "Commencer le tour",
     "de": "Komplettlösung starten",
     "es": "Inicie el recorrido"
@@ -243,24 +253,24 @@ glot.assign("testcovid", {
     "es": "Prueba para COVID-19"
 })
 glot.assign("publishcovid", {
-    "en": "Publish past EphIDs",
-    "fr": "Publier les anciens EphID",
-    "de": "Frühere EphIDs veröffentlichen",
-    "es": "Publicar las EphID anteriores"
+    "en": "Publish past BroadcastIDs",
+    "fr": "Publier les anciens BroadcastID",
+    "de": "Frühere BroadcastIDs veröffentlichen",
+    "es": "Publicar las BroadcastID anteriores"
 })
 
 glot.assign("namepast", {
-    "en": "${data.name}'s past EphIDs",
-    "fr": "Anciens EphID d${data.name == 'Alice' ? \"'\" : \"e \"}${data.name}",
-    "de": "${data.name}s frühere EphIDs",
-    "es": "El pasado de ${data.name} EphIDs"
+    "en": "${data.name}'s past BroadcastIDs",
+    "fr": "Anciens BroadcastID d${data.name == 'Alice' ? \"'\" : \"e \"}${data.name}",
+    "de": "${data.name}s frühere BroadcastIDs",
+    "es": "El pasado de ${data.name} BroadcastIDs"
 })
 
 glot.assign("nameheard", {
-    "en": "${data.name}'s heard EphIDs",
-    "fr": "EphID entendus par ${data.name}",
-    "de": "${data.name} hat EphIDs gehört",
-    "es": "${data.name} ha oído hablar del EphID"
+    "en": "${data.name}'s heard BroadcastIDs",
+    "fr": "BroadcastID entendus par ${data.name}",
+    "de": "${data.name} hat BroadcastIDs gehört",
+    "es": "${data.name} ha oído hablar del BroadcastID"
 })
 
 glot.assign("meeting", {
