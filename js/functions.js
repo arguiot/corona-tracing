@@ -542,10 +542,14 @@ class Simulation {
             return
         }
 
-        const result = window.prompt(glot.get("meeting", {
+        let result = window.prompt(glot.get("meeting", {
             p1,
             p2
         }), 5)
+
+        if (result == null) { // In case the user tap cancel
+            result = 5
+        }
 
         p1.broadcastHistory[this.dayIndex].timeSlots[slot1[1]].hadContact = true
         p2.broadcastHistory[this.dayIndex].timeSlots[slot2[1]].hadContact = true
