@@ -1,5 +1,8 @@
 // BroadcastJS setup
-const { Notification, NotificationCenter } = Broadcast
+const {
+    Notification,
+    NotificationCenter
+} = Broadcast
 
 class Person {
     constructor(mode) {
@@ -33,7 +36,9 @@ class Person {
     }
 
     notify(notif) {
-        if (notif.from == this.name) { return }
+        if (notif.from == this.name) {
+            return
+        }
         Array.from(this.heard).forEach(broadcast => {
             if (broadcast != null && broadcast.slot == notif.slot && this.receivedNotification == false) {
                 return alert(glot.get("notify", {
@@ -125,7 +130,17 @@ class Person {
 
         return this.broadcastHistory[dayIndex];
     }
-
+    getDayKeys() {
+        for (let i = 0; i < OBSERVATION_DAYS; i++) {
+            this.day(i)
+        }
+        return this.secretDayKeys.map((id, i) => {
+            return {
+                time: getDayForIndex(i),
+                broadcastId: id
+            }
+        })
+    }
     generateBroadcastHistoryFull() {
         for (let i = 0; i < OBSERVATION_DAYS; i++) {
             this.getBroadcastHistory(i)
@@ -278,10 +293,12 @@ class David extends Person {
 class Server {
     constructor() {
         this.slots = []
+        this.dayKeys = []
     }
-    addKeys(name, keys) {
-        const slots = keys.map(el => el.timeSlots)
-        const array = [].concat.apply([], slots)
+    addKeys(name, slots, dayKeys) {
+        this.dayKeys.push(...dayKeys)
+        const Slots = slots.map(el => el.timeSlots)
+        const array = [].concat.apply([], Slots)
         array.forEach(slot => {
             if (slot.hadContact == true) {
                 this.slots.push(slot)
@@ -297,7 +314,7 @@ class Server {
         popup.show(glot.get("serverdata"), () => {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    resolve(this.slots.map(el => {
+                    resolve(this.dayKeys.map(el => {
                         el.name = el.time.toLocaleString()
                         el.value = con.sim.toHex(el.broadcastId)
                         return el
@@ -375,10 +392,18 @@ class Simulation {
         this.ctx.strokeRect(150 * scale, 75 * scale, 150 * scale, 75 * scale);
         // Text
         this.ctx.font = `${12 * scale}px sans-serif`;
-        this.ctx.fillText(glot.get("house", {name: "Bob"}), 41 * scale, 130 * scale, 70 * scale);
-        this.ctx.fillText(glot.get("house", {name: "Alice"}), 185 * scale, 130 * scale, 80 * scale);
-        this.ctx.fillText(glot.get("house", {name: "Charlie"}), 180 * scale, 60 * scale);
-        this.ctx.fillText(glot.get("house", {name: "David"}), 35 * scale, 60 * scale);
+        this.ctx.fillText(glot.get("house", {
+            name: "Bob"
+        }), 41 * scale, 130 * scale, 70 * scale);
+        this.ctx.fillText(glot.get("house", {
+            name: "Alice"
+        }), 185 * scale, 130 * scale, 80 * scale);
+        this.ctx.fillText(glot.get("house", {
+            name: "Charlie"
+        }), 180 * scale, 60 * scale);
+        this.ctx.fillText(glot.get("house", {
+            name: "David"
+        }), 35 * scale, 60 * scale);
         this.ctx.fillText(glot.get("park"), 135 * scale, 285 * scale);
 
         // Persons
@@ -414,7 +439,9 @@ class Simulation {
         const list = [this.bob, this.alice, this.david, this.charlie].filter(person => person.isPark)
         list.forEach(p => {
             list.forEach(pp => {
-                if (p == pp) { return }
+                if (p == pp) {
+                    return
+                }
                 const diffX = p.x - pp.x;
                 const diffY = p.y - pp.y;
 
@@ -461,7 +488,7 @@ class Simulation {
         document.querySelector(".row > .test").addEventListener("click", e => {
             if (persons[i].alerted == true) {
                 // Publish
-                this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull())
+                this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys())
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
             }
@@ -469,7 +496,9 @@ class Simulation {
         })
 
         document.querySelector(".past.show").addEventListener("click", e => {
-            this.popup.show(glot.get("namepast", { name: persons[i].name }), () => {
+            this.popup.show(glot.get("namepast", {
+                name: persons[i].name
+            }), () => {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
                         resolve(persons[i].getBroadcastHistory(this.dayIndex).timeSlots.map(el => {
@@ -483,7 +512,9 @@ class Simulation {
         })
 
         document.querySelector(".heard.show").addEventListener("click", e => {
-            this.popup.displayData(glot.get("nameheard", { name: persons[i].name }), Array.from(persons[i].heard).map(el => {
+            this.popup.displayData(glot.get("nameheard", {
+                name: persons[i].name
+            }), Array.from(persons[i].heard).map(el => {
                 el.name = `${el.duration}min${el.duration > 1 ? 's' : ''} at ${el.slot.time.toTimeString()}`
                 el.value = this.toHex(el.slot.broadcastId)
                 return el
@@ -511,7 +542,10 @@ class Simulation {
             return
         }
 
-        const result = window.prompt(glot.get("meeting", { p1, p2 }), 5)
+        const result = window.prompt(glot.get("meeting", {
+            p1,
+            p2
+        }), 5)
 
         p1.broadcastHistory[this.dayIndex].timeSlots[slot1[1]].hadContact = true
         p2.broadcastHistory[this.dayIndex].timeSlots[slot2[1]].hadContact = true
@@ -645,11 +679,11 @@ class Controller {
         };
         document.querySelector(".today").innerHTML = this.sim.today.toLocaleDateString(navigator.language || navigator.userLanguage, options)
         document.querySelector(".now").innerHTML = this.sim.today.toTimeString()
-        
+
         document.querySelector(".control .past").addEventListener("click", e => {
             if (isSameDay(this.sim.today, getDayForIndex(0))) {
                 alert("Can't go past the initial date.")
-                return 
+                return
             }
             this.sim.today = new Date(this.sim.today.getTime() - 1000 * 60 * 60 * 24) // -1 day
             const options = {
@@ -663,7 +697,7 @@ class Controller {
         document.querySelector(".control .future").addEventListener("click", e => {
             if (isSameDay(this.sim.today, getDayForIndex(13))) {
                 alert("Can't go any further. Sorry.")
-                return 
+                return
             }
             this.sim.today = new Date(this.sim.today.getTime() + 1000 * 60 * 60 * 24) // +1 day
             const options = {
@@ -678,7 +712,7 @@ class Controller {
         document.querySelector(".control .plus-min").addEventListener("click", e => {
             if (isSameDay(this.sim.today, getDayForIndex(0))) {
                 alert("Can't go past the initial date.")
-                return 
+                return
             }
             this.sim.today = new Date(this.sim.today.getTime() + 5 * 60 * 1000) // + 5 min
             const options = {
@@ -692,7 +726,7 @@ class Controller {
         document.querySelector(".control .minus-min").addEventListener("click", e => {
             if (isSameDay(this.sim.today, getDayForIndex(13))) {
                 alert("Can't go any further. Sorry.")
-                return 
+                return
             }
             this.sim.today = new Date(this.sim.today.getTime() - 5 * 60 * 1000) // - 5 min
             const options = {

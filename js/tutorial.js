@@ -244,7 +244,7 @@ tour.addStep({
         action: () => {
             const persons = [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david]
             const person = persons[con.sim.panelState]
-            con.sim.server.addKeys(person.name, person.generateBroadcastHistoryFull())
+            con.sim.server.addKeys(person.name, person.generateBroadcastHistoryFull(), person.getDayKeys())
             con.state = 0;
             con.selector();
             tour.next()
