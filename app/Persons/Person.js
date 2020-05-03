@@ -1,3 +1,7 @@
+import ExposureNotification from "../Algorithms/ExposureNotification";
+import DP3T from "../Algorithms/DP3T"
+import { OBSERVATION_DAYS, getDayForIndex } from "../utils"
+
 class Person {
     constructor(mode) {
         this.x = 75;
@@ -44,7 +48,7 @@ class Person {
 
     setAlgo(notif) {
         this.mode = notif.mode
-        this.algo = notif.mode == "dp3t" ? new DP3T() : new ContactTracing()
+        this.algo = notif.mode == "dp3t" ? new DP3T() : new ExposureNotification()
 
         this.initial = this.algo.createInitialKey()
         this.broadcastHistory = Array(OBSERVATION_DAYS - 1).fill(null)

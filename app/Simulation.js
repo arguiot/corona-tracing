@@ -1,3 +1,5 @@
+import { getDayForIndex } from "./utils"
+
 class Simulation {
     constructor(bob, alice, charlie, david) {
         this.bob = bob;
@@ -117,9 +119,9 @@ class Simulation {
     }
 
     monitor() {
-        const list = [this.bob, this.alice, this.david, this.charlie].filter(person => person.isPark)
-        list.forEach(p => {
-            list.forEach(pp => {
+        const persons = [this.bob, this.alice, this.david, this.charlie]
+        persons.filter(person => person.isPark).forEach(p => {
+            persons.filter(person => person.isPark).forEach(pp => {
                 if (p == pp) {
                     return
                 }
@@ -266,6 +268,9 @@ class Simulation {
         el.parentNode.replaceChild(newEl, el);
     }
     toHex(byteArray) {
+        if (byteArray == null) {
+            return "null"
+        }
         return byteArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
     }
     get dayIndex() {

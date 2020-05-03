@@ -1,3 +1,6 @@
+import Broadcast from "@arguiot/broadcast.js"
+const { NotificationCenter, Notification } = Broadcast
+
 class Server {
     constructor() {
         this.slots = []

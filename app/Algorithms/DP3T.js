@@ -1,10 +1,6 @@
-"use strict";
-
-//Implementation of DP-3T protocol.
-//Specification: https://github.com/DP-3T/documents
-
+import { startOfDay } from "../utils"
 //Fixed global default broadcast key for ephID generation:
-const BROADCAST_KEY = "Broadcast key";
+const BROADCAST_KEY = "broadcast key";
 
 //Length of an epoch (in minutes):
 const EPOCH_LENGTH = 15;
@@ -21,10 +17,12 @@ const DAY_KEY_SIZE = 32;
 //Library SJCL requires us to call this method in order to use CTR:
 sjcl.beware["CTR mode is dangerous because it doesn't protect message integrity."]();
 
-const iv = sjcl.codec.hex.toBits("00000000000000000000000000000000");
-const broadcastKey = sjcl.codec.utf8String.toBits(BROADCAST_KEY);
+export default class DP3T {
 
-class DP3T {
+    constructor() {
+        this.iv = sjcl.codec.hex.toBits("00000000000000000000000000000000");
+        this.broadcastKey = sjcl.codec.utf8String.toBits(BROADCAST_KEY);
+    }
 
     /**
      * Creates a private initial key for a user.
@@ -68,7 +66,10 @@ class DP3T {
         nextDayStart.setDate(nextDayStart.getDate() + 1);
         let index = 0;
         while (timeSlotIterator < nextDayStart) {
-            timeSlots.push({ time: new Date(timeSlotIterator), broadcastId: ephIds[index++] });
+            timeSlots.push({
+                time: new Date(timeSlotIterator),
+                broadcastId: ephIds[index++]
+            });
             timeSlotIterator.setMinutes(timeSlotIterator.getMinutes() + EPOCH_LENGTH);
         }
 
@@ -88,7 +89,10 @@ class DP3T {
             const ephIds = this._getAllEphIdsForDay(dayKey);
             const day = new Date(startDay);
             day.setDate(day.getDate() + dayIndex);
-            ephIds.forEach(ephId => ephIdsList.push({ day, broadcastId: ephId }));
+            ephIds.forEach(ephId => ephIdsList.push({
+                day,
+                broadcastId: ephId
+            }));
             dayKey = this._hash(dayKey);
         }
         return ephIdsList;
@@ -101,12 +105,15 @@ class DP3T {
      * In DP-3T, only the day key of the day on which the infection started needs to be reported,
      * because day keys of all subsequent days can be derived automatically from it.
      */
-    getAllDayKeysToReport(initialKey, startDay, startDayIndex, maxDaysCount) {
+    getAllDayKeysToReport(initialKey, _, startDay, startDayIndex, maxDaysCount) {
         let dayKey = initialKey;
         for (let dayIndex = 0; dayIndex < startDayIndex; dayIndex++) {
             dayKey = this._hash(dayKey);
         }
-        return [{dayIndex: startDayIndex, dayKey}];
+        return [{
+            dayIndex: startDayIndex,
+            dayKey
+        }];
     }
 
     _hash(key) {
@@ -118,10 +125,10 @@ class DP3T {
     _getAllEphIdsForDay(dayKey) {
         //Compare this to https://github.com/DP-3T/reference_implementation/blob/master/LowCostDP3T.py
         const hmac = new sjcl.misc.hmac(sjcl.codec.bytes.toBits(dayKey), sjcl.hash.sha256);
-        const prf = hmac.encrypt(broadcastKey);
+        const prf = hmac.encrypt(this.broadcastKey);
         const aes = new sjcl.cipher.aes(prf);
         const stream = sjcl.codec.bytes.toBits(new Array(EPHID_SIZE * NUM_EPOCHS_PER_DAY).fill(0));
-        const prg = sjcl.mode.ctr.encrypt(aes, stream, iv);
+        const prg = sjcl.mode.ctr.encrypt(aes, stream, this.iv);
 
         const ephIds = [];
         //Slice the PRG into ephIds of EPHID_SIZE bytes: 
@@ -136,7 +143,8 @@ class DP3T {
 
     _shuffle(array) {
         //Taken from https://github.com/Daplie/knuth-shuffle/
-        var currentIndex = array.length, temporaryValue, randomIndex;
+        var currentIndex = array.length,
+            temporaryValue, randomIndex;
 
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {

@@ -2,6 +2,13 @@ import { Bob, Alice, Charlie, David } from "./Persons/Everyone"
 import Server from "./Server"
 import Popup from "./Popup"
 import Simulation from "./Simulation"
+import Broadcast from "@arguiot/broadcast.js"
+const { NotificationCenter, Notification } = Broadcast
+
+import {
+    isSameDay,
+    getDayForIndex
+} from "./utils"
 
 class Controller {
     constructor() {
