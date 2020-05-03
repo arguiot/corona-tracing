@@ -8,16 +8,16 @@ if (lang != null) {
 }
 
 glot.assign("title", {
-    "en": "Privacy-friendly contact tracking",
+    "en": "Privacy-friendly contact tracing",
     "fr": "Traçage de contact préservant la vie privée",
-    "de": "Datenschutzfreundliche Kontaktverfolgung",
-    "es": "Seguimiento de contactos amigable con la privacidad"
+    "de": "Datenschutzfreundliche Tracing-App",
+    "es": "Rastreo de contactos con privacidad"
 })
 glot.assign("description", {
-    "en": "Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic, to protect people and get society back up and running. Software developers are contributing by crafting technical tools to help combat the virus and save lives.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
-    "fr": "Partout dans le monde, les gouvernements et les autorités sanitaires travaillent ensemble pour trouver des solutions à la pandémie de COVID-19, pour protéger les personnes et remettre la société sur pied. Les développeurs de logiciels apportent leur contribution en concevant des outils techniques pour aider à combattre le virus et à sauver des vies.<br>Au cours des dernières semaines, certaines inquiétudes concernant certaines technologies de suivi ont été soulevées par ceux qui craignent une restriction des libertés individuelles et de leur vie privée.<br>Chez CrypTool, nous essayons d'expliquer au mieux ce qui se cache dans ces protocoles de traçage décentralisés afin que vous puissiez vous faire votre propre opinion sur le sujet.",
-    "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden, die Menschen zu schützen und die Gesellschaft wieder in Gang zu bringen. Software-Entwickler tragen dazu bei, indem sie technische Tools entwickeln, die helfen, das Virus zu bekämpfen und Leben zu retten.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracking-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
-    "es": "En todo el mundo, los gobiernos y las autoridades sanitarias están trabajando juntos para encontrar soluciones a la pandemia de COVID-19, para proteger a las personas y hacer que la sociedad vuelva a funcionar. Los desarrolladores de software están contribuyendo con la creación de herramientas técnicas para ayudar a combatir el virus y salvar vidas.<br>En las últimas semanas, algunas preocupaciones sobre ciertas tecnologías de rastreo han sido planteadas por aquellos que temen el recorte de las libertades individuales y su privacidad.<br>En CrypTool, tratamos de explicar lo mejor posible lo que se esconde en estos protocolos de rastreo descentralizados para que usted pueda formarse su propia opinión sobre el tema."
+    "en": "Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic, to protect people and get society back up and running.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
+    "fr": "Partout dans le monde, les gouvernements et les autorités sanitaires travaillent ensemble pour trouver des solutions à la pandémie de COVID-19, pour protéger les personnes et remettre la société sur pied.<br>Au cours des dernières semaines, certaines inquiétudes concernant certaines technologies de suivi ont été soulevées par ceux qui craignent une restriction des libertés individuelles et de leur vie privée.<br>Chez CrypTool, nous essayons d'expliquer au mieux ce qui se cache dans ces protocoles de traçage décentralisés afin que vous puissiez vous faire votre propre opinion sur le sujet.",
+    "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden, die Menschen zu schützen und die Gesellschaft wieder in Gang zu bringen.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracking-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
+    "es": "En todo el mundo, los gobiernos y las autoridades sanitarias están trabajando juntos para encontrar soluciones a la pandemia de COVID-19, para proteger a las personas y hacer que la sociedad vuelva a funcionar.<br>En las últimas semanas, algunas preocupaciones sobre ciertas tecnologías de rastreo han sido planteadas por aquellos que temen el recorte de las libertades individuales y su privacidad.<br>En CrypTool, tratamos de explicar lo mejor posible lo que se esconde en estos protocolos de rastreo descentralizados para que usted pueda formarse su propia opinión sobre el tema."
 })
 glot.assign("step1-bold", {
     "en": "Alice’s phone broadcasts a random message every few minutes",
@@ -26,10 +26,10 @@ glot.assign("step1-bold", {
     "es": "El teléfono de Alice emite un mensaje al azar cada pocos minutos"
 })
 glot.assign("step1-text", {
-    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not use location for proximity detection.<br><br>This message is called a Proximity Identifier or <code>BroadcastID</code>. Theses identifiers are unique and change often.",
-    "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un identifiant de proximité ou <code>BroadcastID</code>. Ces identificateurs sont uniques et changent souvent.",
-    "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Proximity Identifier oder <code>BroadcastID</code> genannt. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
-    "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Identificador de Proximidad o <código>EfID</código>. Estos identificadores son únicos y cambian a menudo."
+    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not contain location data for proximity detection.<br><br>This message is called a Rolling Proximity Identifier or <code>EphID</code>. For now, let's call the BroadcastIDs Theses identifiers are unique and change often.",
+    "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un Rolling Proximity Identifier ou <code>EphID</code>. Pour le moment, appelons les BroadcastIDs. Ces identificateurs sont uniques et changent souvent.",
+    "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Rolling Proximity Identifier oder <code>EphID</code> genannt. Lassen Sie uns vorerst die BroadcastIDs aufrufen. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
+    "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Rolling Proximity Identifier o <code>EphID</code>. Por ahora, llamemos a los BroadcastIDs. Estos identificadores son únicos y cambian a menudo."
 })
 glot.assign("step2-bold", {
     "en": "Alice and Bob meet each other for the first time and have a 10-minute conversation.",
@@ -44,10 +44,10 @@ glot.assign("step2-text", {
     "es": "Mientras discuten, su teléfono sigue enviando mensajes al azar. Alice no tiene ningún síntoma y Bob no sabe que es contagiosa."
 })
 glot.assign("step2.5-bold", {
-    "en": "Their phones exchange anonymous identifier beacons (which change frequently).",
-    "fr": "Leurs téléphones échangent des balises d'identification anonymes (qui changent fréquemment).",
-    "de": "Ihre Telefone tauschen anonyme Identifizierungszeichen aus (die häufig wechseln).",
-    "es": "Sus teléfonos intercambian balizas de identificación anónimas (que cambian con frecuencia)."
+    "en": "Their phones exchange anonymous BroadcastID (which change frequently).",
+    "fr": "Leurs téléphones échangent des BroadcastID anonymes (qui changent fréquemment).",
+    "de": "Ihre Telefone tauschen anonyme BroadcastID aus (die häufig wechseln).",
+    "es": "Sus teléfonos intercambian BroadcastID anónimas (que cambian con frecuencia)."
 })
 glot.assign("step2.5-text", {
     "en": "Both phones remember what they said and heard from each other in the past 14 days.<br><br>With no servers involved, only the phones know that they have been in contact.",
@@ -62,22 +62,22 @@ glot.assign("step3-bold", {
     "es": "Alice es diagnosticada positivamente para COVID-19 e ingresa el resultado de la prueba en una aplicación de una autoridad de salud pública."
 })
 glot.assign("step3-text", {
-    "en": "With Alice’s consent, his phone uploads the last 14 days of keys for his broadcast beacons to the cloud.",
-    "fr": "Avec l'accord d'Alice, son téléphone télécharge les clés des 14 derniers jours de ses balises de diffusion sur le serveur de l'autorité de santé publique.",
-    "de": "Mit dem Einverständnis von Alice lädt sein Telefon die Schlüssel der letzten 14 Tage für seine Sendebaken auf den Server der Gesundheitsbehörde hoch.",
-    "es": "Con el consentimiento de Alice, su teléfono sube los últimos 14 días de claves para sus balizas de emisión al servidor de la autoridad de salud pública."
+    "en": "With Alice’s consent, his phone uploads the last 14 days of keys for his BroadcastIDs to the public health autority's server.",
+    "fr": "Avec l'accord d'Alice, son téléphone télécharge les clés des 14 derniers jours de ses BroadcastIDs sur le serveur de l'autorité de santé publique.",
+    "de": "Mit der Zustimmung von Alice lädt sein Telefon die Schlüssel der letzten 14 Tage für seine BroadcastIDs auf den Server der Gesundheitsbehörde hoch.",
+    "es": "Con el consentimiento de Alice, su teléfono sube los últimos 14 días de claves para su BroadcastID al servidor de la autoridad de salud pública."
 })
 glot.assign("step4-bold", {
-    "en": "Bob’s phone periodically downloads the broadcast beacon keys of everyone who has tested positive for COVID-19 in her region.",
-    "fr": "Le téléphone de Bob télécharge périodiquement les clés des balises de diffusion de tous ceux qui ont été testés positifs pour COVID-19 dans sa région.",
-    "de": "Bobs Telefon lädt regelmäßig die Sendebakentasten aller Personen herunter, die in ihrer Region positiv auf COVID-19 getestet wurden.",
-    "es": "El teléfono de Bob descarga periódicamente las claves de emisión de todos los que han dado positivo en COVID-19 en su región."
+    "en": "Bob’s phone periodically downloads the BroadcastIDs keys of everyone who has tested positive for COVID-19 in his region.",
+    "fr": "Le téléphone de Bob télécharge périodiquement les clés des BroadcastIDs de tous ceux qui ont été testés positifs pour COVID-19 dans sa région.",
+    "de": "Bobs Telefon lädt regelmäßig die BroadcastIDs-Schlüssel aller Personen herunter, die in seiner Region positiv auf COVID-19 getestet wurden.",
+    "es": "El teléfono de Bob descarga periódicamente las claves de BroadcastIDs de todos los que han dado positivo en COVID-19 en su región."
 })
 glot.assign("step4-text", {
-    "en": "A match is found with Alice’s anonymous identifier beacons.<br><br>Bob’s phone receives a notification with information about what to do next.",
-    "fr": "Une correspondance est trouvée avec les balises d'identification anonymes d'Alice.<br><br>Le téléphone de Bob reçoit une notification contenant des informations sur la marche à suivre.",
-    "de": "Es wird eine Übereinstimmung mit Alices anonymen Identifizierungsbaken gefunden.<br><br>Bobs Telefon erhält eine Benachrichtigung mit Informationen darüber, was als nächstes zu tun ist.",
-    "es": "Se ha encontrado una coincidencia con las balizas de identificación anónima de Alice.<br><br>El teléfono de Bob recibe una notificación con información sobre qué hacer a continuación."
+    "en": "A match is found with Alice’s anonymous BroadcastIDs.<br><br>Bob’s phone receives a notification with information about what to do next.",
+    "fr": "Une correspondance est trouvée avec les BroadcastIDs anonymes d'Alice.<br><br>Le téléphone de Bob reçoit une notification contenant des informations sur la marche à suivre.",
+    "de": "Es wird eine Übereinstimmung mit Alices anonymen BroadcastIDs gefunden.<br><br>Bobs Telefon erhält eine Benachrichtigung mit Informationen darüber, was als nächstes zu tun ist.",
+    "es": "Se ha encontrado una coincidencia con las BroadcastIDs anónima de Alice.<br><br>El teléfono de Bob recibe una notificación con información sobre qué hacer a continuación."
 })
 glot.assign("step", {
     "en": "Step",
