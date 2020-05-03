@@ -346,6 +346,8 @@ class Simulation {
         this.draw();
 
         setInterval(this.panel.bind(this), 1000);
+
+        this.panelListeners()
     }
 
     resize() {
@@ -456,12 +458,6 @@ class Simulation {
     panel() {
         const i = this.panelState
         const persons = [this.bob, this.alice, this.charlie, this.david]
-
-        // Cleans some elements
-        this.removeListeners(document.querySelector(".row > .goto"))
-        this.removeListeners(document.querySelector(".row > .test"))
-        this.removeListeners(document.querySelector(".past.show"))
-        this.removeListeners(document.querySelector(".heard.show"))
         // Values
 
         document.querySelector(".contagious").innerHTML = glot.get(persons[i].contagious);
@@ -475,9 +471,13 @@ class Simulation {
 
         document.querySelector(".row > .goto").innerHTML = persons[i].isPark == true ? glot.get("gohouse") : glot.get("gopark")
         document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? glot.get("testcovid") : glot.get("publishcovid")
+    }
 
+    panelListeners() {
+        const persons = [this.bob, this.alice, this.charlie, this.david]
+        
         document.querySelector(".row > .goto").addEventListener("click", e => {
-
+            const i = this.panelState
             if (persons[i].isPark == true) {
                 persons[i].goToHouse()
             } else {
@@ -486,6 +486,7 @@ class Simulation {
             this.panel()
         })
         document.querySelector(".row > .test").addEventListener("click", e => {
+            const i = this.panelState
             if (persons[i].alerted == true) {
                 // Publish
                 this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys())
@@ -496,6 +497,7 @@ class Simulation {
         })
 
         document.querySelector(".past.show").addEventListener("click", e => {
+            const i = this.panelState
             this.popup.show(glot.get("namepast", {
                 name: persons[i].name
             }), () => {
@@ -512,6 +514,7 @@ class Simulation {
         })
 
         document.querySelector(".heard.show").addEventListener("click", e => {
+            const i = this.panelState
             this.popup.displayData(glot.get("nameheard", {
                 name: persons[i].name
             }), Array.from(persons[i].heard).map(el => {
