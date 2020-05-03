@@ -2,3 +2,4 @@ markdown: kramdown
 highlighter: rouge
 
 permalink: pretty
+source: src
