@@ -394,18 +394,24 @@ class Simulation {
         this.ctx.strokeRect(150 * scale, 75 * scale, 150 * scale, 75 * scale);
         // Text
         this.ctx.font = `${12 * scale}px sans-serif`;
+
+        this.ctx.fillStyle = this.bob.color;
         this.ctx.fillText(glot.get("house", {
             name: "Bob"
         }), 41 * scale, 130 * scale, 70 * scale);
+        this.ctx.fillStyle = this.alice.color;
         this.ctx.fillText(glot.get("house", {
             name: "Alice"
         }), 185 * scale, 130 * scale, 80 * scale);
+        this.ctx.fillStyle = this.charlie.color;
         this.ctx.fillText(glot.get("house", {
             name: "Charlie"
         }), 180 * scale, 60 * scale);
+        this.ctx.fillStyle = this.david.color;
         this.ctx.fillText(glot.get("house", {
             name: "David"
         }), 35 * scale, 60 * scale);
+        this.ctx.fillStyle = "#000";
         this.ctx.fillText(glot.get("park"), 135 * scale, 285 * scale);
 
         // Persons
@@ -475,7 +481,7 @@ class Simulation {
 
     panelListeners() {
         const persons = [this.bob, this.alice, this.charlie, this.david]
-        
+
         document.querySelector(".row > .goto").addEventListener("click", e => {
             const i = this.panelState
             if (persons[i].isPark == true) {
