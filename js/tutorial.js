@@ -29,7 +29,7 @@ tour.addStep({
     text: glot.get("animation"),
     attachTo: {
         element: 'canvas',
-        on: 'right'
+        on: 'bottom'
     },
     buttons: [{
         text: glot.get("next"),
@@ -78,7 +78,7 @@ tour.addStep({
     text: glot.get("panel"),
     attachTo: {
         element: '.panel',
-        on: 'left'
+        on: 'bottom'
     },
     buttons: [{
         text: glot.get("previous"),
@@ -107,7 +107,7 @@ tour.addStep({
     text: glot.get("gtpark"),
     attachTo: {
         element: 'button.goto',
-        on: 'right'
+        on: 'bottom'
     },
     buttons: [{
         text: glot.get("previous"),
@@ -138,7 +138,7 @@ tour.addStep({
     text: glot.get("contact"),
     attachTo: {
         element: 'canvas',
-        on: 'left'
+        on: 'top'
     },
     buttons: [{
         text: glot.get("previous"),
@@ -163,7 +163,7 @@ tour.addStep({
     text: glot.get("contacted"),
     attachTo: {
         element: 'canvas',
-        on: 'left'
+        on: 'top'
     },
     buttons: [{
         text: glot.get("next"),
@@ -191,7 +191,7 @@ tour.addStep({
     }),
     attachTo: {
         element: 'button.test',
-        on: 'left'
+        on: 'top'
     },
     buttons: [{
         text: glot.get("previous"),
@@ -228,7 +228,7 @@ tour.addStep({
     }),
     attachTo: {
         element: 'button.test',
-        on: 'left'
+        on: 'top'
     },
     buttons: [{
         text: glot.get("previous"),

@@ -50,7 +50,7 @@ description: Decentralized Tracing
     <div class="bold" glot-model="try-desc">
         We have made a small animation, so that you can visualize each step of the protocol.
     </div>
-    <button class="walkthrough" glot-model="walkthrough" onclick="tour.start()">Start Walkthrough</button>
+    <button class="walkthrough" glot-model="walkthrough" onclick="con.state = 0;con.selector();tour.start()">Start Walkthrough</button>
     <div class="app">
         <div class="simulation show-0">
             <canvas id="canvas" width="300" height="300"></canvas>

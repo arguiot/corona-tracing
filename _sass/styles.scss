@@ -420,7 +420,7 @@ article {
                 position: -webkit-sticky;
                 position: sticky;
                 top: 40vh;
-                margin-left: 10px;
+                margin-left: 15px;
                 width: calc(100vw - 60px);
                 height: calc(60vh - 40px);
                 max-width: 100vw;
@@ -433,6 +433,7 @@ article {
 
                 h1 {
                     line-height: unset;
+                    font-size: 36px;
                 }
 
                 .bold {
@@ -450,6 +451,11 @@ article {
 
     .animation {
         justify-content: start !important;
+
+        h1 {
+            font-size: 44px;
+            line-height: 56px;
+        }
 
         .scientist,
         .sitting {
