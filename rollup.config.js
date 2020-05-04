@@ -9,7 +9,8 @@ export default {
     output: {
         file: 'src/js/functions.js',
         format: 'iife',
-        name: 'con'
+        name: 'con',
+        sourcemap: true
     },
     intro: '/* Copyright © 2019 Arthur Guiot */',
     plugins: [
