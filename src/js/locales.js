@@ -285,3 +285,24 @@ glot.assign("notify", {
     "de": "${data.name} wurde benachrichtigt, dass er oder sie mit einer positiv getesteten Person in Kontakt war",
     "es": "${data.name} ha sido notificado de que ha estado en contacto con alguien que ha sido probado positivamente"
 })
+
+glot.assign("gotest", {
+    "en": "${data.name} went to a hospital to get tested for coronavirus. ${data.result}",
+    "fr": "${data.name} est allé se faire tester dans un hôpital pour le coronavirus. ${data.result}",
+    "de": "${data.name} ließ sich in einem Krankenhaus auf das Coronavirus testen. ${data.result}",
+    "es": "${data.name} fue al hospital a hacerse la prueba del coronavirus. ${data.result}"
+})
+
+glot.assign("gotestfalse", {
+    "en": "That's great news! He's fine.",
+    "fr": "Bonnes nouvelles! Il n'a rien.",
+    "de": "Das sind großartige Neuigkeiten! Es geht ihm gut.",
+    "es": "¡Es una gran noticia! Está bien."
+})
+
+glot.assign("gotesttrue", {
+    "en": "That's bad news! He's infected.",
+    "fr": "Mauvaises nouvelles! Il est contaminé.",
+    "de": "Das sind schlechte Nachrichten! Er ist infiziert.",
+    "es": "¡Eso son malas noticias! Está infectado."
+})

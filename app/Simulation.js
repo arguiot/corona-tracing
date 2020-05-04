@@ -70,6 +70,8 @@ class Simulation {
         // Text
         this.ctx.font = `${12 * scale}px sans-serif`;
 
+        this.ctx.fillText(glot.get("park"), 135 * scale, 285 * scale);
+
         this.ctx.fillStyle = this.bob.color;
         this.ctx.fillText(glot.get("house", {
             name: "Bob"
@@ -86,8 +88,6 @@ class Simulation {
         this.ctx.fillText(glot.get("house", {
             name: "David"
         }), 35 * scale, 60 * scale);
-        this.ctx.fillStyle = "#000";
-        this.ctx.fillText(glot.get("park"), 135 * scale, 285 * scale);
 
         // Persons
         this.ctx.lineWidth = 2 * scale;
@@ -173,6 +173,15 @@ class Simulation {
                 this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys())
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
+                alert(glot.get("gotest", {
+                    name: persons[i].name,
+                    result: glot.get("gotesttrue")
+                }))
+            } else {
+                alert(glot.get("gotest", {
+                    name: persons[i].name,
+                    result: glot.get("gotestfalse")
+                }))
             }
             this.panel()
         })
