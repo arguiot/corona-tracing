@@ -61,6 +61,35 @@ tour.addStep({
     }, {
         text: glot.get("next"),
         action: () => {
+            con.state = 2;
+            con.selector();
+            tour.next()
+        }
+    }]
+});
+glot.assign("settings", {
+    "en": "This is the settings interface. Here you can see the data collected by the server (we'll get to that later). You can also change the date (because BroadcastIDs change with time), and the protocol used.",
+    "fr": "Voici l'interface des réglages. Ici, vous pouvez voir les données recueillies par le serveur (on y viendra plus tard). Vous pouvez aussi changer la date (car les BroadcastIDs changent en fonction du temps), et le protocole utilisé.",
+    "de": "Dies ist die Einstellungsschnittstelle. Hier können Sie die vom Server gesammelten Daten sehen (dazu kommen wir später). Sie können auch das Datum (da sich BroadcastIDs mit der Zeit ändern) und das verwendete Protokoll ändern.",
+    "es": "Esta es la interfaz de configuración. Aquí puede ver los datos recogidos por el servidor (llegaremos a eso más tarde). También se puede cambiar la fecha (porque los BroadcastIDs cambian con el tiempo), y el protocolo utilizado."
+})
+tour.addStep({
+    id: 'settings',
+    text: glot.get("settings"),
+    attachTo: {
+        element: '.control',
+        on: 'bottom'
+    },
+    buttons: [{
+        text: glot.get("previous"),
+        action: () => {
+            con.state = 0;
+            con.selector();
+            tour.back()
+        }
+    }, {
+        text: glot.get("next"),
+        action: () => {
             con.state = 1;
             con.selector();
             tour.next()
@@ -83,7 +112,7 @@ tour.addStep({
     buttons: [{
         text: glot.get("previous"),
         action: () => {
-            con.state = 0;
+            con.state = 2;
             con.selector();
             tour.back()
         }
@@ -179,10 +208,10 @@ tour.addStep({
     }]
 });
 glot.assign("testforcovid", {
-    "en": "For example, let's say that ${data.name} chooses to get tested for COVID-19 disease, and discovers that the test is positive.",
-    "fr": "Par exemple, disons que ${data.name} choisis de se faire tester pour la maladie du COVID-19, et découvre que le test est positif.",
-    "de": "Nehmen wir zum Beispiel an, ${data.name} lässt sich auf die COVID-19-Krankheit testen und stellt fest, dass der Test positiv ist.",
-    "es": "Por ejemplo, digamos que ${data.name} elige hacerse la prueba de la enfermedad COVID-19, y descubre que la prueba es positiva."
+    "en": "For example, let's say that ${data.name} chooses to get tested for COVID-19 disease. By clicking '${glot.get('next')}', ${data.name} will go to a hospital, get tested and receive the results. Because it's a simulation, all of that is done instantly.",
+    "fr": "Par exemple, disons que ${data.name} choisit de se faire tester pour la maladie COVID-19. En cliquant sur '${glot.get('next')}', ${data.name} se rendra à l'hôpital, se fera tester et recevra les résultats. Comme il s'agit d'une simulation, tout cela se fait instantanément.",
+    "de": "Nehmen wir zum Beispiel an, dass ${data.name} beschließt, sich auf die Krankheit COVID-19 testen zu lassen. Wenn Sie auf '${glot.get('next')}' klicken, geht ${data.name} in ein Krankenhaus, lässt sich testen und erhält die Ergebnisse. Da es sich um eine Simulation handelt, ist all dies sofort erledigt.",
+    "es": "Por ejemplo, digamos que ${data.name} elige hacerse la prueba de la enfermedad COVID-19. Al hacer clic en '${glot.get('next')}', ${data.name} irá a un hospital, se hará la prueba y recibirá los resultados. Debido a que es una simulación, todo eso se hace al instante."
 })
 tour.addStep({
     id: 'test',
@@ -216,10 +245,10 @@ tour.addStep({
     }]
 });
 glot.assign("publishdata", {
-    "en": "Oh no! ${data.name} finds out he's contracted the coronavirus. ${data.name} decides to alert people ${data.name == 'Alice' ? \"she\" : \"he\"} may have had contact with.",
-    "fr": "Oh non! ${data.name} découvre qu'${data.name == 'Alice' ? \"elle\" : \"il\"} a contracté le coronavirus. ${data.name} décide donc d'alerter les gens avec qui ${data.name == 'Alice' ? \"elle\" : \"il\"} a pu avoir un contact.",
-    "de": "Oh nein! ${data.name} erfährt, dass er sich mit dem Coronavirus angesteckt hat. ${data.name} beschließt, Personen zu alarmieren, mit denen sie möglicherweise Kontakt hatte.",
-    "es": "¡Oh no! ${data.name} descubre que ha contraído el coronavirus. ${data.name} decide alertar a la gente con la que pudo haber tenido contacto."
+    "en": "Oh no! ${data.name} finds out he's contracted the coronavirus. ${data.name} decides to alert people ${data.name == 'Alice' ? \"she\" : \"he\"} may have had contact with. ${data.name} does this by pressing a button on the app.",
+    "fr": "Oh non! ${data.name} découvre qu'${data.name == 'Alice' ? \"elle\" : \"il\"} a contracté le coronavirus. ${data.name} décide donc d'alerter les gens avec qui ${data.name == 'Alice' ? \"elle\" : \"il\"} a pu avoir un contact. ${data.name} fait cela en appuyant sur un bouton sur l'app.",
+    "de": "Oh nein! ${data.name} erfährt, dass er sich mit dem Coronavirus angesteckt hat. ${data.name} beschließt, Personen zu alarmieren, mit denen sie möglicherweise Kontakt hatte. Dies geschieht durch Drücken einer Schaltfläche in der App. ${data.name} tut dies, indem er einen Knopf auf der App drückt.",
+    "es": "¡Oh no! ${data.name} descubre que ha contraído el coronavirus. ${data.name} decide alertar a la gente con la que pudo haber tenido contacto. Lo hace presionando un botón en la aplicación."
 })
 tour.addStep({
     id: 'publish',
@@ -245,13 +274,47 @@ tour.addStep({
             const persons = [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david]
             const person = persons[con.sim.panelState]
             con.sim.server.addKeys(person.name, person.generateBroadcastHistoryFull(), person.getDayKeys())
+            con.state = 2;
+            con.selector();
+            con.sim.server.display(con.sim.popup)
+            tour.next()
+        }
+    }]
+});
+glot.assign("whathappened", {
+    "en": "Let's try to figure out what happened. ${data.name1}'s phone uploaded her secret keys for each day. These are the ones we see. ${data.name2}'s phone, downloaded those keys and then generated the BroadcastIDs that could have been sent by ${data.name1}. Then he compared the results with the BroadcastIDs they had heard. Because there was a match, ${data.name2} received a notification.",
+    "fr": "Essayons de comprendre ce qu'il s'est passé. Le téléphone d'${data.name1} a uploadé ses clés secrètes pour chaque jours. C'est celles-ci que l'on voit. Le téléphone de ${data.name2}, a téléchargé ces clé puis a généré les BroadcastIDs qui auraient pu être envoyer par ${data.name1}. Puis, il a comparé ces résultats aux BroadcastIDs qu'il avait entendu. Comme il y avait une correspondance, ${data.name2} a reçu une notification.",
+    "de": "Versuchen wir herauszufinden, was passiert ist. ${data.name1}s Telefon hat ihre geheimen Schlüssel für jeden Tag hochgeladen. Das sind die, die wir sehen. ${data.name2}s Telefon, lud diese Schlüssel herunter und erzeugte dann die BroadcastIDs, die von ${data.name1} hätte gesendet werden können. Dann verglich er die Ergebnisse mit den BroadcastIDs, die sie gehört hatten. Da es ein Spiel gab, erhielt ${data.name2} eine Benachrichtigung.",
+    "es": "Tratemos de averiguar qué pasó. El teléfono de ${data.name1} subió sus llaves secretas para cada día. Estos son los que vemos. El teléfono de ${data.name2}, descargó esas teclas y luego generó los BroadcastIDs que podrían haber sido enviados por ${data.name1}. Luego comparó los resultados con los BroadcastID que habían escuchado. Como había una coincidencia, ${data.name2} recibió una notificación."
+})
+tour.addStep({
+    id: 'whathappened',
+    text: glot.get("whathappened", {
+        name1: ["Bob", "Alice", "Charlie", "David"][randIndex],
+        name2: ["Bob", "Alice", "Charlie", "David"][randIndex] == "Bob" ? "Alice": "Bob"
+    }),
+    attachTo: {
+        element: '.infobox .container',
+        on: 'bottom'
+    },
+    buttons: [{
+        text: glot.get("previous"),
+        action: () => {
+            con.sim.popup.state = false
+            con.sim.popup.render()
+            tour.back()
+        }
+    }, {
+        text: glot.get("next"),
+        action: () => {
+            con.sim.popup.state = false
+            con.sim.popup.render()
             con.state = 0;
             con.selector();
             tour.next()
         }
     }]
-});
-
+})
 glot.assign("done", {
     "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on continue. Or if you want to access a more advanced version, we have developed a version for people who, like you, are true experts in cryptography!",
     "fr": "Bravo 👏! Tu as réussi à utiliser la simulation. Tu veux continuer à l'utiliser? Clique sur continuer. Sinon si tu veux accéder à une version plus corsée, nous avons développé une version pour les gens qui, comme toi, sont de véritables experts en cryptographie!",

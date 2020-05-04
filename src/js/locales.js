@@ -26,7 +26,7 @@ glot.assign("step1-bold", {
     "es": "El teléfono de Alice emite un mensaje al azar cada pocos minutos"
 })
 glot.assign("step1-text", {
-    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not contain location data for proximity detection.<br><br>This message is called a Rolling Proximity Identifier or <code>EphID</code>. For now, let's call the BroadcastIDs Theses identifiers are unique and change often.",
+    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not contain location data for proximity detection.<br><br>This message is called a Rolling Proximity Identifier or <code>EphID</code>. For now, let's call them BroadcastIDs. Theses identifiers are unique and change often.",
     "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un Rolling Proximity Identifier ou <code>EphID</code>. Pour le moment, appelons les BroadcastIDs. Ces identificateurs sont uniques et changent souvent.",
     "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Rolling Proximity Identifier oder <code>EphID</code> genannt. Lassen Sie uns vorerst die BroadcastIDs aufrufen. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
     "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Rolling Proximity Identifier o <code>EphID</code>. Por ahora, llamemos a los BroadcastIDs. Estos identificadores son únicos y cambian a menudo."
@@ -44,10 +44,10 @@ glot.assign("step2-text", {
     "es": "Mientras discuten, su teléfono sigue enviando mensajes al azar. Alice no tiene ningún síntoma y Bob no sabe que es contagiosa."
 })
 glot.assign("step2.5-bold", {
-    "en": "Their phones exchange anonymous BroadcastID (which change frequently).",
-    "fr": "Leurs téléphones échangent des BroadcastID anonymes (qui changent fréquemment).",
-    "de": "Ihre Telefone tauschen anonyme BroadcastID aus (die häufig wechseln).",
-    "es": "Sus teléfonos intercambian BroadcastID anónimas (que cambian con frecuencia)."
+    "en": "Their phones exchange anonymous BroadcastIDs (which change frequently).",
+    "fr": "Leurs téléphones échangent des BroadcastIDs anonymes (qui changent fréquemment).",
+    "de": "Ihre Telefone tauschen anonyme BroadcastIDs aus (die häufig wechseln).",
+    "es": "Sus teléfonos intercambian BroadcastIDs anónimas (que cambian con frecuencia)."
 })
 glot.assign("step2.5-text", {
     "en": "Both phones remember what they said and heard from each other in the past 14 days.<br><br>With no servers involved, only the phones know that they have been in contact.",
@@ -62,7 +62,7 @@ glot.assign("step3-bold", {
     "es": "Alice es diagnosticada positivamente para COVID-19 e ingresa el resultado de la prueba en una aplicación de una autoridad de salud pública."
 })
 glot.assign("step3-text", {
-    "en": "With Alice’s consent, his phone uploads the last 14 days of keys for his BroadcastIDs to the public health autority's server.",
+    "en": "With Alice’s consent, her phone uploads the last 14 days of keys for her BroadcastIDs to the public health authority's server.",
     "fr": "Avec l'accord d'Alice, son téléphone télécharge les clés des 14 derniers jours de ses BroadcastIDs sur le serveur de l'autorité de santé publique.",
     "de": "Mit der Zustimmung von Alice lädt sein Telefon die Schlüssel der letzten 14 Tage für seine BroadcastIDs auf den Server der Gesundheitsbehörde hoch.",
     "es": "Con el consentimiento de Alice, su teléfono sube los últimos 14 días de claves para su BroadcastID al servidor de la autoridad de salud pública."

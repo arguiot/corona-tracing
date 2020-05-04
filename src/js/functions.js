@@ -792,6 +792,7 @@ var con = (function () {
 
 	        this.canvas = document.getElementById("canvas");
 	        this.ctx = this.canvas.getContext("2d");
+	        this.el = document.querySelector(".app");
 
 	        this.resize();
 
@@ -820,7 +821,7 @@ var con = (function () {
 	            this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	        }
 	    }
-
+	            
 	    draw() {
 	        this.monitor();
 
