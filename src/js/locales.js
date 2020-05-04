@@ -197,6 +197,25 @@ glot.assign("protocol", {
     "de": "Verwendetes Protokoll",
     "es": "Protocolo utilizado"
 })
+glot.assign("simulation", {
+    "en": "Simulation",
+    "fr": "Simulation",
+    "de": "Simulation",
+    "es": "Simulación"
+})
+glot.assign("persons", {
+    "en": "Persons",
+    "fr": "Personnes",
+    "de": "Personen",
+    "es": "Personas"
+})
+glot.assign("settings", {
+    "en": "Settings",
+    "fr": "Réglages",
+    "de": "Einstellungen",
+    "es": "Ajustes"
+})
+
 glot.render()
 
 // Models & Dynamic UI elements
