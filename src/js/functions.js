@@ -1072,20 +1072,20 @@ var con = (function () {
 	const { NotificationCenter: NotificationCenter$2, Notification: Notification$2 } = broadcast;
 
 	class Controller {
-	    constructor() {
-	        this.init();
+	    constructor(protocol = "dp3t") {
+	        this.init(protocol);
 	    }
 
-	    init() {
-	        const bob = new Bob("dp3t");
-	        const alice = new Alice("dp3t");
-	        const charlie = new Charlie("dp3t");
-	        const david = new David("dp3t");
+	    init(protocol = "dp3t") {
+	        const bob = new Bob(protocol);
+	        const alice = new Alice(protocol);
+	        const charlie = new Charlie(protocol);
+	        const david = new David(protocol);
 	        this.sim = new Simulation(bob, alice, charlie, david);
 
 	        this.state = 0;
 
-	        this.sim.mode = "dp3t";
+	        this.sim.mode = protocol;
 	        this.sim.today = new Date();
 
 	        this.sim.popup = new Popup();
@@ -1237,10 +1237,13 @@ var con = (function () {
 
 	let con$1 = new Controller();
 
-	con$1.reset = () => {
+	con$1.reset = (protocol = "dp3t") => {
 	    clearInterval(con$1.sim.interval);
 	    cancelAnimationFrame(con$1.sim.animationFrame);
-	    con$1.init();
+
+	    document.querySelector("select").value = protocol; // So the selector value is the same
+
+	    con$1.init(protocol);
 	};
 
 	return con$1;

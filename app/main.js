@@ -2,10 +2,13 @@ import Controller from "./Controller"
 
 let con = new Controller();
 
-con.reset = () => {
+con.reset = (protocol = "dp3t") => {
     clearInterval(con.sim.interval)
     cancelAnimationFrame(con.sim.animationFrame)
-    con.init()
+
+    document.querySelector("select").value = protocol // So the selector value is the same
+
+    con.init(protocol)
 }
 
 export default con

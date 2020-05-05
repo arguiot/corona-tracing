@@ -108,9 +108,9 @@ description: Decentralized Tracing
             </div>
             <div class="row">
                 <div class="variable" glot-model="protocol">Protocol used</div>
-                <select onchange="con.changeMode(this.value)">
+                <select onchange="con.reset(this.value)">
                     <option value="dp3t" selected="selected">DP-3T (Europe)</option>
-                    <option value="contacttracing">Contact Tracing (Google / Apple)</option>
+                    <option value="contacttracing">Exposure Notification (Google / Apple v1.1)</option>
                 </select>
             </div>
         </div>

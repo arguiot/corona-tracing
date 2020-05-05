@@ -11,20 +11,20 @@ import {
 } from "./utils"
 
 class Controller {
-    constructor() {
-        this.init()
+    constructor(protocol = "dp3t") {
+        this.init(protocol)
     }
 
-    init() {
-        const bob = new Bob("dp3t")
-        const alice = new Alice("dp3t")
-        const charlie = new Charlie("dp3t")
-        const david = new David("dp3t")
+    init(protocol = "dp3t") {
+        const bob = new Bob(protocol)
+        const alice = new Alice(protocol)
+        const charlie = new Charlie(protocol)
+        const david = new David(protocol)
         this.sim = new Simulation(bob, alice, charlie, david);
 
         this.state = 0;
 
-        this.sim.mode = "dp3t"
+        this.sim.mode = protocol
         this.sim.today = new Date()
 
         this.sim.popup = new Popup()
