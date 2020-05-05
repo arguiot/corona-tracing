@@ -348,7 +348,8 @@ tour.addStep({
     }, {
         text: glot.get("continue"),
         action: () => {
-            window.location.reload()
+            con.reset()
+            tour.hide()
         }
     }]
 });

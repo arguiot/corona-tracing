@@ -12,6 +12,10 @@ import {
 
 class Controller {
     constructor() {
+        this.init()
+    }
+
+    init() {
         const bob = new Bob("dp3t")
         const alice = new Alice("dp3t")
         const charlie = new Charlie("dp3t")

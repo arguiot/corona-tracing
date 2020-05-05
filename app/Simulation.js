@@ -21,7 +21,7 @@ class Simulation {
 
         this.draw();
 
-        setInterval(this.panel.bind(this), 1000);
+        this.interval = setInterval(this.panel.bind(this), 1000);
 
         this.panelListeners()
     }
@@ -116,7 +116,7 @@ class Simulation {
             p.update()
         })
         // Redraw
-        window.requestAnimationFrame(this.draw.bind(this));
+        this.animationFrame = window.requestAnimationFrame(this.draw.bind(this));
     }
 
     monitor() {

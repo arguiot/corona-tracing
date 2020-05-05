@@ -800,7 +800,7 @@ var con = (function () {
 
 	        this.draw();
 
-	        setInterval(this.panel.bind(this), 1000);
+	        this.interval = setInterval(this.panel.bind(this), 1000);
 
 	        this.panelListeners();
 	    }
@@ -895,7 +895,7 @@ var con = (function () {
 	            p.update();
 	        });
 	        // Redraw
-	        window.requestAnimationFrame(this.draw.bind(this));
+	        this.animationFrame = window.requestAnimationFrame(this.draw.bind(this));
 	    }
 
 	    monitor() {
@@ -1073,6 +1073,10 @@ var con = (function () {
 
 	class Controller {
 	    constructor() {
+	        this.init();
+	    }
+
+	    init() {
 	        const bob = new Bob("dp3t");
 	        const alice = new Alice("dp3t");
 	        const charlie = new Charlie("dp3t");
@@ -1231,7 +1235,13 @@ var con = (function () {
 	    }
 	}
 
-	const con$1 = new Controller();
+	let con$1 = new Controller();
+
+	con$1.reset = () => {
+	    clearInterval(con$1.sim.interval);
+	    cancelAnimationFrame(con$1.sim.animationFrame);
+	    con$1.init();
+	};
 
 	return con$1;
 
