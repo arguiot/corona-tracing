@@ -1020,7 +1020,7 @@ var con = (function () {
 	            p2
 	        }), 5);
 
-	        if (result == null) { // In case the user tap cancel
+	        if (result == null || isNaN(parseInt(result))) { // In case the user tap cancel
 	            result = 5;
 	        }
 

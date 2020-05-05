@@ -26,7 +26,7 @@ glot.assign("step1-bold", {
     "es": "El teléfono de Alice emite un mensaje al azar cada pocos minutos"
 })
 glot.assign("step1-text", {
-    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not contain location data for proximity detection.<br><br>This message is called a Rolling Proximity Identifier or <code>EphID</code>. For now, let's call them BroadcastIDs. Theses identifiers are unique and change often.",
+    "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not contain location data for proximity detection.<br><br>This message is called a Rolling Proximity Identifier or <code>EphID</code>. For now, let's call them BroadcastIDs. These identifiers are unique and change often.",
     "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un Rolling Proximity Identifier ou <code>EphID</code>. Pour le moment, appelons les BroadcastIDs. Ces identificateurs sont uniques et changent souvent.",
     "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Rolling Proximity Identifier oder <code>EphID</code> genannt. Lassen Sie uns vorerst die BroadcastIDs aufrufen. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
     "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Rolling Proximity Identifier o <code>EphID</code>. Por ahora, llamemos a los BroadcastIDs. Estos identificadores son únicos y cambian a menudo."
@@ -38,7 +38,7 @@ glot.assign("step2-bold", {
     "es": "Alice y Bob se conocen por primera vez y tienen una conversación de 10 minutos."
 })
 glot.assign("step2-text", {
-    "en": "While they discuss, their phone keep sending random messages.<br><br>Alice doesn’t have any symptoms and Bob doesn’t know that she is contagious.",
+    "en": "While they discuss, their phones keep sending random messages.<br><br>Alice doesn’t have any symptoms and Bob doesn’t know that she is contagious.",
     "fr": "Pendant qu'ils discutent, leur téléphone continue d'envoyer des messages aléatoires.<br><br>Alice n'a aucun symptôme et Bob ne sait pas qu'elle est contagieuse.",
     "de": "Während sie diskutieren, sendet ihr Telefon immer wieder zufällige Nachrichten.<br><br>Alice hat keine Symptome und Bob weiß nicht, dass sie ansteckend ist.",
     "es": "Mientras discuten, su teléfono sigue enviando mensajes al azar. Alice no tiene ningún síntoma y Bob no sabe que es contagiosa."
@@ -114,9 +114,9 @@ glot.assign("contagious", {
     "es": "${currentPerson().name} es contagioso"
 })
 glot.assign("alerted", {
-    "en": "${currentPerson().name} knows that he/she is contagious",
-    "fr": "${currentPerson().name} sais qu'il/elle est contagieux",
-    "de": "${currentPerson().name} weiß, dass er/sie ansteckend ist",
+    "en": "${currentPerson().name} knows that ${currentPerson().name == 'Alice' ? \"she\" : \"he\"} is contagious",
+    "fr": "${currentPerson().name} sais qu'${currentPerson().name == 'Alice' ? \"elle\" : \"il\"} est contagieux",
+    "de": "${currentPerson().name} weiß, dass ${currentPerson().name == 'Alice' ? \"sie\" : \"er\"} ansteckend ist",
     "es": "${currentPerson().name} sabe que es contagioso"
 })
 glot.assign("initial-key", {
@@ -132,10 +132,10 @@ glot.assign("secret-day", {
     "es": "La clave del día secreto de ${currentPerson().name}"
 })
 glot.assign("past", {
-    "en": "${currentPerson().name}'s past BroadcastID (of the day)",
-    "fr": "BroadcastID antérieurs (du jour)",
+    "en": "${currentPerson().name}'s past BroadcastIDs (of the day)",
+    "fr": "BroadcastIDs antérieurs (du jour)",
     "de": "Vergangene BroadcastIDs (des Tages)",
-    "es": "BroadcastID pasados (del día)"
+    "es": "BroadcastIDs pasados (del día)"
 })
 glot.assign("heard", {
     "en": "BroadcastIDs received by ${currentPerson().name}",

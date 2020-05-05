@@ -67,7 +67,7 @@ tour.addStep({
         }
     }]
 });
-glot.assign("settings", {
+glot.assign("settings-tour", {
     "en": "This is the settings interface. Here you can see the data collected by the server (we'll get to that later). You can also change the date (because BroadcastIDs change with time), and the protocol used.",
     "fr": "Voici l'interface des réglages. Ici, vous pouvez voir les données recueillies par le serveur (on y viendra plus tard). Vous pouvez aussi changer la date (car les BroadcastIDs changent en fonction du temps), et le protocole utilisé.",
     "de": "Dies ist die Einstellungsschnittstelle. Hier können Sie die vom Server gesammelten Daten sehen (dazu kommen wir später). Sie können auch das Datum (da sich BroadcastIDs mit der Zeit ändern) und das verwendete Protokoll ändern.",
@@ -75,7 +75,7 @@ glot.assign("settings", {
 })
 tour.addStep({
     id: 'settings',
-    text: glot.get("settings"),
+    text: glot.get("settings-tour"),
     attachTo: {
         element: '.control',
         on: 'bottom'
