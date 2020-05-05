@@ -221,16 +221,16 @@ glot.render()
 // Models & Dynamic UI elements
 
 glot.assign("true", {
-    "en": "true",
-    "fr": "vrai",
-    "de": "richtig",
-    "es": "verdadero"
+    "en": "Yes",
+    "fr": "Oui",
+    "de": "Ja",
+    "es": "Sí"
 })
 glot.assign("false", {
-    "en": "false",
-    "fr": "faux",
-    "de": "falsch",
-    "es": "falso"
+    "en": "No",
+    "fr": "Non",
+    "de": "Nein",
+    "es": "No"
 })
 
 glot.assign("house", {
