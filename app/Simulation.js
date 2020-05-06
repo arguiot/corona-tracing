@@ -32,15 +32,13 @@ class Simulation {
             scale = 4 / 3
         }
 
-        if (window.devicePixelRatio > 1) {
-            const canvasWidth = 300 * scale;
-            const canvasHeight = 300 * scale;
+        const canvasWidth = 300 * scale;
+        const canvasHeight = 300 * scale;
 
-            this.canvas.width = canvasWidth * window.devicePixelRatio;
-            this.canvas.height = canvasHeight * window.devicePixelRatio;
+        this.canvas.width = canvasWidth * window.devicePixelRatio;
+        this.canvas.height = canvasHeight * window.devicePixelRatio;
 
-            this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-        }
+        this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
             
     draw() {
