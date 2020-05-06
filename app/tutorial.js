@@ -8,6 +8,7 @@ const tour = new Shepherd.Tour({
 
 document.querySelector("body").addEventListener("click", e => {
     if (e.target.parentNode != null && e.target.parentNode.classList.contains("shepherd-modal-overlay-container")) {
+        con.reset()
         tour.hide()
     }
 })
