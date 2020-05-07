@@ -272,10 +272,10 @@ glot.assign("testcovid", {
     "es": "Prueba para COVID-19"
 })
 glot.assign("publishcovid", {
-    "en": "Publish past BroadcastIDs",
-    "fr": "Publier les anciens BroadcastID",
-    "de": "Frühere BroadcastIDs veröffentlichen",
-    "es": "Publicar las BroadcastID anteriores"
+    "en": "Publish day keys",
+    "fr": "Publier les clés du jour",
+    "de": "Tagesschlüssel veröffentlichen",
+    "es": "Publicar las claves del día"
 })
 
 glot.assign("namepast", {
