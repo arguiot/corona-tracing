@@ -1106,6 +1106,23 @@ var con = (function () {
     return Popup;
   }();
 
+  window.originalSetInterval = window.setInterval;
+  window.activeTimers = [];
+
+  window.Interval = function (func, delay) {
+    clearAllInterval(); // Only 1 allowed
+
+    var timer = window.originalSetInterval(func, delay);
+    window.activeTimers.push(timer);
+    return timer;
+  };
+
+  window.clearAllInterval = function () {
+    window.activeTimers.forEach(function (timer) {
+      window.clearInterval(window.activeTimers.shift());
+    });
+  };
+
   var Simulation = /*#__PURE__*/function () {
     function Simulation(bob, alice, charlie, david) {
       _classCallCheck(this, Simulation);
@@ -1121,8 +1138,8 @@ var con = (function () {
       this.el = document.querySelector(".app");
       this.resize();
       window.addEventListener('resize', this.resize.bind(this));
-      this.draw();
-      this.interval = setInterval(this.panel.bind(this), 1000);
+      this.animationFrame = window.requestAnimationFrame(this.draw.bind(this));
+      this.interval = Interval(this.panel.bind(this), 1000);
       this.panelListeners();
     }
 
@@ -1272,6 +1289,7 @@ var con = (function () {
         document.querySelector(".row > .goto").innerHTML = persons[i].isPark == true ? glot.get("gohouse") : glot.get("gopark");
         document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? glot.get("testcovid") : glot.get("publishcovid");
         document.querySelector(".row > .test").disabled = persons[i].published;
+        glot.render("auto", document.querySelector(".app"));
       }
     }, {
       key: "panelListeners",
@@ -1565,8 +1583,6 @@ var con = (function () {
 
             _this2.sim.panel();
 
-            glot.render("auto", document.querySelector(".app"));
-
             _this2.selector();
           });
         }); // Server
@@ -1637,11 +1653,11 @@ var con = (function () {
 
   con$1.reset = function () {
     var protocol = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "dp3t";
-    con$1.sim.removeListeners(document.querySelector(".app"));
-    clearInterval(con$1.sim.interval);
+    window.clearAllInterval();
     cancelAnimationFrame(con$1.sim.animationFrame);
     document.querySelector("select").value = protocol; // So the selector value is the same
 
+    con$1.sim.removeListeners(document.querySelector(".app"));
     con$1.init(protocol);
   };
 

@@ -117,7 +117,6 @@ class Controller {
             el.addEventListener("click", (e) => {
                 this.sim.panelState = i;
                 this.sim.panel();
-                glot.render("auto", document.querySelector(".app"))
                 this.selector();
             });
         })

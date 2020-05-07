@@ -1,4 +1,22 @@
-import { getDayForIndex } from "./utils"
+import {
+    getDayForIndex
+} from "./utils"
+
+window.originalSetInterval = window.setInterval;
+window.activeTimers = [];
+
+window.Interval = function (func, delay) {
+    clearAllInterval() // Only 1 allowed
+    const timer = window.originalSetInterval(func, delay)
+    window.activeTimers.push(timer)
+    return timer;
+};
+
+window.clearAllInterval = function () {
+    window.activeTimers.forEach(timer => {
+        window.clearInterval(window.activeTimers.shift())
+    })
+};
 
 class Simulation {
     constructor(bob, alice, charlie, david) {
@@ -19,9 +37,9 @@ class Simulation {
 
         window.addEventListener('resize', this.resize.bind(this))
 
-        this.draw();
+        this.animationFrame = window.requestAnimationFrame(this.draw.bind(this));
 
-        this.interval = setInterval(this.panel.bind(this), 1000);
+        this.interval = Interval(this.panel.bind(this), 1000);
 
         this.panelListeners()
     }
@@ -40,7 +58,7 @@ class Simulation {
 
         this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
-            
+
     draw() {
         this.monitor();
 
@@ -152,6 +170,8 @@ class Simulation {
         document.querySelector(".row > .goto").innerHTML = persons[i].isPark == true ? glot.get("gohouse") : glot.get("gopark")
         document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? glot.get("testcovid") : glot.get("publishcovid")
         document.querySelector(".row > .test").disabled = persons[i].published
+
+        glot.render("auto", document.querySelector(".app"))
     }
 
     panelListeners() {

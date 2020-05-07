@@ -174,10 +174,9 @@ tour.addStep({
     buttons: [{
         text: glot.get("previous"),
         action: () => {
+            con.reset()
             con.state = 1;
             con.selector();
-            con.sim.bob = new Bob("dp3t") // Resets everythng
-            con.sim.alice = new Alice("dp3t")
             tour.back()
         }
     }]
@@ -238,10 +237,7 @@ tour.addStep({
     }, {
         text: glot.get("next"),
         action: () => {
-            const persons = [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david]
-            const person = persons[con.sim.panelState]
-            person.alerted = true
-            con.sim.panel()
+            document.querySelector("button.test").click()
             tour.next()
         }
     }]
@@ -273,9 +269,7 @@ tour.addStep({
     }, {
         text: glot.get("next"),
         action: () => {
-            const persons = [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david]
-            const person = persons[con.sim.panelState]
-            con.sim.server.addKeys(person.name, person.generateBroadcastHistoryFull(), person.getDayKeys())
+            document.querySelector("button.test").click()
             con.state = 2;
             con.selector();
             con.sim.server.display(con.sim.popup)
@@ -285,7 +279,7 @@ tour.addStep({
 });
 glot.assign("whathappened", {
     "en": "Let's try to figure out what happened. ${data.name1}'s phone uploaded her secret keys for each day. These are the ones we see. ${data.name2}'s phone, downloaded those keys and then generated the BroadcastIDs that could have been sent by ${data.name1}. Then he compared the results with the BroadcastIDs they had heard. Because there was a match, ${data.name2} received a notification.",
-    "fr": "Essayons de comprendre ce qu'il s'est passé. Le téléphone d'${data.name1} a uploadé ses clés secrètes pour chaque jours. C'est celles-ci que l'on voit. Le téléphone de ${data.name2}, a téléchargé ces clé puis a généré les BroadcastIDs qui auraient pu être envoyer par ${data.name1}. Puis, il a comparé ces résultats aux BroadcastIDs qu'il avait entendu. Comme il y avait une correspondance, ${data.name2} a reçu une notification.",
+    "fr": "Essayons de comprendre ce qu'il s'est passé. Le téléphone de ${data.name1} a uploadé ses clés secrètes pour chaque jours. C'est celles-ci que l'on voit. Le téléphone de ${data.name2}, a téléchargé ces clé puis a généré les BroadcastIDs qui auraient pu être envoyer par ${data.name1}. Puis, il a comparé ces résultats aux BroadcastIDs qu'il avait entendu. Comme il y avait une correspondance, ${data.name2} a reçu une notification.",
     "de": "Versuchen wir herauszufinden, was passiert ist. ${data.name1}s Telefon hat ihre geheimen Schlüssel für jeden Tag hochgeladen. Das sind die, die wir sehen. ${data.name2}s Telefon, lud diese Schlüssel herunter und erzeugte dann die BroadcastIDs, die von ${data.name1} hätte gesendet werden können. Dann verglich er die Ergebnisse mit den BroadcastIDs, die sie gehört hatten. Da es ein Spiel gab, erhielt ${data.name2} eine Benachrichtigung.",
     "es": "Tratemos de averiguar qué pasó. El teléfono de ${data.name1} subió sus llaves secretas para cada día. Estos son los que vemos. El teléfono de ${data.name2}, descargó esas teclas y luego generó los BroadcastIDs que podrían haber sido enviados por ${data.name1}. Luego comparó los resultados con los BroadcastID que habían escuchado. Como había una coincidencia, ${data.name2} recibió una notificación."
 })
@@ -302,6 +296,8 @@ tour.addStep({
     buttons: [{
         text: glot.get("previous"),
         action: () => {
+            con.state = 1;
+            con.selector();
             con.sim.popup.state = false
             con.sim.popup.render()
             tour.back()
@@ -318,10 +314,10 @@ tour.addStep({
     }]
 })
 glot.assign("done", {
-    "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on continue. Or if you want to access a more advanced version, we have developed a version for people who, like you, are true experts in cryptography!",
-    "fr": "Bravo 👏! Tu as réussi à utiliser la simulation. Tu veux continuer à l'utiliser? Clique sur continuer. Sinon si tu veux accéder à une version plus corsée, nous avons développé une version pour les gens qui, comme toi, sont de véritables experts en cryptographie!",
-    "de": "Gut gemacht, 👏! Es ist Ihnen gelungen, die Simulation zu nutzen. Wollen Sie es weiterhin verwenden? Klicken Sie auf Weiter. Oder wenn Sie auf eine fortgeschrittenere Version zugreifen möchten, haben wir eine Version für Leute entwickelt, die, wie Sie, echte Experten in Kryptographie sind!",
-    "es": "¡Bravo 👏! Te las arreglaste para usar la simulación. ¿Quieres seguir usándolo? Haga clic en continuar. O si quieres acceder a una versión más avanzada, hemos desarrollado una versión para personas que, como tú, ¡son verdaderos expertos en criptografía!"
+    "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on continue. Or if you want to access a more advanced version in a new browser tab, showing cryptographic details of the protocols behind please click on \"Pro version\".",
+    "fr": "Félicitations 👏 ! Vous avez réussi à utiliser la simulation. Voulez-vous continuer à l'utiliser ? Cliquez sur continuer. Ou si vous voulez accéder à une version plus avancée dans un nouvel onglet du navigateur, montrant les détails cryptographiques des protocoles sous-jacents, veuillez cliquer sur \"Version Pro\".",
+    "de": "Herzlichen Glückwunsch 👏! Es ist Ihnen gelungen, die Simulation zu nutzen. Wollen Sie sie weiterhin benutzen? Klicken Sie auf weiter. Oder wenn Sie auf eine fortgeschrittenere Version in einem neuen Browser-Tab zugreifen wollen, der kryptographische Details der dahinter liegenden Protokolle anzeigt, klicken Sie bitte auf 'Pro-Version'.",
+    "es": "Felicitaciones 👏! Te las arreglaste para usar la simulación. ¿Quieres seguir usándola? Haz clic en continuar. O si quieres acceder a una versión más avanzada en una nueva pestaña del navegador, mostrando los detalles criptográficos de los protocolos que hay detrás, por favor, haz clic en 'Versión Pro'."
 })
 glot.assign("continue", {
     "en": "Continue",
@@ -330,10 +326,10 @@ glot.assign("continue", {
     "es": "Continúa"
 })
 glot.assign("pro", {
-    "en": "Pro Version",
-    "fr": "Version Pro",
+    "en": "Pro version",
+    "fr": "Version pro",
     "de": "Pro-Version",
-    "es": "Versión Pro"
+    "es": "Versión pro"
 })
 tour.addStep({
     id: 'done',
