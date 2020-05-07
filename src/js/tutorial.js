@@ -12,6 +12,7 @@ var tour = (function () {
       if (e.target.parentNode != null && e.target.parentNode.classList.contains("shepherd-modal-overlay-container")) {
         con.reset();
         tour.hide();
+        tour.isShown = false;
       }
     });
     glot.assign("animation", {
@@ -353,6 +354,7 @@ var tour = (function () {
         action: function action() {
           con.reset();
           tour.hide();
+          tour.isShown = false;
         }
       }]
     });

@@ -673,6 +673,7 @@ var con = (function () {
       this.vy = 1;
       this.d = Math.random() * (2 * Math.PI);
       this.receivedNotification = false;
+      this.published = false;
       this.wave = 0;
       this.isPark = false;
       this.setAlgo({
@@ -789,14 +790,15 @@ var con = (function () {
     }, {
       key: "getDayKeys",
       value: function getDayKeys() {
-        for (var i = 0; i < OBSERVATION_DAYS; i++) {
-          this.day(i);
-        }
+        var _this2 = this;
 
-        return this.secretDayKeys.map(function (id, i) {
+        var keys = this.algo.getAllDayKeysToReport(this.initial, function (dayIndex) {
+          return _this2.day(dayIndex);
+        }, getDayForIndex(0), 0, OBSERVATION_DAYS);
+        return keys.map(function (id, i) {
           return {
-            time: getDayForIndex(i),
-            broadcastId: id
+            time: getDayForIndex(id.dayIndex),
+            broadcastId: id.dayKey
           };
         });
       }
@@ -1269,6 +1271,7 @@ var con = (function () {
 
         document.querySelector(".row > .goto").innerHTML = persons[i].isPark == true ? glot.get("gohouse") : glot.get("gopark");
         document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? glot.get("testcovid") : glot.get("publishcovid");
+        document.querySelector(".row > .test").disabled = persons[i].published;
       }
     }, {
       key: "panelListeners",
@@ -1292,6 +1295,8 @@ var con = (function () {
 
           if (persons[i].alerted == true) {
             // Publish
+            persons[i].published = true;
+
             _this3.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys());
           } else if (persons[i].contagious == true) {
             persons[i].alerted = true;
@@ -1400,7 +1405,7 @@ var con = (function () {
 
         this.today = new Date(this.today.getTime() + 1000 * 60 * parseInt(result));
 
-        if (tour.isActive()) {
+        if (tour.isShown == true) {
           tour.next();
         }
       } // UTILS
@@ -1408,13 +1413,7 @@ var con = (function () {
     }, {
       key: "removeListeners",
       value: function removeListeners(el) {
-        var newEl = el.cloneNode(false);
-
-        while (el.hasChildNodes()) {
-          newEl.appendChild(el.firstChild);
-        }
-
-        el.parentNode.replaceChild(newEl, el);
+        el.parentNode.replaceChild(el.cloneNode(true), el);
       }
     }, {
       key: "toHex",
@@ -1638,6 +1637,7 @@ var con = (function () {
 
   con$1.reset = function () {
     var protocol = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "dp3t";
+    con$1.sim.removeListeners(document.querySelector(".app"));
     clearInterval(con$1.sim.interval);
     cancelAnimationFrame(con$1.sim.animationFrame);
     document.querySelector("select").value = protocol; // So the selector value is the same

@@ -1,6 +1,9 @@
 import ExposureNotification from "../Algorithms/ExposureNotification";
 import DP3T from "../Algorithms/DP3T"
-import { OBSERVATION_DAYS, getDayForIndex } from "../utils"
+import {
+    OBSERVATION_DAYS,
+    getDayForIndex
+} from "../utils"
 
 class Person {
     constructor(mode) {
@@ -23,7 +26,8 @@ class Person {
         this.d = Math.random() * (2 * Math.PI);
 
         this.receivedNotification = false
-
+        this.published = false
+        
         this.wave = 0;
 
         this.isPark = false
@@ -129,13 +133,16 @@ class Person {
         return this.broadcastHistory[dayIndex];
     }
     getDayKeys() {
-        for (let i = 0; i < OBSERVATION_DAYS; i++) {
-            this.day(i)
-        }
-        return this.secretDayKeys.map((id, i) => {
+        const keys = this.algo.getAllDayKeysToReport(
+            this.initial,
+            dayIndex => this.day(dayIndex),
+            getDayForIndex(0),
+            0,
+            OBSERVATION_DAYS)
+        return keys.map((id, i) => {
             return {
-                time: getDayForIndex(i),
-                broadcastId: id
+                time: getDayForIndex(id.dayIndex),
+                broadcastId: id.dayKey
             }
         })
     }

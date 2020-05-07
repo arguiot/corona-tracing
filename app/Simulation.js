@@ -151,6 +151,7 @@ class Simulation {
 
         document.querySelector(".row > .goto").innerHTML = persons[i].isPark == true ? glot.get("gohouse") : glot.get("gopark")
         document.querySelector(".row > .test").innerHTML = persons[i].alerted == false ? glot.get("testcovid") : glot.get("publishcovid")
+        document.querySelector(".row > .test").disabled = persons[i].published
     }
 
     panelListeners() {
@@ -169,6 +170,8 @@ class Simulation {
             const i = this.panelState
             if (persons[i].alerted == true) {
                 // Publish
+                persons[i].published = true
+
                 this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys())
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
@@ -264,16 +267,14 @@ class Simulation {
         // Finally, we update the date
         this.today = new Date(this.today.getTime() + 1000 * 60 * parseInt(result))
 
-        if (tour.isActive()) {
+        if (tour.isShown == true) {
             tour.next()
         }
     }
 
     // UTILS
     removeListeners(el) {
-        var newEl = el.cloneNode(false);
-        while (el.hasChildNodes()) newEl.appendChild(el.firstChild);
-        el.parentNode.replaceChild(newEl, el);
+        el.parentNode.replaceChild(el.cloneNode(true), el)
     }
     toHex(byteArray) {
         if (byteArray == null) {
