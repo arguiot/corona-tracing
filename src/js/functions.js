@@ -1659,6 +1659,8 @@ var con = (function () {
 
     con$1.sim.removeListeners(document.querySelector(".app"));
     con$1.init(protocol);
+    tour.hide();
+    tour.isShown = false;
   };
 
   return con$1;

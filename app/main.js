@@ -11,6 +11,9 @@ con.reset = (protocol = "dp3t") => {
     con.sim.removeListeners(document.querySelector(".app"))
 
     con.init(protocol)
+
+    tour.hide()
+    tour.isShown = false
 }
 
 export default con
