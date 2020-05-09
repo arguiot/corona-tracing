@@ -52,6 +52,18 @@ html {
     overflow-x: hidden
 }
 
+.langs {
+    position: absolute;
+    top: 5px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+        margin: 5px;
+    }
+}
+
 header {
     margin: 0;
     height: 100vh;
@@ -386,6 +398,7 @@ article {
             .logo {
                 max-width: 500px !important;
                 width: 90vw;
+                height: 75px;
             }
 
             h1 {
