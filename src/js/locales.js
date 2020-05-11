@@ -10,25 +10,25 @@ if (lang != null) {
 glot.assign("title", {
     "en": "Privacy-friendly contact tracing",
     "fr": "Traçage de contact préservant la vie privée",
-    "de": "Datenschutzfreundliche Tracing-App",
+    "de": "Datenschutzfreundliche Tracing-Apps",
     "es": "Rastreo de contactos con privacidad"
 })
 glot.assign("description", {
-    "en": "Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic, to protect people and get society back up and running.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
+    "en": "Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
     "fr": "Partout dans le monde, les gouvernements et les autorités sanitaires travaillent ensemble pour trouver des solutions à la pandémie de COVID-19, pour protéger les personnes et remettre la société sur pied.<br>Au cours des dernières semaines, certaines inquiétudes concernant certaines technologies de suivi ont été soulevées par ceux qui craignent une restriction des libertés individuelles et de leur vie privée.<br>Chez CrypTool, nous essayons d'expliquer au mieux ce qui se cache dans ces protocoles de traçage décentralisés afin que vous puissiez vous faire votre propre opinion sur le sujet.",
-    "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden, die Menschen zu schützen und die Gesellschaft wieder in Gang zu bringen.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracking-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
+    "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracing-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
     "es": "En todo el mundo, los gobiernos y las autoridades sanitarias están trabajando juntos para encontrar soluciones a la pandemia de COVID-19, para proteger a las personas y hacer que la sociedad vuelva a funcionar.<br>En las últimas semanas, algunas preocupaciones sobre ciertas tecnologías de rastreo han sido planteadas por aquellos que temen el recorte de las libertades individuales y su privacidad.<br>En CrypTool, tratamos de explicar lo mejor posible lo que se esconde en estos protocolos de rastreo descentralizados para que usted pueda formarse su propia opinión sobre el tema."
 })
 glot.assign("step1-bold", {
     "en": "Alice’s phone broadcasts a random message every few minutes",
     "fr": "Le téléphone d'Alice diffuse un message aléatoire toutes les quelques minutes",
-    "de": "Das Telefon von Alice sendet alle paar Minuten eine zufällige Nachricht",
+    "de": "Das Smartphone von Alice sendet alle paar Minuten eine zufällige Nachricht",
     "es": "El teléfono de Alice emite un mensaje al azar cada pocos minutos"
 })
 glot.assign("step1-text", {
     "en": "In order to maintain user privacy, the message is sent over Bluetooth and does not contain location data for proximity detection.<br><br>This message is called a Rolling Proximity Identifier or <code>EphID</code>. For now, let's call them BroadcastIDs. These identifiers are unique and change often.",
     "fr": "Afin de préserver la vie privée des utilisateurs, le message est envoyé par Bluetooth et n'utilise pas la localisation pour la détection de proximité.<br><br>Ce message s'appelle un Rolling Proximity Identifier ou <code>EphID</code>. Pour le moment, appelons les BroadcastIDs. Ces identificateurs sont uniques et changent souvent.",
-    "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und verwendet keine Ortsangabe für die Näherungserkennung.<br><br>Diese Nachricht wird Rolling Proximity Identifier oder <code>EphID</code> genannt. Lassen Sie uns vorerst die BroadcastIDs aufrufen. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
+    "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und es werden keine Ortsangaben für die Kontakte verwendet.<br><br>Diese Nachricht wird Rolling Proximity Identifier oder <code>EphID</code> genannt. Lassen Sie uns diese vorerst Broadcast-IDs nennen. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
     "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Rolling Proximity Identifier o <code>EphID</code>. Por ahora, llamemos a los BroadcastIDs. Estos identificadores son únicos y cambian a menudo."
 })
 glot.assign("step2-bold", {
@@ -38,21 +38,21 @@ glot.assign("step2-bold", {
     "es": "Alice y Bob se conocen por primera vez y tienen una conversación de 10 minutos."
 })
 glot.assign("step2-text", {
-    "en": "While they discuss, their phones keep sending random messages.<br><br>Alice doesn’t have any symptoms and Bob doesn’t know that she is contagious.",
+    "en": "While they discuss, their phones keep sending random messages.<br><br>Alice doesn’t have any symptoms and both don’t know that Alice is contagious.",
     "fr": "Pendant qu'ils discutent, leur téléphone continue d'envoyer des messages aléatoires.<br><br>Alice n'a aucun symptôme et Bob ne sait pas qu'elle est contagieuse.",
-    "de": "Während sie diskutieren, sendet ihr Telefon immer wieder zufällige Nachrichten.<br><br>Alice hat keine Symptome und Bob weiß nicht, dass sie ansteckend ist.",
+    "de": "Während sie diskutieren, senden ihre Smartphone immer wieder zufällige Nachrichten.<br><br>Alice hat keine Symptome und beide wissen nicht, dass Alice ansteckend ist.",
     "es": "Mientras discuten, su teléfono sigue enviando mensajes al azar. Alice no tiene ningún síntoma y Bob no sabe que es contagiosa."
 })
 glot.assign("step2.5-bold", {
-    "en": "Their phones exchange anonymous BroadcastIDs (which change frequently).",
-    "fr": "Leurs téléphones échangent des BroadcastIDs anonymes (qui changent fréquemment).",
-    "de": "Ihre Telefone tauschen anonyme BroadcastIDs aus (die häufig wechseln).",
-    "es": "Sus teléfonos intercambian BroadcastIDs anónimas (que cambian con frecuencia)."
+    "en": "Their phones exchange anonymous BroadcastIDs.",
+    "fr": "Leurs téléphones échangent des BroadcastIDs anonymes.",
+    "de": "Ihre Smartphones tauschen anonyme Broadcast-IDs aus.",
+    "es": "Sus teléfonos intercambian BroadcastIDs anónimas."
 })
 glot.assign("step2.5-text", {
     "en": "Both phones remember what they said and heard from each other in the past 14 days.<br><br>With no servers involved, only the phones know that they have been in contact.",
     "fr": "Les deux téléphones se souviennent de ce qu'ils ont dit et entendu l'un de l'autre au cours des 14 derniers jours.<br><br>En l'absence de serveurs, seuls les téléphones savent qu'ils ont été en contact.",
-    "de": "Beide Telefone erinnern sich daran, was sie in den letzten 14 Tagen gesagt und voneinander gehört haben.<br><br>Da keine Server beteiligt sind, wissen nur die Telefone, dass sie in Kontakt waren.",
+    "de": "Beide Smartphones \"erinnern\" sich daran, was sie in den letzten 14 Tagen \"gesagt\" und voneinander gehört haben.<br><br>Da keine Server beteiligt sind, wissen nur die Smartphones, dass sie in Kontakt waren.",
     "es": "Ambos teléfonos recuerdan lo que dijeron y escucharon el uno del otro en los últimos 14 días.<br><br>Sin servidores involucrados, sólo los teléfonos saben que han estado en contacto."
 })
 glot.assign("step3-bold", {
@@ -62,21 +62,21 @@ glot.assign("step3-bold", {
     "es": "Alice es diagnosticada positivamente para COVID-19 e ingresa el resultado de la prueba en una aplicación de una autoridad de salud pública."
 })
 glot.assign("step3-text", {
-    "en": "With Alice’s consent, her phone uploads the last 14 days of keys for her BroadcastIDs to the public health authority's server.",
-    "fr": "Avec l'accord d'Alice, son téléphone télécharge les clés des 14 derniers jours de ses BroadcastIDs sur le serveur de l'autorité de santé publique.",
-    "de": "Mit der Zustimmung von Alice lädt sein Telefon die Schlüssel der letzten 14 Tage für seine BroadcastIDs auf den Server der Gesundheitsbehörde hoch.",
-    "es": "Con el consentimiento de Alice, su teléfono sube los últimos 14 días de claves para su BroadcastID al servidor de la autoridad de salud pública."
+    "en": "With Alice’s consent, her phone uploads the last 14 day keys to the public health authority's server.",
+    "fr": "Avec l'accord d'Alice, son téléphone télécharge les clés des 14 derniers jours sur le serveur de l'autorité de santé publique..",
+    "de": "Mit der Zustimmung von Alice lädt ihr Smartphone die letzten 14 Tagesschlüssel auf den Server der Gesundheitsbehörde hoch.",
+    "es": "Con el consentimiento de Alice, su teléfono sube las claves de los últimos 14 días al servidor de la autoridad sanitaria pública."
 })
 glot.assign("step4-bold", {
-    "en": "Bob’s phone periodically downloads the BroadcastIDs keys of everyone who has tested positive for COVID-19 in his region.",
-    "fr": "Le téléphone de Bob télécharge périodiquement les clés des BroadcastIDs de tous ceux qui ont été testés positifs pour COVID-19 dans sa région.",
-    "de": "Bobs Telefon lädt regelmäßig die BroadcastIDs-Schlüssel aller Personen herunter, die in seiner Region positiv auf COVID-19 getestet wurden.",
-    "es": "El teléfono de Bob descarga periódicamente las claves de BroadcastIDs de todos los que han dado positivo en COVID-19 en su región."
+    "en": "Bob’s phone periodically downloads the BroadcastIDs keys of everyone who has tested positive for COVID-19.",
+    "fr": "Le téléphone de Bob télécharge périodiquement les clés des BroadcastIDs de tous ceux qui ont été testés positifs pour COVID-19.",
+    "de": "Bobs Smartphone lädt regelmäßig die Broadcast-IDs-Schlüssel aller Personen herunter, die positiv auf COVID-19 getestet wurden.",
+    "es": "El teléfono de Bob descarga periódicamente las claves de BroadcastIDs de todos los que han dado positivo en COVID-19."
 })
 glot.assign("step4-text", {
-    "en": "A match is found with Alice’s anonymous BroadcastIDs.<br><br>Bob’s phone receives a notification with information about what to do next.",
+    "en": "A match is found with Alice’s anonymous BroadcastIDs.<br><br>Bob’s phone warns him and gives information about what to do next.",
     "fr": "Une correspondance est trouvée avec les BroadcastIDs anonymes d'Alice.<br><br>Le téléphone de Bob reçoit une notification contenant des informations sur la marche à suivre.",
-    "de": "Es wird eine Übereinstimmung mit Alices anonymen BroadcastIDs gefunden.<br><br>Bobs Telefon erhält eine Benachrichtigung mit Informationen darüber, was als nächstes zu tun ist.",
+    "de": "Es wird eine Übereinstimmung mit Alices anonymen Broadcast-IDs gefunden.<br><br>Bobs Smartphone erhält eine Benachrichtigung mit Informationen darüber, was als nächstes zu tun ist.",
     "es": "Se ha encontrado una coincidencia con las BroadcastIDs anónima de Alice.<br><br>El teléfono de Bob recibe una notificación con información sobre qué hacer a continuación."
 })
 glot.assign("step", {
@@ -140,7 +140,7 @@ glot.assign("past", {
 glot.assign("heard", {
     "en": "BroadcastIDs received by ${currentPerson().name}",
     "fr": "BroadcastIDs reçus par ${currentPerson().name}",
-    "de": "BroadcastIDs von ${currentPerson().name} empfangen",
+    "de": "Broadcast-IDs von ${currentPerson().name} empfangen",
     "es": "BroadcastIDs recibido por ${currentPerson().name}"
 })
 glot.assign("show", {
@@ -188,7 +188,7 @@ glot.assign("minus5min", {
 glot.assign("walkthrough", {
     "en": "Start walkthrough",
     "fr": "Commencer le tour",
-    "de": "Komplettlösung starten",
+    "de": "Anleitung starten",
     "es": "Inicie el recorrido"
 })
 glot.assign("protocol", {
@@ -288,7 +288,7 @@ glot.assign("namepast", {
 glot.assign("nameheard", {
     "en": "${data.name}'s heard BroadcastIDs",
     "fr": "BroadcastID entendus par ${data.name}",
-    "de": "${data.name} hat BroadcastIDs gehört",
+    "de": "${data.name} hat Broadcast-IDs gehört",
     "es": "${data.name} ha oído hablar del BroadcastID"
 })
 
