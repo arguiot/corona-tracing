@@ -1078,13 +1078,31 @@ var con = (function () {
         this.render(); // Putting elements
 
         this.el.querySelector(".title").innerHTML = title;
-        this.el.querySelector(".container").innerHTML = "<div class=\"center\">Loading...</div>";
+        glot.assign("loading", {
+          "en": "Loading...",
+          "fr": "Chargement...",
+          "de": "Laden...",
+          "es": "Cargando..."
+        });
+        this.el.querySelector(".container").innerHTML = "<div class=\"center\">" + glot.get("loading") + "</div>";
         promise().then(function (data) {
           // Reset
           _this2.el.querySelector(".container").innerHTML = "";
 
           if (data.length == 0) {
-            _this2.el.querySelector(".container").innerHTML = "<div class=\"center\">No data</div>";
+            glot.assign("nodata", {
+              "en": "No Data",
+              "fr": "Pas de données",
+              "de": "Keine Daten",
+              "es": "No hay datos"
+            });
+            glot.assign("hint", {
+              "en": "Data will appear, if someone reported himself as infected.",
+              "fr": "Des données apparaîtront, si quelqu'un se déclare lui-même infecté.",
+              "de": "Daten erscheinen, wenn sich jemand als infiziert gemeldet hat.",
+              "es": "Los datos aparecerán, si alguien se reporta como infectado."
+            });
+            _this2.el.querySelector(".container").innerHTML = "<div class=\"center\">\n                                                                    ".concat(glot.get("nodata"), "\n                                                                </div>\n                                                                <div style=\"text-align: center\">\n                                                                    ").concat(glot.get("hint"), "\n                                                                </div>\n                                                                ");
           }
 
           data.forEach(function (row) {

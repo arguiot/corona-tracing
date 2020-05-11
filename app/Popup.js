@@ -31,14 +31,41 @@ class Popup {
         // Putting elements
         this.el.querySelector(".title").innerHTML = title
 
-        this.el.querySelector(".container").innerHTML = "<div class=\"center\">Loading...</div>"
+        glot.assign("loading", {
+            "en": "Loading...",
+            "fr": "Chargement...",
+            "de": "Laden...",
+            "es": "Cargando..."
+        })
+
+        this.el.querySelector(".container").innerHTML = "<div class=\"center\">" + glot.get("loading") + "</div>"
 
         promise().then(data => {
             // Reset
             this.el.querySelector(".container").innerHTML = ""
 
             if (data.length == 0) {
-                this.el.querySelector(".container").innerHTML = "<div class=\"center\">No data</div>"
+                glot.assign("nodata", {
+                    "en": "No Data",
+                    "fr": "Pas de données",
+                    "de": "Keine Daten",
+                    "es": "No hay datos"
+                })
+
+                glot.assign("hint", {
+                    "en": "Data will appear, if someone reported himself as infected.",
+                    "fr": "Des données apparaîtront, si quelqu'un se déclare lui-même infecté.",
+                    "de": "Daten erscheinen, wenn sich jemand als infiziert gemeldet hat.",
+                    "es": "Los datos aparecerán, si alguien se reporta como infectado."
+                })
+
+                this.el.querySelector(".container").innerHTML = `<div class="center">
+                                                                    ${glot.get("nodata")}
+                                                                </div>
+                                                                <div style="text-align: center">
+                                                                    ${glot.get("hint")}
+                                                                </div>
+                                                                `
             }
             data.forEach(row => {
                 this.el.querySelector(".container").innerHTML += `<div class="row">
