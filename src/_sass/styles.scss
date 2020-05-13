@@ -9,7 +9,7 @@
     --semi-white: #eee;
     --blue: #1277EB;
     // Fonts
-    --font-sans: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-sans: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-mono: 'SFMono-Light', 'SF Mono', 'Ubuntu Mono', Consolas, 'DejaVu Sans Mono', Menlo, monospace;
 }
 
@@ -23,6 +23,7 @@
         --gray: #dbdbdb;
         --semi-white: #333;
     }
+
     header .logo {
         background: url("../img/logo-white.svg") !important;
         background-size: contain !important;
@@ -59,6 +60,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+
     a {
         margin: 5px;
     }
@@ -94,18 +96,37 @@ header {
             font-weight: bold;
             font-size: 64px;
             line-height: 76px;
-            text-align: left;
-            max-width: 960px;
+            text-align: justify;
+            max-width: 900px;
         }
 
         .description {
-            max-width: 960px;
+            max-width: 900px;
             font-family: var(--font-sans);
             font-style: normal;
             font-weight: 600;
             font-size: 24px;
             line-height: 29px;
-            text-align: left;
+            text-align: justify;
+        }
+
+        .links {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+            a {
+                padding-right: 15px;
+                font-family: var(--font-sans);
+                font-style: normal;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 24px;
+                color: var(--blue);
+                text-decoration: none;
+            }
         }
     }
 
@@ -200,6 +221,7 @@ article {
             font-weight: 500;
             font-size: 18px;
             line-height: 21px;
+
             code {
                 font-family: var(--font-mono);
             }
@@ -232,6 +254,7 @@ article {
         line-height: 29px;
         text-align: center;
     }
+
     .walkthrough {
         background: #196fcc;
         color: white;
@@ -244,6 +267,7 @@ article {
         margin: 10px;
         cursor: pointer;
     }
+
     .app {
         margin-top: 10px;
 
@@ -375,7 +399,7 @@ article {
     }
 }
 
-@media (max-width: 1470px) {
+@media (max-width: 1460px) {
     article {
         margin-top: 500px;
     }
@@ -417,6 +441,16 @@ article {
                 max-width: 500px !important;
                 width: 90vw;
                 text-align: justify !important;
+            }
+
+            .links {
+                max-width: 500px !important;
+                width: 90vw;
+                a {
+                    font-size: 11px !important;
+                    line-height: 13px !important;
+                }
+
             }
         }
     }
@@ -579,6 +613,7 @@ article {
                 color: var(--gray);
                 text-align: center;
             }
+
             .row {
                 padding: 0 2px;
                 display: flex;

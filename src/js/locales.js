@@ -19,6 +19,18 @@ glot.assign("description", {
     "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracing-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
     "es": "En todo el mundo, los gobiernos y las autoridades sanitarias están trabajando juntos para encontrar soluciones a la pandemia de COVID-19, para proteger a las personas y hacer que la sociedad vuelva a funcionar.<br>En las últimas semanas, algunas preocupaciones sobre ciertas tecnologías de rastreo han sido planteadas por aquellos que temen el recorte de las libertades individuales y su privacidad.<br>En CrypTool, tratamos de explicar lo mejor posible lo que se esconde en estos protocolos de rastreo descentralizados para que usted pueda formarse su propia opinión sobre el tema."
 })
+glot.assign("links-try", {
+    "en": "Try our animation",
+    "fr": "Essayez notre animation",
+    "de": "Versuchen Sie unsere Animation",
+    "es": "Pruebe nuestra animación"
+})
+glot.assign("implementation", {
+    "en": "Implementation of protocols",
+    "fr": "Implementation des protocoles",
+    "de": "Implementierung von Protokollen",
+    "es": "Aplicación de los protocolos"
+})
 glot.assign("step1-bold", {
     "en": "Alice’s phone broadcasts a random message every few minutes",
     "fr": "Le téléphone d'Alice diffuse un message aléatoire toutes les quelques minutes",
