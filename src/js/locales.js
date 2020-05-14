@@ -7,6 +7,10 @@ if (lang != null) {
     glot.lang = lang
 }
 
+if (glot.lang == "de") {
+    document.querySelector(".corona-tracing-cto").href = "https://cryptool.org/de/cto-highlights/corona-tracing"
+}
+
 glot.assign("title", {
     "en": "Privacy-friendly contact tracing",
     "fr": "Traçage de contact préservant la vie privée",
