@@ -197,12 +197,16 @@ class Simulation {
                 persons[i].alerted = true
                 alert(glot.get("gotest", {
                     name: persons[i].name,
-                    result: glot.get("gotesttrue")
+                    result: glot.get("gotesttrue", {
+                        name: persons[i].name
+                    })
                 }))
             } else {
                 alert(glot.get("gotest", {
                     name: persons[i].name,
-                    result: glot.get("gotestfalse")
+                    result: glot.get("gotestfalse", {
+                        name: persons[i].name
+                    })
                 }))
             }
             this.panel()

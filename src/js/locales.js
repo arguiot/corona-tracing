@@ -18,7 +18,7 @@ glot.assign("title", {
     "es": "Rastreo de contactos con privacidad"
 })
 glot.assign("description", {
-    "en": "Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
+    "en": "Across the world, governments and health authorities are working together to find solutions to the COVID‑19 pandemic.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
     "fr": "Partout dans le monde, les gouvernements et les autorités sanitaires travaillent ensemble pour trouver des solutions à la pandémie de COVID-19, pour protéger les personnes et remettre la société sur pied.<br>Au cours des dernières semaines, certaines inquiétudes concernant certaines technologies de suivi ont été soulevées par ceux qui craignent une restriction des libertés individuelles et de leur vie privée.<br>Chez CrypTool, nous essayons d'expliquer au mieux ce qui se cache dans ces protocoles de traçage décentralisés afin que vous puissiez vous faire votre propre opinion sur le sujet.",
     "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracing-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
     "es": "En todo el mundo, los gobiernos y las autoridades sanitarias están trabajando juntos para encontrar soluciones a la pandemia de COVID-19, para proteger a las personas y hacer que la sociedad vuelva a funcionar.<br>En las últimas semanas, algunas preocupaciones sobre ciertas tecnologías de rastreo han sido planteadas por aquellos que temen el recorte de las libertades individuales y su privacidad.<br>En CrypTool, tratamos de explicar lo mejor posible lo que se esconde en estos protocolos de rastreo descentralizados para que usted pueda formarse su propia opinión sobre el tema."
@@ -214,10 +214,10 @@ glot.assign("protocol", {
     "es": "Protocolo utilizado"
 })
 glot.assign("simulation", {
-    "en": "Simulation",
-    "fr": "Simulation",
-    "de": "Simulation",
-    "es": "Simulación"
+    "en": "Animation",
+    "fr": "Animation",
+    "de": "Animation",
+    "es": "Animación"
 })
 glot.assign("persons", {
     "en": "Persons",
@@ -278,7 +278,7 @@ glot.assign("gohouse", {
 glot.assign("gopark", {
     "en": "Go to park",
     "fr": "Aller au parc",
-    "de": "Zum Parken gehen",
+    "de": "In den Park gehen",
     "es": "Ve al parque"
 })
 glot.assign("testcovid", {
@@ -323,21 +323,21 @@ glot.assign("notify", {
 
 glot.assign("gotest", {
     "en": "${data.name} went to a hospital to get tested for coronavirus. ${data.result}",
-    "fr": "${data.name} est allé se faire tester dans un hôpital pour le coronavirus. ${data.result}",
+    "fr": "${data.name} est allé${data.name == 'Alice' ? \"e\" : \"\"} se faire tester dans un hôpital pour le coronavirus. ${data.result}",
     "de": "${data.name} ließ sich in einem Krankenhaus auf das Coronavirus testen. ${data.result}",
     "es": "${data.name} fue al hospital a hacerse la prueba del coronavirus. ${data.result}"
 })
 
 glot.assign("gotestfalse", {
-    "en": "That's great news! He's fine.",
-    "fr": "Bonnes nouvelles! Il n'a rien.",
+    "en": "That's great news! ${data.name == 'Alice' ? \"She\" : \"He\"}'s fine.",
+    "fr": "Bonnes nouvelles! ${data.name == 'Alice' ? \"Elle\" : \"Il\"} n'a rien.",
     "de": "Das sind großartige Neuigkeiten! Es geht ihm gut.",
     "es": "¡Es una gran noticia! Está bien."
 })
 
 glot.assign("gotesttrue", {
-    "en": "That's bad news! He's infected.",
-    "fr": "Mauvaises nouvelles! Il est contaminé.",
-    "de": "Das sind schlechte Nachrichten! Er ist infiziert.",
+    "en": "That's bad news! ${data.name == 'Alice' ? \"She\" : \"He\"}'s infected.",
+    "fr": "Mauvaises nouvelles! ${data.name == 'Alice' ? \"Elle\" : \"Il\"} est contaminé.",
+    "de": "Schlechte Nachrichten! ${data.name == 'Alice' ? \"Sie\" : \"Er\"} ist infiziert.",
     "es": "¡Eso son malas noticias! Está infectado."
 })
