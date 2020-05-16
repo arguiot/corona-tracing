@@ -323,10 +323,10 @@ var tour = (function () {
       }]
     });
     glot.assign("done", {
-      "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on '${glot.get('continue')}'. Or if you want to access a more advanced version in a new browser tab, showing cryptographic details of the protocols behind please click on \"Pro version\".",
-      "fr": "Félicitations 👏 ! Vous avez réussi à utiliser la simulation. Voulez-vous continuer à l'utiliser ? Cliquez sur '${glot.get('continue')}'. Ou si vous voulez accéder à une version plus avancée dans un nouvel onglet du navigateur, montrant les détails cryptographiques des protocoles sous-jacents, veuillez cliquer sur \"Version Pro\".",
-      "de": "Herzlichen Glückwunsch 👏! Es ist Ihnen gelungen, die Simulation zu nutzen. Wollen Sie sie weiterhin benutzen? Klicken Sie auf '${glot.get('continue')}'. Oder wenn Sie auf eine fortgeschrittenere Version in einem neuen Browser-Tab zugreifen wollen, der kryptographische Details der dahinter liegenden Protokolle anzeigt, klicken Sie bitte auf 'Pro-Version'.",
-      "es": "Felicitaciones 👏! Te las arreglaste para usar la simulación. ¿Quieres seguir usándola? Haz clic en '${glot.get('continue')}'. O si quieres acceder a una versión más avanzada en una nueva pestaña del navegador, mostrando los detalles criptográficos de los protocolos que hay detrás, por favor, haz clic en 'Versión Pro'."
+      "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on \"${glot.get('continue')}\". Or if you want to access a more advanced version in a new browser tab, showing cryptographic details of the protocols behind please click on \"Pro version\".",
+      "fr": "Félicitations 👏 ! Vous avez réussi à utiliser la simulation. Voulez-vous continuer à l'utiliser ? Cliquez sur \"${glot.get('continue')}\". Ou si vous voulez accéder à une version plus avancée dans un nouvel onglet du navigateur, montrant les détails cryptographiques des protocoles sous-jacents, veuillez cliquer sur \"Version Pro\".",
+      "de": "Herzlichen Glückwunsch 👏! Es ist Ihnen gelungen, die Simulation zu nutzen. Wollen Sie sie weiterhin benutzen? Klicken Sie auf \"${glot.get('continue')}\". Oder wenn Sie auf eine fortgeschrittenere Version in einem neuen Browser-Tab zugreifen wollen, der kryptographische Details der dahinter liegenden Protokolle anzeigt, klicken Sie bitte auf 'Pro-Version'.",
+      "es": "Felicitaciones 👏! Te las arreglaste para usar la simulación. ¿Quieres seguir usándola? Haz clic en \"${glot.get('continue')}\". O si quieres acceder a una versión más avanzada en una nueva pestaña del navegador, mostrando los detalles criptográficos de los protocolos que hay detrás, por favor, haz clic en 'Versión Pro'."
     });
     glot.assign("continue", {
       "en": "Go back to start",

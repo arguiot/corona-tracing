@@ -95,7 +95,7 @@ class Person {
         this.minY = 160;
         this.maxY = 290;
 
-        this.y += 150;
+        this.y = this.parkY;
 
         this.isPark = true
     }
