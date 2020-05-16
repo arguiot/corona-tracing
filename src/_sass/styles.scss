@@ -433,6 +433,9 @@ article {
                 margin-bottom: 10px !important;
                 max-width: 500px !important;
                 width: 90vw;
+                overflow-wrap: break-word;
+                hyphens: auto;
+                -webkit-hyphens: auto;
             }
 
             .description {
