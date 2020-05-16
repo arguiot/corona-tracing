@@ -324,7 +324,7 @@ glot.assign("notify", {
 glot.assign("gotest", {
     "en": "${data.name} went to a hospital to get tested for coronavirus. ${data.result}",
     "fr": "${data.name} est allé${data.name == 'Alice' ? \"e\" : \"\"} se faire tester dans un hôpital pour le coronavirus. ${data.result}",
-    "de": "${data.name} ließ sich in einem Krankenhaus auf das Coronavirus testen. ${data.result}",
+    "de": "${data.name} ließ sich in einem Krankenhaus auf das Corona-Virus testen. ${data.result}",
     "es": "${data.name} fue al hospital a hacerse la prueba del coronavirus. ${data.result}"
 })
 
