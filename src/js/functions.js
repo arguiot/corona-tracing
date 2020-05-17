@@ -720,6 +720,18 @@ var con = (function () {
     }, {
       key: "update",
       value: function update() {
+        if (isNaN(this.x)) {
+          this.x = this.home[0];
+        }
+
+        if (isNaN(this.y)) {
+          if (this.isPark == true) {
+            this.y = this.parkY;
+          } else {
+            this.y = this.home[1];
+          }
+        }
+
         this.x += this.vx * Math.cos(this.d);
         this.y += this.vy * Math.sin(this.d);
 
@@ -743,9 +755,9 @@ var con = (function () {
         this.pastMinX = this.minX;
         this.pastMaxX = this.maxX;
         this.pastMinY = this.minY;
-        this.pastMaxY = this.maxY;
-        this.pastX = this.x;
-        this.pastY = this.y;
+        this.pastMaxY = this.maxY; // this.pastX = this.x;
+        // this.pastY = this.y;
+
         this.minX = 10;
         this.maxX = 290;
         this.minY = 160;
@@ -756,8 +768,8 @@ var con = (function () {
     }, {
       key: "goToHouse",
       value: function goToHouse() {
-        this.x = this.pastX;
-        this.y = this.pastY;
+        this.x = this.home[0];
+        this.y = this.home[1];
         this.minX = this.pastMinX;
         this.maxX = this.pastMaxX;
         this.minY = this.pastMinY;
@@ -862,6 +874,7 @@ var con = (function () {
       _this.name = "Bob";
       _this.x = 75;
       _this.y = 95;
+      _this.home = [_this.x, _this.y];
       _this.parkY = _this.y + 150;
       _this.minX = 10;
       _this.maxX = 140;
@@ -895,6 +908,7 @@ var con = (function () {
       _this2.name = "Alice";
       _this2.x = 225;
       _this2.y = 95;
+      _this2.home = [_this2.x, _this2.y];
       _this2.parkY = _this2.y + 150;
       _this2.minX = 160;
       _this2.maxX = 290;
@@ -928,6 +942,7 @@ var con = (function () {
       _this3.name = "Charlie";
       _this3.x = 225;
       _this3.y = 50;
+      _this3.home = [_this3.x, _this3.y];
       _this3.parkY = _this3.y + 150;
       _this3.minX = 160;
       _this3.maxX = 290;
@@ -961,6 +976,7 @@ var con = (function () {
       _this4.name = "David";
       _this4.x = 75;
       _this4.y = 35;
+      _this4.home = [_this4.x, _this4.y];
       _this4.parkY = _this4.y + 150;
       _this4.minX = 10;
       _this4.maxX = 140;

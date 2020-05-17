@@ -163,6 +163,7 @@ tour.addStep({
             con.selector();
             con.sim.bob.goToPark()
             con.sim.alice.goToPark()
+            tour.isShown = true // In some cases, the isShown isn't set to true, so to fix that we're manually setting it to true
             tour.next()
         }
     }]
@@ -183,9 +184,10 @@ tour.addStep({
     buttons: [{
         text: glot.get("previous"),
         action: () => {
-            con.reset()
             con.state = 1;
             con.selector();
+            con.sim.bob.goToHouse()
+            con.sim.alice.goToHouse()
             tour.back()
         }
     }]
@@ -348,8 +350,12 @@ tour.addStep({
         on: 'top'
     },
     buttons: [{
-        text: glot.get("pro"),
+        text: "CTO Corona Protocol Demo",
         action: () => {
+            if (glot.lang == "de") {
+                window.location = "https://cryptool.org/de/cto-highlights/corona-tracing"
+                return
+            }
             window.location = "https://cryptool.org/en/cto-highlights/corona-tracing"
         }
     }, {

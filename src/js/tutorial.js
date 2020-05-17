@@ -163,6 +163,8 @@ var tour = (function () {
           con.selector();
           con.sim.bob.goToPark();
           con.sim.alice.goToPark();
+          tour.isShown = true; // In some cases, the isShown isn't set to true, so to fix that we're manually setting it to true
+
           tour.next();
         }
       }]
@@ -183,9 +185,10 @@ var tour = (function () {
       buttons: [{
         text: glot.get("previous"),
         action: function action() {
-          con.reset();
           con.state = 1;
           con.selector();
+          con.sim.bob.goToHouse();
+          con.sim.alice.goToHouse();
           tour.back();
         }
       }]
@@ -348,8 +351,13 @@ var tour = (function () {
         on: 'top'
       },
       buttons: [{
-        text: glot.get("pro"),
+        text: "CTO Corona Protocol Demo",
         action: function action() {
+          if (glot.lang == "de") {
+            window.location = "https://cryptool.org/de/cto-highlights/corona-tracing";
+            return;
+          }
+
           window.location = "https://cryptool.org/en/cto-highlights/corona-tracing";
         }
       }, {

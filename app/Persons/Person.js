@@ -66,8 +66,20 @@ class Person {
     }
 
     update() {
+        if (isNaN(this.x)) {
+            this.x = this.home[0]
+        }
+        if (isNaN(this.y)) {
+            if (this.isPark == true) {
+                this.y = this.parkY
+            } else {
+                this.y = this.home[1]
+            }
+        }
+
         this.x += this.vx * Math.cos(this.d);
         this.y += this.vy * Math.sin(this.d);
+
         if (this.x >= this.maxX || this.x <= this.minX) {
             this.vx = -this.vx;
         }
@@ -86,8 +98,8 @@ class Person {
         this.pastMaxX = this.maxX;
         this.pastMinY = this.minY;
         this.pastMaxY = this.maxY;
-        this.pastX = this.x;
-        this.pastY = this.y;
+        // this.pastX = this.x;
+        // this.pastY = this.y;
 
         this.minX = 10;
         this.maxX = 290;
@@ -101,8 +113,8 @@ class Person {
     }
 
     goToHouse() {
-        this.x = this.pastX;
-        this.y = this.pastY;
+        this.x = this.home[0];
+        this.y = this.home[1];
 
         this.minX = this.pastMinX;
         this.maxX = this.pastMaxX;
