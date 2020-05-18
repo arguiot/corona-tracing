@@ -1095,7 +1095,10 @@ var con = (function () {
         var _this2 = this;
 
         this.state = true;
-        this.render(); // Putting elements
+        this.render(); // In case the tour is going on...
+
+        window.tour.hide();
+        window.tour.isShown = false; // Putting elements
 
         this.el.querySelector(".title").innerHTML = title;
         glot.assign("loading", {
@@ -1527,6 +1530,7 @@ var con = (function () {
         this.selector();
         this.listen();
         this.date();
+        document.querySelector("select").value = protocol; // So the selector value is the same
       }
     }, {
       key: "date",
@@ -1697,8 +1701,6 @@ var con = (function () {
     var protocol = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "dp3t";
     window.clearAllInterval();
     cancelAnimationFrame(con$1.sim.animationFrame);
-    document.querySelector("select").value = protocol; // So the selector value is the same
-
     con$1.sim.removeListeners(document.querySelector(".app"));
     con$1.init(protocol);
     tour.hide();

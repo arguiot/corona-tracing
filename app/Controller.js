@@ -34,6 +34,8 @@ class Controller {
         this.selector();
         this.listen();
         this.date()
+
+        document.querySelector("select").value = protocol // So the selector value is the same
     }
 
     date() {

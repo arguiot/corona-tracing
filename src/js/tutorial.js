@@ -79,10 +79,10 @@ var tour = (function () {
       }]
     });
     glot.assign("settings-tour", {
-      "en": "This is the settings interface. Here you can see the data collected by the server (we'll get to that later). You can also change the date (because BroadcastIDs change with time), and the protocol used.",
-      "fr": "Voici l'interface des réglages. Ici, vous pouvez voir les données recueillies par le serveur (on y viendra plus tard). Vous pouvez aussi changer la date (car les BroadcastIDs changent en fonction du temps), et le protocole utilisé.",
-      "de": "Dies ist die Einstellungsschnittstelle. Hier können Sie die vom Server gesammelten Daten sehen (dazu kommen wir später). Sie können auch das Datum (da sich BroadcastIDs mit der Zeit ändern) und das verwendete Protokoll ändern.",
-      "es": "Esta es la interfaz de configuración. Aquí puede ver los datos recogidos por el servidor (llegaremos a eso más tarde). También se puede cambiar la fecha (porque los BroadcastIDs cambian con el tiempo), y el protocolo utilizado."
+      "en": "This is the settings interface. Here you can see the data collected by the server (we'll get to that later). You can also change the date (because Broadcast-IDs change with time), and the protocol used.",
+      "fr": "Voici l'interface des réglages. Ici, vous pouvez voir les données recueillies par le serveur (on y viendra plus tard). Vous pouvez aussi changer la date (car les Broadcast-IDs changent en fonction du temps), et le protocole utilisé.",
+      "de": "Dies ist die Einstellungsschnittstelle. Hier können Sie die vom Server gesammelten Daten sehen (dazu kommen wir später). Sie können auch das Datum (da sich Broadcast-IDs mit der Zeit ändern) und das verwendete Protokoll ändern.",
+      "es": "Esta es la interfaz de configuración. Aquí puede ver los datos recogidos por el servidor (llegaremos a eso más tarde). También se puede cambiar la fecha (porque los Broadcast-IDs cambian con el tiempo), y el protocolo utilizado."
     });
     tour.addStep({
       id: 'settings',
@@ -290,10 +290,10 @@ var tour = (function () {
       }]
     });
     glot.assign("whathappened", {
-      "en": "Let's try to figure out what happened. ${data.name1}'s phone uploaded ${data.name1 == 'Alice' ? 'her' : 'his'} secret keys for each day. These are the ones we see. ${data.name2}'s phone downloaded those keys and then generated the BroadcastIDs that could have been sent by ${data.name1}. Then ${data.name2} compared the results with the BroadcastIDs they had heard. Because there was a match, ${data.name2} received a notification.",
-      "fr": "Essayons de comprendre ce qu'il s'est passé. Le téléphone de ${data.name1} a uploadé ses clés secrètes pour chaque jours. C'est celles-ci que l'on voit. Le téléphone de ${data.name2} a téléchargé ces clé puis a généré les BroadcastIDs qui auraient pu être envoyer par ${data.name1}. Puis, ${data.name2} a comparé ces résultats aux BroadcastIDs qu'il avait entendu. Comme il y avait une correspondance, ${data.name2} a reçu une notification.",
-      "de": "Versuchen wir herauszufinden, was passiert ist. ${data.name1}s Telefon hat seine geheimen Schlüssel für jeden Tag hochgeladen. Das sind die, die wir sehen. ${data.name2}s Telefon lud diese Schlüssel herunter und erzeugte dann die BroadcastIDs, die von ${data.name1} hätten gesendet werden können. Dann verglich ${data.name2} die Ergebnisse mit den BroadcastIDs, die sie gehört hatte. Da es eine Begegnung gab, erhielt ${data.name2} eine Benachrichtigung.",
-      "es": "Tratemos de averiguar qué pasó. El teléfono de ${data.name1} subió sus llaves secretas para cada día. Estos son los que vemos. El teléfono de ${data.name2} descargó esas teclas y luego generó los BroadcastIDs que podrían haber sido enviados por ${data.name1}. Luego comparó los resultados con los BroadcastID que habían escuchado. Como había una coincidencia, ${data.name2} recibió una notificación."
+      "en": "Let's try to figure out what happened. ${data.name1}'s phone uploaded ${data.name1 == 'Alice' ? 'her' : 'his'} secret keys for each day. These are the ones we see. ${data.name2}'s phone downloaded those keys and then generated the Broadcast-IDs that could have been sent by ${data.name1}. Then ${data.name2} compared the results with the Broadcast-IDs they had heard. Because there was a match, ${data.name2} received a notification.",
+      "fr": "Essayons de comprendre ce qu'il s'est passé. Le téléphone de ${data.name1} a uploadé ses clés secrètes pour chaque jours. C'est celles-ci que l'on voit. Le téléphone de ${data.name2} a téléchargé ces clé puis a généré les Broadcast-IDs qui auraient pu être envoyer par ${data.name1}. Puis, ${data.name2} a comparé ces résultats aux Broadcast-IDs qu'il avait entendu. Comme il y avait une correspondance, ${data.name2} a reçu une notification.",
+      "de": "Versuchen wir herauszufinden, was passiert ist. ${data.name1}s Smartphone hat seine geheimen Schlüssel für jeden Tag hochgeladen. Das sind die, die wir sehen. ${data.name2}s Smartphone lud diese Schlüssel herunter und erzeugte dann die Broadcast-IDs, die von ${data.name1} hätten gesendet werden können. Dann verglich ${data.name2} die Ergebnisse mit den Broadcast-IDs, die sie gehört hatte. Da es eine Begegnung gab, erhielt ${data.name2} eine Benachrichtigung.",
+      "es": "Tratemos de averiguar qué pasó. El teléfono de ${data.name1} subió sus llaves secretas para cada día. Estos son los que vemos. El teléfono de ${data.name2} descargó esas teclas y luego generó los Broadcast-IDs que podrían haber sido enviados por ${data.name1}. Luego comparó los resultados con los Broadcast-ID que habían escuchado. Como había una coincidencia, ${data.name2} recibió una notificación."
     });
     tour.addStep({
       id: 'whathappened',
@@ -326,21 +326,21 @@ var tour = (function () {
       }]
     });
     glot.assign("done", {
-      "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on \"${glot.get('continue')}\". Or if you want to access a more advanced version in a new browser tab, showing cryptographic details of the protocols behind please click on \"Pro version\".",
-      "fr": "Félicitations 👏 ! Vous avez réussi à utiliser la simulation. Voulez-vous continuer à l'utiliser ? Cliquez sur \"${glot.get('continue')}\". Ou si vous voulez accéder à une version plus avancée dans un nouvel onglet du navigateur, montrant les détails cryptographiques des protocoles sous-jacents, veuillez cliquer sur \"Version Pro\".",
-      "de": "Herzlichen Glückwunsch 👏! Es ist Ihnen gelungen, die Simulation zu nutzen. Wollen Sie sie weiterhin benutzen? Klicken Sie auf \"${glot.get('continue')}\". Oder wenn Sie auf eine fortgeschrittenere Version in einem neuen Browser-Tab zugreifen wollen, der kryptographische Details der dahinter liegenden Protokolle anzeigt, klicken Sie bitte auf 'Pro-Version'.",
-      "es": "Felicitaciones 👏! Te las arreglaste para usar la simulación. ¿Quieres seguir usándola? Haz clic en \"${glot.get('continue')}\". O si quieres acceder a una versión más avanzada en una nueva pestaña del navegador, mostrando los detalles criptográficos de los protocolos que hay detrás, por favor, haz clic en 'Versión Pro'."
+      "en": "Congratulations 👏! You managed to use the simulation. Do you want to keep using it? Click on \"${glot.get('continue')}\". Or if you want to access a more advanced version in a new browser tab, showing cryptographic details of the protocols behind please click on \"${glot.get('pro')}\".",
+      "fr": "Félicitations 👏 ! Vous avez réussi à utiliser la simulation. Voulez-vous continuer à l'utiliser ? Cliquez sur \"${glot.get('continue')}\". Ou si vous voulez accéder à une version plus avancée dans un nouvel onglet du navigateur, montrant les détails cryptographiques des protocoles sous-jacents, veuillez cliquer sur \"${glot.get('pro')}\".",
+      "de": "Herzlichen Glückwunsch 👏! Es ist Ihnen gelungen, die Simulation zu nutzen. Wollen Sie sie weiterhin benutzen? Klicken Sie auf \"${glot.get('continue')}\". Oder wenn Sie auf eine fortgeschrittenere Version in einem neuen Browser-Tab zugreifen wollen, der kryptographische Details der dahinter liegenden Protokolle anzeigt, klicken Sie bitte auf \"${glot.get('pro')}\".",
+      "es": "Felicitaciones 👏! Te las arreglaste para usar la simulación. ¿Quieres seguir usándola? Haz clic en \"${glot.get('continue')}\". O si quieres acceder a una versión más avanzada en una nueva pestaña del navegador, mostrando los detalles criptográficos de los protocolos que hay detrás, por favor, haz clic en \"${glot.get('pro')}\"."
     });
     glot.assign("continue", {
-      "en": "Go back to start",
-      "fr": "Revenir au début",
-      "de": "Zurück zum Anfang",
-      "es": "Vuelve a empezar"
+      "en": "Leave the walkthrough",
+      "fr": "Quitter le tutoriel",
+      "de": "Walkthrough verlassen",
+      "es": "Salga del tutorial"
     });
     glot.assign("pro", {
-      "en": "Pro version",
-      "fr": "Version pro",
-      "de": "Pro-Version",
+      "en": "CTO Corona Protocol Demo",
+      "fr": "Demo des protocoles sur CTO",
+      "de": "CTO-Corona-Protokoll-Demo",
       "es": "Versión pro"
     });
     tour.addStep({
@@ -351,7 +351,7 @@ var tour = (function () {
         on: 'top'
       },
       buttons: [{
-        text: "CTO Corona Protocol Demo",
+        text: glot.get("pro"),
         action: function action() {
           if (glot.lang == "de") {
             window.location = "https://cryptool.org/de/cto-highlights/corona-tracing";
