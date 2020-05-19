@@ -369,6 +369,15 @@ article {
 
         small {
             opacity: .4;
+            &.legal {
+                opacity: 1;
+                font-size: 12px;
+                line-height: 16px;
+                color: var(--blue);
+                a {
+                    margin: 5px;
+                }
+            }
         }
     }
 
