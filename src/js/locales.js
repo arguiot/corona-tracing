@@ -252,7 +252,7 @@ glot.assign("false", {
 glot.assign("house", {
     "en": "${data.name}'s House",
     "fr": "Maison d${data.name == 'Alice' ? \"'\" : \"e \"}${data.name}",
-    "de": "Das Haus von ${data.name}",
+    "de": "Haus von ${data.name}",
     "es": "Casa de ${data.name}"
 })
 

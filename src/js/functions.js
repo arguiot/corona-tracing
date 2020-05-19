@@ -1235,19 +1235,19 @@ var con = (function () {
         this.ctx.fillStyle = this.bob.color;
         this.ctx.fillText(glot.get("house", {
           name: "Bob"
-        }), 41 * scale, 130 * scale, 70 * scale);
+        }), 35 * scale, 130 * scale);
         this.ctx.fillStyle = this.alice.color;
         this.ctx.fillText(glot.get("house", {
           name: "Alice"
-        }), 185 * scale, 130 * scale, 80 * scale);
+        }), 180 * scale, 130 * scale);
         this.ctx.fillStyle = this.charlie.color;
         this.ctx.fillText(glot.get("house", {
           name: "Charlie"
-        }), 180 * scale, 60 * scale);
+        }), 175 * scale, 60 * scale);
         this.ctx.fillStyle = this.david.color;
         this.ctx.fillText(glot.get("house", {
           name: "David"
-        }), 35 * scale, 60 * scale); // Persons
+        }), 30 * scale, 60 * scale); // Persons
 
         this.ctx.lineWidth = 2 * scale;
         [this.bob, this.alice, this.charlie, this.david].forEach(function (p) {
