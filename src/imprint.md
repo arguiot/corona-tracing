@@ -20,6 +20,7 @@ Any reproduction, modification, distribution, translation, storage, processing o
 
 #### Copyright of third party projects used
 - Icons: [Lunar Icons - Pr1mer](https://lunar.pr1mer.tech) - MIT License
+- Sources: [DP-3T](https://github.com/DP-3T/documents/tree/master/public_engagement/cartoon) - MPL 2.0 License
 
 #### Disclaimer
 Referring to §7 par. 1 of the German Tele-Media Act (TMG), as a service provider we are responsible as a service provider for our own content on this website. 

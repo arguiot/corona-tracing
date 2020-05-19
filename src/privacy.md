@@ -1,6 +1,6 @@
 ---
-layout: html
-title: CrypTools - Privacy Policy
+layout: post
+title: CrypTool - Privacy Policy
 description: Cryptography for everyone
 ---
 # Privacy Policy
