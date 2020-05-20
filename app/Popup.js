@@ -27,6 +27,9 @@ class Popup {
     show(title, promise) {
         this.state = true
         this.render()
+        // In case the tour is going on...
+        window.tour.hide()
+        window.tour.isShown = false
 
         // Putting elements
         this.el.querySelector(".title").innerHTML = title
