@@ -720,6 +720,18 @@ var con = (function () {
     }, {
       key: "update",
       value: function update() {
+        if (isNaN(this.x)) {
+          this.x = this.home[0];
+        }
+
+        if (isNaN(this.y)) {
+          if (this.isPark == true) {
+            this.y = this.parkY;
+          } else {
+            this.y = this.home[1];
+          }
+        }
+
         this.x += this.vx * Math.cos(this.d);
         this.y += this.vy * Math.sin(this.d);
 
@@ -743,21 +755,21 @@ var con = (function () {
         this.pastMinX = this.minX;
         this.pastMaxX = this.maxX;
         this.pastMinY = this.minY;
-        this.pastMaxY = this.maxY;
-        this.pastX = this.x;
-        this.pastY = this.y;
+        this.pastMaxY = this.maxY; // this.pastX = this.x;
+        // this.pastY = this.y;
+
         this.minX = 10;
         this.maxX = 290;
         this.minY = 160;
         this.maxY = 290;
-        this.y += 150;
+        this.y = this.parkY;
         this.isPark = true;
       }
     }, {
       key: "goToHouse",
       value: function goToHouse() {
-        this.x = this.pastX;
-        this.y = this.pastY;
+        this.x = this.home[0];
+        this.y = this.home[1];
         this.minX = this.pastMinX;
         this.maxX = this.pastMaxX;
         this.minY = this.pastMinY;
@@ -862,6 +874,8 @@ var con = (function () {
       _this.name = "Bob";
       _this.x = 75;
       _this.y = 95;
+      _this.home = [_this.x, _this.y];
+      _this.parkY = _this.y + 150;
       _this.minX = 10;
       _this.maxX = 140;
       _this.minY = 85;
@@ -894,6 +908,8 @@ var con = (function () {
       _this2.name = "Alice";
       _this2.x = 225;
       _this2.y = 95;
+      _this2.home = [_this2.x, _this2.y];
+      _this2.parkY = _this2.y + 150;
       _this2.minX = 160;
       _this2.maxX = 290;
       _this2.minY = 85;
@@ -926,6 +942,8 @@ var con = (function () {
       _this3.name = "Charlie";
       _this3.x = 225;
       _this3.y = 50;
+      _this3.home = [_this3.x, _this3.y];
+      _this3.parkY = _this3.y + 150;
       _this3.minX = 160;
       _this3.maxX = 290;
       _this3.minY = 10;
@@ -958,6 +976,8 @@ var con = (function () {
       _this4.name = "David";
       _this4.x = 75;
       _this4.y = 35;
+      _this4.home = [_this4.x, _this4.y];
+      _this4.parkY = _this4.y + 150;
       _this4.minX = 10;
       _this4.maxX = 140;
       _this4.minY = 10;
@@ -1075,7 +1095,10 @@ var con = (function () {
         var _this2 = this;
 
         this.state = true;
-        this.render(); // Putting elements
+        this.render(); // In case the tour is going on...
+
+        window.tour.hide();
+        window.tour.isShown = false; // Putting elements
 
         this.el.querySelector(".title").innerHTML = title;
         glot.assign("loading", {
@@ -1212,19 +1235,19 @@ var con = (function () {
         this.ctx.fillStyle = this.bob.color;
         this.ctx.fillText(glot.get("house", {
           name: "Bob"
-        }), 41 * scale, 130 * scale, 70 * scale);
+        }), 35 * scale, 130 * scale);
         this.ctx.fillStyle = this.alice.color;
         this.ctx.fillText(glot.get("house", {
           name: "Alice"
-        }), 185 * scale, 130 * scale, 80 * scale);
+        }), 180 * scale, 130 * scale);
         this.ctx.fillStyle = this.charlie.color;
         this.ctx.fillText(glot.get("house", {
           name: "Charlie"
-        }), 180 * scale, 60 * scale);
+        }), 175 * scale, 60 * scale);
         this.ctx.fillStyle = this.david.color;
         this.ctx.fillText(glot.get("house", {
           name: "David"
-        }), 35 * scale, 60 * scale); // Persons
+        }), 30 * scale, 60 * scale); // Persons
 
         this.ctx.lineWidth = 2 * scale;
         [this.bob, this.alice, this.charlie, this.david].forEach(function (p) {
@@ -1338,12 +1361,16 @@ var con = (function () {
             persons[i].alerted = true;
             alert(glot.get("gotest", {
               name: persons[i].name,
-              result: glot.get("gotesttrue")
+              result: glot.get("gotesttrue", {
+                name: persons[i].name
+              })
             }));
           } else {
             alert(glot.get("gotest", {
               name: persons[i].name,
-              result: glot.get("gotestfalse")
+              result: glot.get("gotestfalse", {
+                name: persons[i].name
+              })
             }));
           }
 
@@ -1503,6 +1530,7 @@ var con = (function () {
         this.selector();
         this.listen();
         this.date();
+        document.querySelector("select").value = protocol; // So the selector value is the same
       }
     }, {
       key: "date",
@@ -1673,8 +1701,6 @@ var con = (function () {
     var protocol = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "dp3t";
     window.clearAllInterval();
     cancelAnimationFrame(con$1.sim.animationFrame);
-    document.querySelector("select").value = protocol; // So the selector value is the same
-
     con$1.sim.removeListeners(document.querySelector(".app"));
     con$1.init(protocol);
     tour.hide();

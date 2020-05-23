@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>{{page.title}}</title>
+	<meta name="description" content="{{page.description}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="https://unpkg.com/normalize.css">
+	<link rel="stylesheet" href="{{site.url}}/css/post.css">
+</head>
+
+<body>
+	<!--[if lte IE 9]
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <article>
+        <div class="grid markdown-body">
+            {{content}}
+        </div>
+    </article>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/waffle-grid@1.3.6/dist/waffle-grid.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css">
+</body>
+
+</html>

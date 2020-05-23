@@ -103,9 +103,10 @@ class SlideController {
         } else if (nstep <= 1) {
             nstep = 1
         }
-
-        if (nstep == 3) {
-            this.render("2.5")
+        if (nstep == 2) {
+            this.render("2.A")
+        } else if (nstep == 3) {
+            this.render("2.B")
         } else if (nstep >= 4) {
             this.render(String(nstep - 1))
         } else {

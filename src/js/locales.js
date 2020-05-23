@@ -18,15 +18,15 @@ glot.assign("title", {
     "es": "Rastreo de contactos con privacidad"
 })
 glot.assign("description", {
-    "en": "Across the world, governments, and health authorities are working together to find solutions to the COVID‑19 pandemic.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
+    "en": "Across the world, governments and health authorities are working together to find solutions to the COVID‑19 pandemic.<br>In recent weeks, some concerns about certain tracking technologies have been raised by those who fear the curtailment of individual freedoms and their privacy.<br>At CrypTool, we try to explain as well as possible what is hidden in these decentralized tracing protocols so that you can form your own opinion on the subject.",
     "fr": "Partout dans le monde, les gouvernements et les autorités sanitaires travaillent ensemble pour trouver des solutions à la pandémie de COVID-19, pour protéger les personnes et remettre la société sur pied.<br>Au cours des dernières semaines, certaines inquiétudes concernant certaines technologies de suivi ont été soulevées par ceux qui craignent une restriction des libertés individuelles et de leur vie privée.<br>Chez CrypTool, nous essayons d'expliquer au mieux ce qui se cache dans ces protocoles de traçage décentralisés afin que vous puissiez vous faire votre propre opinion sur le sujet.",
     "de": "Überall auf der Welt arbeiten Regierungen und Gesundheitsbehörden zusammen, um Lösungen für die COVID-19-Pandemie zu finden.<br>In den letzten Wochen wurden einige Bedenken über bestimmte Tracing-Technologien von denen geäußert, die eine Beschneidung der individuellen Freiheiten und ihrer Privatsphäre befürchten.<br>Bei CrypTool versuchen wir, so gut wie möglich zu erklären, was in diesen dezentralen Tracing-Protokollen verborgen ist, damit Sie sich Ihre eigene Meinung zu diesem Thema bilden können.",
     "es": "En todo el mundo, los gobiernos y las autoridades sanitarias están trabajando juntos para encontrar soluciones a la pandemia de COVID-19, para proteger a las personas y hacer que la sociedad vuelva a funcionar.<br>En las últimas semanas, algunas preocupaciones sobre ciertas tecnologías de rastreo han sido planteadas por aquellos que temen el recorte de las libertades individuales y su privacidad.<br>En CrypTool, tratamos de explicar lo mejor posible lo que se esconde en estos protocolos de rastreo descentralizados para que usted pueda formarse su propia opinión sobre el tema."
 })
 glot.assign("links-try", {
-    "en": "Try our animation",
-    "fr": "Essayez notre animation",
-    "de": "Versuchen Sie unsere Animation",
+    "en": "Try the animation below",
+    "fr": "Essayez l'animation ci-dessous",
+    "de": "Zur Animation am Seitenende",
     "es": "Pruebe nuestra animación"
 })
 glot.assign("implementation", {
@@ -47,25 +47,25 @@ glot.assign("step1-text", {
     "de": "Um die Privatsphäre der Benutzer zu wahren, wird die Nachricht über Bluetooth gesendet und es werden keine Ortsangaben für die Kontakte verwendet.<br><br>Diese Nachricht wird Rolling Proximity Identifier oder <code>EphID</code> genannt. Lassen Sie uns diese vorerst Broadcast-IDs nennen. Diese Identifikatoren sind eindeutig und ändern sich häufig.",
     "es": "Para mantener la privacidad del usuario, el mensaje se envía por Bluetooth y no utiliza la localización para la detección de proximidad.<br><br>Este mensaje se llama Rolling Proximity Identifier o <code>EphID</code>. Por ahora, llamemos a los Broadcast-IDs. Estos identificadores son únicos y cambian a menudo."
 })
-glot.assign("step2-bold", {
+glot.assign("step2.A-bold", {
     "en": "Alice and Bob meet each other for the first time and have a 10-minute conversation.",
     "fr": "Alice et Bob se rencontrent pour la première fois et ont une conversation de 10 minutes.",
     "de": "Alice und Bob treffen sich zum ersten Mal und führen ein 10-minütiges Gespräch.",
     "es": "Alice y Bob se conocen por primera vez y tienen una conversación de 10 minutos."
 })
-glot.assign("step2-text", {
+glot.assign("step2.A-text", {
     "en": "While they discuss, their phones keep sending random messages.<br><br>Alice doesn’t have any symptoms and both don’t know that Alice is contagious.",
     "fr": "Pendant qu'ils discutent, leur téléphone continue d'envoyer des messages aléatoires.<br><br>Alice n'a aucun symptôme et Bob ne sait pas qu'elle est contagieuse.",
     "de": "Während sie diskutieren, senden ihre Smartphone immer wieder zufällige Nachrichten.<br><br>Alice hat keine Symptome und beide wissen nicht, dass Alice ansteckend ist.",
     "es": "Mientras discuten, su teléfono sigue enviando mensajes al azar. Alice no tiene ningún síntoma y Bob no sabe que es contagiosa."
 })
-glot.assign("step2.5-bold", {
+glot.assign("step2.B-bold", {
     "en": "Their phones exchange anonymous Broadcast-IDs.",
     "fr": "Leurs téléphones échangent des Broadcast-IDs anonymes.",
     "de": "Ihre Smartphones tauschen anonyme Broadcast-IDs aus.",
     "es": "Sus teléfonos intercambian Broadcast-IDs anónimas."
 })
-glot.assign("step2.5-text", {
+glot.assign("step2.B-text", {
     "en": "Both phones remember what they said and heard from each other in the past 14 days.<br><br>With no servers involved, only the phones know that they have been in contact.",
     "fr": "Les deux téléphones se souviennent de ce qu'ils ont dit et entendu l'un de l'autre au cours des 14 derniers jours.<br><br>En l'absence de serveurs, seuls les téléphones savent qu'ils ont été en contact.",
     "de": "Beide Smartphones \"erinnern\" sich daran, was sie in den letzten 14 Tagen \"gesagt\" und voneinander gehört haben.<br><br>Da keine Server beteiligt sind, wissen nur die Smartphones, dass sie in Kontakt waren.",
@@ -110,7 +110,7 @@ glot.assign("try", {
 glot.assign("try-desc", {
     "en": "We have made a small animation, so that you can visualize each step of the protocol.",
     "fr": "Nous avons réalisé une petite animation, afin que vous puissiez visualiser chaque étape du protocole.",
-    "de": "Wir haben eine kleine Animation erstellt, damit Sie jeden Schritt des Protokolls visualisieren können.",
+    "de": "Mit der kleinen Animation können Sie jeden Schritt des Protokolls visualisieren.",
     "es": "Hemos realizado una pequeña animación para que pueda visualizar cada paso del protocolo."
 })
 
@@ -214,10 +214,10 @@ glot.assign("protocol", {
     "es": "Protocolo utilizado"
 })
 glot.assign("simulation", {
-    "en": "Simulation",
-    "fr": "Simulation",
-    "de": "Simulation",
-    "es": "Simulación"
+    "en": "Animation",
+    "fr": "Animation",
+    "de": "Animation",
+    "es": "Animación"
 })
 glot.assign("persons", {
     "en": "Persons",
@@ -252,7 +252,7 @@ glot.assign("false", {
 glot.assign("house", {
     "en": "${data.name}'s House",
     "fr": "Maison d${data.name == 'Alice' ? \"'\" : \"e \"}${data.name}",
-    "de": "Das Haus von ${data.name}",
+    "de": "Haus von ${data.name}",
     "es": "Casa de ${data.name}"
 })
 
@@ -278,7 +278,7 @@ glot.assign("gohouse", {
 glot.assign("gopark", {
     "en": "Go to park",
     "fr": "Aller au parc",
-    "de": "Zum Parken gehen",
+    "de": "In den Park gehen",
     "es": "Ve al parque"
 })
 glot.assign("testcovid", {
@@ -315,29 +315,29 @@ glot.assign("meeting", {
     "es": "${data.p1.name} y ${data.p2.name} se conocieron en el parque. ¿Cuánto tiempo (en minutos) pasaron juntos?"
 })
 glot.assign("notify", {
-    "en": "${data.name} has been notified that ${data.name == 'Alice' ? \"she\" : \"he\"} has been in contact with someone positively tested",
-    "fr": "${data.name} a été notifié qu'${data.name == 'Alice' ? \"elle\" : \"il\"} a été en contact avec une personne testée positive",
-    "de": "${data.name} wurde benachrichtigt, dass er oder sie mit einer positiv getesteten Person in Kontakt war",
-    "es": "${data.name} ha sido notificado de que ha estado en contacto con alguien que ha sido probado positivamente"
+    "en": "${data.name} has been notified that ${data.name == 'Alice' ? \"she\" : \"he\"} has been in contact with someone positively tested.",
+    "fr": "${data.name} a été notifié qu'${data.name == 'Alice' ? \"elle\" : \"il\"} a été en contact avec une personne testée positive.",
+    "de": "${data.name} wurde benachrichtigt, dass ${data.name == 'Alice' ? \"sie\" : \"er\"} mit einer positiv getesteten Person in Kontakt war.",
+    "es": "${data.name} ha sido notificado de que ha estado en contacto con alguien que ha sido probado positivamente."
 })
 
 glot.assign("gotest", {
     "en": "${data.name} went to a hospital to get tested for coronavirus. ${data.result}",
-    "fr": "${data.name} est allé se faire tester dans un hôpital pour le coronavirus. ${data.result}",
-    "de": "${data.name} ließ sich in einem Krankenhaus auf das Coronavirus testen. ${data.result}",
+    "fr": "${data.name} est allé${data.name == 'Alice' ? \"e\" : \"\"} se faire tester dans un hôpital pour le coronavirus. ${data.result}",
+    "de": "${data.name} ließ sich in einem Krankenhaus auf das Corona-Virus testen. ${data.result}",
     "es": "${data.name} fue al hospital a hacerse la prueba del coronavirus. ${data.result}"
 })
 
 glot.assign("gotestfalse", {
-    "en": "That's great news! He's fine.",
-    "fr": "Bonnes nouvelles! Il n'a rien.",
+    "en": "That's great news! ${data.name == 'Alice' ? \"She\" : \"He\"}'s fine.",
+    "fr": "Bonnes nouvelles! ${data.name == 'Alice' ? \"Elle\" : \"Il\"} n'a rien.",
     "de": "Das sind großartige Neuigkeiten! Es geht ihm gut.",
     "es": "¡Es una gran noticia! Está bien."
 })
 
 glot.assign("gotesttrue", {
-    "en": "That's bad news! He's infected.",
-    "fr": "Mauvaises nouvelles! Il est contaminé.",
-    "de": "Das sind schlechte Nachrichten! Er ist infiziert.",
+    "en": "That's bad news! ${data.name == 'Alice' ? \"She\" : \"He\"}'s infected.",
+    "fr": "Mauvaises nouvelles! ${data.name == 'Alice' ? \"Elle\" : \"Il\"} est contaminé.",
+    "de": "Schlechte Nachrichten! ${data.name == 'Alice' ? \"Sie\" : \"Er\"} ist infiziert.",
     "es": "¡Eso son malas noticias! Está infectado."
 })

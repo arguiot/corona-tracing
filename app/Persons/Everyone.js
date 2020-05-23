@@ -11,6 +11,8 @@ class Bob extends Person {
 
         this.x = 75;
         this.y = 95;
+        this.home = [this.x, this.y]
+        this.parkY = this.y + 150
 
         this.minX = 10;
         this.maxX = 140;
@@ -39,6 +41,8 @@ class Alice extends Person {
 
         this.x = 225;
         this.y = 95;
+        this.home = [this.x, this.y]
+        this.parkY = this.y + 150
 
         this.minX = 160;
         this.maxX = 290;
@@ -68,6 +72,8 @@ class Charlie extends Person {
 
         this.x = 225;
         this.y = 50;
+        this.home = [this.x, this.y]
+        this.parkY = this.y + 150
 
         this.minX = 160;
         this.maxX = 290;
@@ -97,6 +103,8 @@ class David extends Person {
 
         this.x = 75;
         this.y = 35;
+        this.home = [this.x, this.y]
+        this.parkY = this.y + 150
 
         this.minX = 10;
         this.maxX = 140;

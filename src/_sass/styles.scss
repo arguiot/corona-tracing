@@ -24,7 +24,7 @@
         --semi-white: #333;
     }
 
-    header .logo {
+    header.landing .logo {
         background: url("../img/logo-white.svg") !important;
         background-size: contain !important;
         background-repeat: no-repeat !important;
@@ -66,7 +66,7 @@ html {
     }
 }
 
-header {
+header.landing {
     margin: 0;
     height: 100vh;
     display: flex;
@@ -369,6 +369,15 @@ article {
 
         small {
             opacity: .4;
+            &.legal {
+                opacity: 1;
+                font-size: 12px;
+                line-height: 16px;
+                color: var(--blue);
+                a {
+                    margin: 5px;
+                }
+            }
         }
     }
 
@@ -418,7 +427,7 @@ article {
 }
 
 @media (max-width: 960px) {
-    header {
+    header.landing {
         .text {
             .logo {
                 max-width: 500px !important;
@@ -433,6 +442,9 @@ article {
                 margin-bottom: 10px !important;
                 max-width: 500px !important;
                 width: 90vw;
+                overflow-wrap: break-word;
+                hyphens: auto;
+                -webkit-hyphens: auto;
             }
 
             .description {
