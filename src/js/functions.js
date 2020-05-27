@@ -667,6 +667,7 @@ var con = (function () {
       this.maxY = 140;
       this.contagious = false;
       this.alerted = false;
+      this.notified = false;
       this.broadcastHistory = Array(OBSERVATION_DAYS - 1).fill(null);
       this.heard = new Set();
       this.vx = 1;
@@ -687,11 +688,15 @@ var con = (function () {
         var _this = this;
 
         if (notif.from == this.name) {
+          this.notified = true;
+          this.alerted = true;
           return;
         }
 
         Array.from(this.heard).forEach(function (broadcast) {
           if (broadcast != null && broadcast.slot == notif.slot && _this.receivedNotification == false) {
+            _this.notified = true;
+            _this.alerted = true;
             return alert(glot.get("notify", {
               name: _this.name
             }));
@@ -1322,6 +1327,7 @@ var con = (function () {
 
         document.querySelector(".contagious").innerHTML = glot.get(persons[i].contagious);
         document.querySelector(".alerted").innerHTML = glot.get(persons[i].alerted);
+        document.querySelector(".notified").innerHTML = glot.get(persons[i].notified);
         document.querySelector(".initial").innerHTML = this.toHex(persons[i].initial).substring(0, 10) + "...";
         document.querySelector(".initial").title = this.toHex(persons[i].initial);
         document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.dayIndex)).substring(0, 10) + "...";
@@ -1355,6 +1361,7 @@ var con = (function () {
           if (persons[i].alerted == true) {
             // Publish
             persons[i].published = true;
+            persons[i].notified = true;
 
             _this3.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys());
           } else if (persons[i].contagious == true) {

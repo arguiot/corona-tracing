@@ -17,6 +17,7 @@ class Person {
 
         this.contagious = false;
         this.alerted = false;
+        this.notified = false;
 
         this.broadcastHistory = Array(OBSERVATION_DAYS - 1).fill(null);
         this.heard = new Set();
@@ -39,10 +40,14 @@ class Person {
 
     notify(notif) {
         if (notif.from == this.name) {
+            this.notified = true
+            this.alerted = true
             return
         }
         Array.from(this.heard).forEach(broadcast => {
             if (broadcast != null && broadcast.slot == notif.slot && this.receivedNotification == false) {
+                this.notified = true
+                this.alerted = true
                 return alert(glot.get("notify", {
                     name: this.name
                 }))
