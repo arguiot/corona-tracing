@@ -56,7 +56,7 @@ glot.assign("step2.A-bold", {
 glot.assign("step2.A-text", {
     "en": "While they discuss, their phones keep sending random messages.<br><br>Alice doesn’t have any symptoms and both don’t know that Alice is contagious.",
     "fr": "Pendant qu'ils discutent, leur téléphone continue d'envoyer des messages aléatoires.<br><br>Alice n'a aucun symptôme et Bob ne sait pas qu'elle est contagieuse.",
-    "de": "Während sie diskutieren, senden ihre Smartphone immer wieder zufällige Nachrichten.<br><br>Alice hat keine Symptome und beide wissen nicht, dass Alice ansteckend ist.",
+    "de": "Während sie diskutieren, senden ihre Smartphones immer wieder zufällige Nachrichten.<br><br>Alice hat keine Symptome und beide wissen nicht, dass Alice ansteckend ist.",
     "es": "Mientras discuten, su teléfono sigue enviando mensajes al azar. Alice no tiene ningún síntoma y Bob no sabe que es contagiosa."
 })
 glot.assign("step2.B-bold", {
