@@ -137,10 +137,10 @@ glot.assign("alerted", {
 })
 
 glot.assign("notified", {
-    "en": "${currentPerson().name} was notified by the app.",
-    "fr": "${currentPerson().name} a été informé${currentPerson().name == 'Alice' ? \"e\" : \"\"} par l'application.",
-    "de": "${currentPerson().name} wurde von der App benachrichtigt.",
-    "es": "${currentPerson().name} fue notificada por la aplicación."
+    "en": "${currentPerson().name} was notified by the app",
+    "fr": "${currentPerson().name} a été informé${currentPerson().name == 'Alice' ? \"e\" : \"\"} par l'application",
+    "de": "${currentPerson().name} wurde von der App benachrichtigt",
+    "es": "${currentPerson().name} fue notificada por la aplicación"
 })
 glot.assign("initial-key", {
     "en": "${currentPerson().name}'s secret initial key",
