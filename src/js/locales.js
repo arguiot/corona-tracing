@@ -135,6 +135,13 @@ glot.assign("alerted", {
     "de": "${currentPerson().name} weiß, dass ${currentPerson().name == 'Alice' ? \"sie\" : \"er\"} ansteckend ist",
     "es": "${currentPerson().name} sabe que es contagioso"
 })
+
+glot.assign("notified", {
+    "en": "${currentPerson().name} was notified by the app",
+    "fr": "${currentPerson().name} a été informé${currentPerson().name == 'Alice' ? \"e\" : \"\"} par l'application",
+    "de": "${currentPerson().name} wurde von der App benachrichtigt",
+    "es": "${currentPerson().name} fue notificada por la aplicación"
+})
 glot.assign("initial-key", {
     "en": "${currentPerson().name}'s secret initial key",
     "fr": "Clé initiale secrète de ${currentPerson().name}",

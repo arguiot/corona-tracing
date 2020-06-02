@@ -1,7 +1,7 @@
 {
   "name": "COVID-19",
   "version": "1.0.0",
-  "description": "A web experiment to demonstrate how decentralized tracing protocol works.",
+  "description": "A web experiment to demonstrate how decentralized tracing protocol works",
   "main": "index.js",
   "repository": "https://github.com/arguiot/corona-tracer.git",
   "author": "Arthur Guiot <arguiot@gmail.com>",

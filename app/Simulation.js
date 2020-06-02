@@ -160,6 +160,7 @@ class Simulation {
 
         document.querySelector(".contagious").innerHTML = glot.get(persons[i].contagious);
         document.querySelector(".alerted").innerHTML = glot.get(persons[i].alerted);
+        document.querySelector(".notified").innerHTML = glot.get(persons[i].notified);
         document.querySelector(".initial").innerHTML = this.toHex(persons[i].initial).substring(0, 10) + "...";
         document.querySelector(".initial").title = this.toHex(persons[i].initial)
         document.querySelector(".day").innerHTML = this.toHex(persons[i].day(this.dayIndex)).substring(0, 10) + "...";
@@ -191,7 +192,8 @@ class Simulation {
             if (persons[i].alerted == true) {
                 // Publish
                 persons[i].published = true
-
+                persons[i].notified = true
+                
                 this.server.addKeys(persons[i].name, persons[i].generateBroadcastHistoryFull(), persons[i].getDayKeys())
             } else if (persons[i].contagious == true) {
                 persons[i].alerted = true
