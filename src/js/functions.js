@@ -695,8 +695,8 @@ var con = (function () {
 
         Array.from(this.heard).forEach(function (broadcast) {
           if (broadcast != null && broadcast.slot == notif.slot && _this.receivedNotification == false) {
-            _this.notified = true;
-            _this.alerted = true;
+            _this.notified = true; // this.alerted = true
+
             return alert(glot.get("notify", {
               name: _this.name
             }));

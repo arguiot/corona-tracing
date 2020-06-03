@@ -47,7 +47,7 @@ class Person {
         Array.from(this.heard).forEach(broadcast => {
             if (broadcast != null && broadcast.slot == notif.slot && this.receivedNotification == false) {
                 this.notified = true
-                this.alerted = true
+                // this.alerted = true
                 return alert(glot.get("notify", {
                     name: this.name
                 }))
