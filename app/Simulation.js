@@ -19,7 +19,7 @@ window.clearAllInterval = function () {
 };
 
 class Simulation {
-    constructor(bob, alice, charlie, david) {
+    constructor(alice, bob, charlie, david) {
         this.bob = bob;
         this.alice = alice;
         this.charlie = charlie
@@ -109,7 +109,7 @@ class Simulation {
         // Persons
         this.ctx.lineWidth = 2 * scale;
 
-        [this.bob, this.alice, this.charlie, this.david].forEach(p => {
+        [this.alice, this.bob, this.charlie, this.david].forEach(p => {
             this.ctx.beginPath();
             this.ctx.arc(p.x * scale, p.y * scale, 6 * scale, 0, Math.PI * 2, true); // Inner circle
             this.ctx.fillStyle = p.color;
@@ -136,7 +136,7 @@ class Simulation {
     }
 
     monitor() {
-        const persons = [this.bob, this.alice, this.david, this.charlie]
+        const persons = [this.alice, this.bob, this.david, this.charlie]
         persons.filter(person => person.isPark).forEach(p => {
             persons.filter(person => person.isPark).forEach(pp => {
                 if (p == pp) {
@@ -155,7 +155,7 @@ class Simulation {
 
     panel() {
         const i = this.panelState
-        const persons = [this.bob, this.alice, this.charlie, this.david]
+        const persons = [this.alice, this.bob, this.david, this.charlie]
         // Values
 
         document.querySelector(".contagious").innerHTML = glot.get(persons[i].contagious);
@@ -176,7 +176,7 @@ class Simulation {
     }
 
     panelListeners() {
-        const persons = [this.bob, this.alice, this.charlie, this.david]
+        const persons = [this.alice, this.bob, this.david, this.charlie]
 
         document.querySelector(".row > .goto").addEventListener("click", e => {
             const i = this.panelState

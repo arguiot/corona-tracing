@@ -120,7 +120,7 @@ function currentPerson() {
             name: "Bob"
         }
     }
-    return [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david][con.sim.panelState]
+    return [con.sim.alice, con.sim.bob, con.sim.charlie, con.sim.david][con.sim.panelState]
 }
 
 glot.assign("contagious", {
@@ -279,7 +279,7 @@ glot.assign("park", {
 glot.assign("gohouse", {
     "en": "Go to house",
     "fr": "Aller à la maison",
-    "de": "Zum Haus gehen",
+    "de": "Ins Haus gehen",
     "es": "Ve a la casa"
 })
 glot.assign("gopark", {

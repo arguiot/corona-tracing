@@ -271,7 +271,7 @@ tour.addStep({
     buttons: [{
         text: glot.get("previous"),
         action: () => {
-            const persons = [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david]
+            const persons = [con.sim.alice, con.sim.bob, con.sim.charlie, con.sim.david]
             const person = persons[con.sim.panelState]
             person.alerted = false
             con.sim.panel()

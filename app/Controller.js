@@ -20,7 +20,7 @@ class Controller {
         const alice = new Alice(protocol)
         const charlie = new Charlie(protocol)
         const david = new David(protocol)
-        this.sim = new Simulation(bob, alice, charlie, david);
+        this.sim = new Simulation(alice, bob, charlie, david);
 
         this.state = 0;
 
@@ -154,13 +154,13 @@ class Controller {
 
     goToPark() {
         this.sim.isPark = true;
-        [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(person => {
+        [this.sim.alice, this.sim.bob, this.sim.charlie, this.sim.david].forEach(person => {
             person.goToPark();
         })
     }
     goToHouse() {
         this.sim.isPark = false;
-        [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(person => {
+        [this.sim.alice, this.sim.bob, this.sim.charlie, this.sim.david].forEach(person => {
             person.goToHouse();
         })
     }

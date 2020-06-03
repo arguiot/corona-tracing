@@ -695,8 +695,8 @@ var con = (function () {
 
         Array.from(this.heard).forEach(function (broadcast) {
           if (broadcast != null && broadcast.slot == notif.slot && _this.receivedNotification == false) {
-            _this.notified = true;
-            _this.alerted = true;
+            _this.notified = true; // this.alerted = true
+
             return alert(glot.get("notify", {
               name: _this.name
             }));
@@ -1170,7 +1170,7 @@ var con = (function () {
   };
 
   var Simulation = /*#__PURE__*/function () {
-    function Simulation(bob, alice, charlie, david) {
+    function Simulation(alice, bob, charlie, david) {
       _classCallCheck(this, Simulation);
 
       this.bob = bob;
@@ -1255,7 +1255,7 @@ var con = (function () {
         }), 30 * scale, 60 * scale); // Persons
 
         this.ctx.lineWidth = 2 * scale;
-        [this.bob, this.alice, this.charlie, this.david].forEach(function (p) {
+        [this.alice, this.bob, this.charlie, this.david].forEach(function (p) {
           _this.ctx.beginPath();
 
           _this.ctx.arc(p.x * scale, p.y * scale, 6 * scale, 0, Math.PI * 2, true); // Inner circle
@@ -1298,7 +1298,7 @@ var con = (function () {
       value: function monitor() {
         var _this2 = this;
 
-        var persons = [this.bob, this.alice, this.david, this.charlie];
+        var persons = [this.alice, this.bob, this.david, this.charlie];
         persons.filter(function (person) {
           return person.isPark;
         }).forEach(function (p) {
@@ -1323,7 +1323,7 @@ var con = (function () {
       key: "panel",
       value: function panel() {
         var i = this.panelState;
-        var persons = [this.bob, this.alice, this.charlie, this.david]; // Values
+        var persons = [this.alice, this.bob, this.david, this.charlie]; // Values
 
         document.querySelector(".contagious").innerHTML = glot.get(persons[i].contagious);
         document.querySelector(".alerted").innerHTML = glot.get(persons[i].alerted);
@@ -1343,7 +1343,7 @@ var con = (function () {
       value: function panelListeners() {
         var _this3 = this;
 
-        var persons = [this.bob, this.alice, this.charlie, this.david];
+        var persons = [this.alice, this.bob, this.david, this.charlie];
         document.querySelector(".row > .goto").addEventListener("click", function (e) {
           var i = _this3.panelState;
 
@@ -1528,7 +1528,7 @@ var con = (function () {
         var alice = new Alice(protocol);
         var charlie = new Charlie(protocol);
         var david = new David(protocol);
-        this.sim = new Simulation(bob, alice, charlie, david);
+        this.sim = new Simulation(alice, bob, charlie, david);
         this.state = 0;
         this.sim.mode = protocol;
         this.sim.today = new Date();
@@ -1676,7 +1676,7 @@ var con = (function () {
       key: "goToPark",
       value: function goToPark() {
         this.sim.isPark = true;
-        [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(function (person) {
+        [this.sim.alice, this.sim.bob, this.sim.charlie, this.sim.david].forEach(function (person) {
           person.goToPark();
         });
       }
@@ -1684,7 +1684,7 @@ var con = (function () {
       key: "goToHouse",
       value: function goToHouse() {
         this.sim.isPark = false;
-        [this.sim.bob, this.sim.alice, this.sim.charlie, this.sim.david].forEach(function (person) {
+        [this.sim.alice, this.sim.bob, this.sim.charlie, this.sim.david].forEach(function (person) {
           person.goToHouse();
         });
       }

@@ -272,7 +272,7 @@ var tour = (function () {
       buttons: [{
         text: glot.get("previous"),
         action: function action() {
-          var persons = [con.sim.bob, con.sim.alice, con.sim.charlie, con.sim.david];
+          var persons = [con.sim.alice, con.sim.bob, con.sim.charlie, con.sim.david];
           var person = persons[con.sim.panelState];
           person.alerted = false;
           con.sim.panel();
