@@ -354,11 +354,11 @@ var tour = (function () {
         text: glot.get("pro"),
         action: function action() {
           if (glot.lang == "de") {
-            window.location = "https://cryptool.org/de/cto-highlights/corona-tracing";
+            window.location = "https://www.cryptool.org/de/cto/corona-tracing";
             return;
           }
 
-          window.location = "https://cryptool.org/en/cto-highlights/corona-tracing";
+          window.location = "https://www.cryptool.org/en/cto/corona-tracing";
         }
       }, {
         text: glot.get("continue"),

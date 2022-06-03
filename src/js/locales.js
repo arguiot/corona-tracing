@@ -8,7 +8,7 @@ if (lang != null) {
 }
 
 if (glot.lang == "de") {
-    document.querySelector(".corona-tracing-cto").href = "https://cryptool.org/de/cto-highlights/corona-tracing"
+    document.querySelector(".corona-tracing-cto").href = "https://www.cryptool.org/de/cto/corona-tracing"
 }
 
 glot.assign("title", {
